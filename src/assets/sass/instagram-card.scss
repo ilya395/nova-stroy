@@ -1,0 +1,152 @@
+.instagram-card {
+    background-color: #ffdfc8;
+
+    @media screen and (max-width: 727px + 20px*2) {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+    @media screen and (min-width: 728px + 20px*2) {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+    @media screen and (min-width: 1140px + 20px + 20px) {
+        padding-top: 100px;
+        padding-bottom: 100px;
+
+        & .row {
+            margin-left: -10px;
+            margin-right: -10px;
+        }
+    }
+
+    & .container {
+        @media screen and (max-width: 727px + 20px*2) {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }        
+    }
+
+    & .instagram-card__tag-name {
+        display: flex;
+        flex-wrap: nowrap;
+
+        @media screen and (max-width: 727px + 20px*2) {
+            margin-bottom: 13px;
+        }
+    }
+    & .tag-name__slug {
+        font-family: Montserrat;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        color: #333333;
+
+        @media screen and (max-width: 727px + 20px*2) {
+            font-size: 22px;
+            line-height: 1.55;
+            letter-spacing: -0.61px;
+        }
+        @media screen and (min-width: 728px + 20px*2) {
+            font-size: 22px;
+            line-height: 1.55;
+            letter-spacing: -0.61px;
+        }
+        @media screen and (min-width: 1140px + 20px + 20px) {
+            font-size: 36px;
+            line-height: 0.78;
+            letter-spacing: -1px;
+        } 
+        
+        &.tag-name__slug_position {
+            display: flex;
+            align-items: center;
+            padding-left: 15px;
+        }
+    }
+
+    & .tag-name__soc-icon {
+
+        @media screen and (max-width: 727px + 20px*2) {
+            width: 30px;
+            height: 30px;
+        }
+        @media screen and (min-width: 728px + 20px*2) {
+            width: 30px;
+            height: 30px;
+        }
+        @media screen and (min-width: 1140px + 20px + 20px) {
+            width: 60px;
+            height: 60px;
+        }    
+    
+        & .tag-name__image {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    & .instagram-card__to-visit-cart {
+        display: flex;
+        flex-direction: column;
+
+        @media screen and (max-width: 727px + 20px*2) {
+            align-items: flex-start;
+            margin-top: 30px;
+        }
+        @media screen and (min-width: 728px + 20px*2) {
+            align-items: center;
+        }
+
+        & .instagram-card__link-to-soc {
+            display: inline-flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: space-between;
+            width: 200px;
+
+            @media screen and (max-width: 727px + 20px*2) {
+                margin-top: 25px;
+                display: none;
+            }
+            @media screen and (min-width: 728px + 20px*2) {
+                margin-top: 25px;
+                display: inline-flex;
+            }
+            @media screen and (min-width: 1140px + 20px + 20px) {
+                margin-top: 25px;
+                display: inline-flex;
+            }  
+
+            & .link-to-soc__icon {
+                width: 30px;
+                height: 30px;
+
+                & img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+
+            & .link-to-soc__title {
+                font-family: Montserrat;
+                font-size: 11px;
+                font-weight: bold;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: 1.82;
+                letter-spacing: 1px;
+                color: #000000;  
+                text-transform: uppercase;     
+            }
+        
+            & .link-to-soc__arrow {
+                & svg {
+                    width: 7px; // 11px;
+                    height: 11px; // 7px;
+                    color: #1c1c1c;
+                    fill: #1c1c1c;
+                }
+            }
+        }
+    }
+}

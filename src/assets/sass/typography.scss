@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+//
+h1 {
+    font-family: Montserrat;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+
+    @media screen and (max-width: 727px + 20px*2) {
+        font-size: 36px;
+        font-weight: bold;
+        line-height: 1.44;
+    }
+    @media screen and (min-width: 728px + 20px*2) {
+        font-size: 46px;
+        font-weight: bold;
+        line-height: 1.39;
+    }
+    @media screen and (min-width: 1140px + 20px + 20px) {
+        font-size: 76px;
+        font-weight: bold;
+        line-height: 1.05;
+    }
+
+    &.text-white {
+        color: #ffffff;
+    }
+    &.default {
+        margin: 0;
+    }
+}
+h2 {
+    font-family: Montserrat;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;  
+
+    @media screen and (max-width: 727px + 20px*2) {
+        font-size: 22px;
+        line-height: 1.55;
+        letter-spacing: normal;
+    }
+    @media screen and (min-width: 728px + 20px*2) {
+        font-size: 22px;
+        line-height: 1.55;
+        letter-spacing: -0.61px;
+    }
+    @media screen and (min-width: 1140px + 20px + 20px) {
+        font-size: 36px;
+        line-height: 1.33;
+        letter-spacing: -1px;
+    }
+
+    &.text-white {
+        color: #ffffff;
+    }
+    &.text-dark{
+        color: #333333;
+    }
+    &.default {
+        margin: 0;
+    }
+
+    &.big-title {
+        font-family: Montserrat;
+        font-stretch: normal;
+        font-style: normal;
+        letter-spacing: normal;
+    
+        @media screen and (max-width: 727px + 20px*2) {
+            font-size: 36px;
+            font-weight: bold;
+            line-height: 1.44;
+        }
+        @media screen and (min-width: 728px + 20px*2) {
+            font-size: 46px;
+            font-weight: bold;
+            line-height: 1.39;
+        }
+        @media screen and (min-width: 1140px + 20px + 20px) {
+            font-size: 76px;
+            font-weight: bold;
+            line-height: 1.05;
+        }
+    }
+}
+h3 {
+    font-family: Montserrat;
+    font-stretch: normal;
+    font-style: normal;
+    
+    @media screen and (max-width: 727px + 20px*2) {
+        font-size: 22px;
+        font-weight: bold;
+        line-height: 1.45;
+        letter-spacing: -0.61px;
+    }
+    @media screen and (min-width: 728px + 20px*2) {
+        font-size: 22px;
+        font-weight: bold;
+        line-height: 1.45;
+        letter-spacing: -0.61px;
+    }
+    @media screen and (min-width: 1140px + 20px + 20px) {
+        font-size: 24px;
+        font-weight: bold;
+        line-height: 1.33;
+        letter-spacing: -0.67px;
+    }
+
+    &.text-dark {
+        color: #333333;
+    }
+    &.text-white {
+        color: #ffffff;
+    }
+    &.default {
+        margin: 0;
+    }
+
+    &.tab-element {
+        opacity: 0.5;
+        letter-spacing: normal;
+        font-weight: normal;
+
+        @media screen and (max-width: 727px + 20px*2) {
+            font-size:16px;
+            line-height: 1.5;
+
+            &.text-dark {
+                color: #000;
+            }
+        }
+        @media screen and (min-width: 728px + 20px*2) {
+            font-size: 18px;
+            line-height: 1.33;
+        }
+        @media screen and (min-width: 1140px + 20px + 20px) {
+            font-size: 24px;
+            line-height: 1.33;
+        }
+    }
+}
+h4 {
+    font-family: Montserrat;
+    font-size: 11px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.82;
+    letter-spacing: 1px;
+
+    &.text-white {
+        color: #d8d8d8;
+        opacity: .6;
+    }
+    &.text-dark {
+        color: #333333;
+        opacity: .6;
+    }
+    &.default {
+        margin: 0;
+    }
+
+    &.uppercase {
+        text-transform: uppercase;
+    }
+}
+
+.work-area {
+    font-family: Montserrat;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+
+    @media screen and (max-width: 727px + 20px*2) {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+    @media screen and (min-width: 728px + 20px*2) {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+    @media screen and (min-width: 1140px + 20px + 20px) {
+        font-size: 16px;
+        line-height: 1.75;
+    }
+}
+
+.typography-simple-text {
+    font-family: Montserrat;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+
+    @media screen and (max-width: 727px + 20px*2) {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+    @media screen and (min-width: 728px + 20px*2) {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+    @media screen and (min-width: 1140px + 20px + 20px) {
+        font-size: 16px;
+        line-height: 1.75;
+    }
+
+    &.text-white {
+        color: #ffffff;
+        opacity: .6;
+    }
+    &.text-light {
+        color: #f0f0f0;
+        opacity: .6;
+    }
+    &.text-dark {
+        color: #4d4d4d;
+    }
+    &.bold {
+        font-weight: bold;
+    }
+    &.text-center {
+        text-align: center;
+    }
+}

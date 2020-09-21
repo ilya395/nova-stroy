@@ -1,0 +1,100 @@
+.custom-buttom {
+    display: inline-block;
+    width: 200px;
+    height: 48px;
+    background-color: #ff7f50;
+    padding: 13px 19px 16px 19px;
+    text-decoration: none;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    text-transform: none;
+    cursor: pointer;
+    box-shadow: none;
+
+    &.hovered:hover {
+        background-color: #ff5c34;
+    }
+
+    &.custom-buttom_rectangle {
+        border: solid 1px #ff7f50;
+        background-color: transparent;
+        color: #ff7f50;
+        &.hovered:hover {
+            border: solid 1px #ff5c34;
+            background-color: transparent;
+            color: #ff5c34;            
+        }
+    }
+}
+
+.tabs__tab-item {
+
+    &.text-white {
+        & .tab-element {
+            color: #ffffff;
+        }
+        & .tab-item__wrap {
+            border-bottom: 1px solid rgba(255, 255, 255, .5);
+        }
+        
+        & .tab-item__wrap.active {
+            border-bottom: 2px solid rgba(255, 255, 255, 1); 
+    
+            & .tab-element {
+                font-weight: bold;
+                opacity: 1;
+            }      
+        }
+    }
+    &.text-dark {
+        & .tab-element {
+            color: #333333;
+        }
+        & .tab-item__wrap {
+            border-bottom: 1px solid rgba(51, 51, 51, .5);
+        }
+
+        & .tab-item__wrap.active {
+            border-bottom: 2px solid rgba(51, 51, 51, 1); 
+    
+            & .tab-element {
+                font-weight: bold;
+                opacity: 1;
+            }   
+            
+            & .tab-item__arrow {
+                & svg {
+                    color: #333333;
+                    fill: #333333;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+
+    & .tab-item__wrap.hovered:hover {
+        & .tab-element {
+            color: #ff7f50;
+            opacity: 1;
+            // font-weight: bold;
+        }
+        & .tab-item__arrow {
+            & svg {
+                color: #ff7f50;
+                fill: #ff7f50;
+                opacity: 1;
+            }
+        }        
+    }
+
+
+
+}

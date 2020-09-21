@@ -1,0 +1,239 @@
+.stocks {
+    width: 100vw;
+    background-color: #f8f9fb;
+
+    @media screen and (max-width: 727px + 20px*2) {
+        padding-top: 54px;
+        padding-bottom: 60px + 43px;
+    }
+    @media screen and (min-width: 728px + 20px*2) {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+    @media screen and (min-width: 1140px + 20px + 20px) {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }  
+}
+.stocks__container {
+    display: grid;
+
+    @media screen and (max-width: 727px + 20px*2) {
+        grid-template-areas: "title" "image" "info";
+        grid-template-columns: 100%;
+        grid-template-rows: 30px 204px 246px;
+        padding-left: 20px !important; 
+        padding-right: 20px !important;
+    }
+    @media screen and (min-width: 728px + 20px*2) {
+        grid-template-areas: "title image""info image""info image";
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 30px calc( (274px - 30px + 38px)/2 ) calc( (274px - 30px + 38px)/2 );
+    }
+    @media screen and (min-width: 1140px + 20px + 20px) {
+        grid-template-areas: "title image""info image""info image";
+        grid-template-columns: 45% 55%;
+        grid-template-rows: 30px calc((500px - 30px + 38px)/2) calc((500px - 30px + 38px)/2);
+    } 
+}
+.stocks__block-title {
+    grid-area: title;
+    display: flex;
+    justify-content: flex-end;
+
+    & .block-title__wrap {
+        display: inline-block;
+        @media screen and (max-width: 727px + 20px*2) {
+            width: 100%
+        }
+        @media screen and (min-width: 728px + 20px*2) {
+            width: ( (728px + 20px*2)/2 - (728px + 20px*2)*0.05 );
+            padding-left: 20px;
+        }
+        @media screen and (min-width: 1140px + 20px + 20px) {
+            width: calc( (1140px + 20px + 20px)/2 - (1140px + 20px + 20px)*0.06 );
+        }    
+    }
+}
+.stocks__block-information {
+    grid-area: info;
+    display: flex;
+    justify-content: flex-end;
+
+    & .block-information__wrap {
+        @media screen and (max-width: 727px + 20px*2) {
+            width: 100%
+        }
+        @media screen and (min-width: 728px + 20px*2) {
+            width: ( (728px + 20px*2)/2 ); //- (728px + 20px*2)*0.05 );
+            padding-left: 20px;
+        }
+        @media screen and (min-width: 1140px + 20px + 20px) {
+            width: calc( (1140px + 20px + 20px)/2 - (1140px + 20px + 20px)*0.06 );
+            padding-right: 60px;
+        }     
+    }
+    & .block-information__title {
+        @media screen and (max-width: 727px + 20px*2) {
+            margin-bottom: 14px;
+        }
+        // @media screen and (min-width: 728px + 20px*2) {
+        //     margin-bottom: 50px;
+        // }
+        // @media screen and (min-width: 1140px + 20px + 20px) {
+        //     margin-bottom: 60px;
+        // }         
+    }
+    & .block-information__sub-title {
+
+        @media screen and (max-width: 727px + 20px*2) {
+            height: auto;
+            margin-bottom: 34px;
+        }
+        @media screen and (min-width: 728px + 20px*2) {
+            height: 50px + 40px;
+            margin-bottom: 10px;
+        }
+        @media screen and (min-width: 1140px + 20px + 20px) {
+            height: 56px + 40;
+            margin-bottom: 10px; // 60px;
+        }   
+    }
+}
+.stocks__block-image {
+    grid-area: image;
+    @media screen and (max-width: 727px + 20px*2) {
+        padding-top: 42px;
+        // padding-right: 20px;
+        margin-right: -20px;
+    }
+
+    & .block-image__wrap {
+        width: 100%;
+        height: 100%;
+        position: relative; 
+
+        // overflow: hidden; 
+  
+    }
+    & .block-image__container-with-imgs {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        overflow: hidden;
+        @media screen and (max-width: 727px + 20px*2) {            margin-left: 10px;
+            margin-left: -10px;
+            margin-right: -10px;
+        } 
+    }
+    & .block-image__item {
+        flex-basis: 100%;
+        min-width: 260px;
+        flex-grow: 0;
+        flex-shrink: 1;
+        width: 100%;
+        height: 100%;
+        background-image: url('../images/002-akcii_cut-photo.ru.jpg');
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat; 
+
+        @media screen and (max-width: 727px + 20px*2) {
+            display: block;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        @media screen and (min-width: 728px + 20px*2) {
+            display: none;
+        }
+        @media screen and (min-width: 1140px + 20px + 20px) {
+            display: none;
+        }   
+        
+        &.active {
+            display: block;
+        }
+    }
+    & .block-image__slider-navigation {
+        
+        justify-content: flex-start;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+
+        @media screen and (max-width: 727px + 20px*2) {
+            display: none;
+        }
+        @media screen and (min-width: 728px + 20px*2) {
+            display: flex;
+        }        
+    }
+    & .slider-navigation__elem {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 48px;
+        height: 48px;
+        background-color: #fff;
+        cursor: pointer;
+
+        &.hovered:hover {
+            background-color: #bfdaff;
+        }
+
+        & svg {
+            width: 12px;
+            height: 12px;
+            color: #1c1c1c;
+            fill: #1c1c1c;
+        }
+    }
+    & .block-image__slider-dots {
+        position: relative;
+        margin-top: 30px;
+        display: flex;
+
+        @media screen and (max-width: 727px + 20px*2) {
+            width: 100%;
+            position: absolute;
+            bottom: -315px;
+            left: 0;
+            justify-content: flex-start;
+        }
+        @media screen and (min-width: 728px + 20px*2) {
+            width: ( (728px + 20px*2)/2 );
+            margin-left: 0; // (728px + 20px*2)*0.05;
+            justify-content: center;
+        }
+        @media screen and (min-width: 1140px + 20px + 20px) {
+            width: calc( (1140px + 20px + 20px)/2 );
+            margin-left: (1140px + 20px + 20px)*0.05;
+            justify-content: center;
+        }           
+
+        & ul {
+            display: inline-flex;
+            flex-wrap: nowrap;
+            align-items: center;
+
+            & li {
+                width: 8px;
+                height: 8px;
+                background-color: #1c1c1c;
+                margin-left: 5px;
+                margin-right: 5px;
+                border-radius: 50%;
+                border: 2px solid #f8f9fb;
+
+                &.active,
+                &:hover {
+                    background-color: #006cff;
+                    border: 2px #006cff solid;                    
+                }
+            }
+        }
+    }
+
+}
+
