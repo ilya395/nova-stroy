@@ -92,19 +92,16 @@ h3 {
     
     @media screen and (max-width: 727px + 20px*2) {
         font-size: 22px;
-        font-weight: bold;
         line-height: 1.45;
         letter-spacing: -0.61px;
     }
     @media screen and (min-width: 728px + 20px*2) {
         font-size: 22px;
-        font-weight: bold;
         line-height: 1.45;
         letter-spacing: -0.61px;
     }
     @media screen and (min-width: 1140px + 20px + 20px) {
         font-size: 24px;
-        font-weight: bold;
         line-height: 1.33;
         letter-spacing: -0.67px;
     }
@@ -117,6 +114,12 @@ h3 {
     }
     &.default {
         margin: 0;
+    }
+    &.normal {
+        font-weight: normal;
+    }
+    &.bold {
+        font-weight: bold;
     }
 
     &.tab-element {
