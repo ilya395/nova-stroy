@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="43px" height="41px" viewBox="0 0 43 41" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>key0 copy</title>
+    <desc>Created with Sketch.</desc>
+    <g id="key0-copy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linejoin="round">
+        <g stroke-width="1.5">
+            <polyline id="Path" stroke="#006CFF" points="20.95 4.44 32.57 4.44 37 6.65 37 8.87 32.57 11.08 31.46 9.98 30.36 11.08 29.25 9.98 28.14 11.08 27.04 9.98 25.65 11.08 20.81 11.08"></polyline>
+            <path d="M21.5,6.65 L37,6.65" id="Path" stroke="#006CFF"></path>
+            <circle id="Oval" stroke="#006CFF" cx="13.75" cy="7.76" r="7.75"></circle>
+            <circle id="Oval" stroke="#006CFF" cx="11.54" cy="7.76" r="2.21"></circle>
+            <rect id="Rectangle" stroke="#6CAFFF" x="0" y="19.99" width="7.13" height="18.71"></rect>
+            <path d="M7.13,36.62 C7.13,36.62 13,38.9 15.29,39.73 C19.1,41.1 22.65,42.06 30.57,38.73 C42.8,33.5 43,33.19 43,33.19 C42.0041497,31.4805762 40.1880319,30.415171 38.21,30.38 L28.53,30.38" id="Path" stroke="#6CAFFF"></path>
+            <path d="M14.72,33.5 L29.55,33.5 C29.4036493,29.7070704 26.2131416,26.7492505 22.42,26.89 L17.84,26.89 C16.0607479,24.4825652 13.2333837,23.0763236 10.24,23.11 L7,23.11" id="Path" stroke="#6CAFFF"></path>
+        </g>
+    </g>
+</svg>

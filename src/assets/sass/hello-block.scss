@@ -217,6 +217,13 @@
         } 
     }
 
+    & .slider-block__container {
+        display: none;
+        &.active {
+            display: block;
+        }
+    }
+
     & .slider-block__wrap {
         display: flex;
         flex-wrap: nowrap;

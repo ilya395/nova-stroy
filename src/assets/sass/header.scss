@@ -10,6 +10,10 @@
     box-shadow: none;
     line-height: inherit;
 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
     @media screen and (max-width: 727px + 20px*2) {
         background-color: #0b1741;
     }
@@ -116,4 +120,19 @@
 .site-logo {
     display: flex;
     align-items: center;
+
+    & svg {
+        
+        height: auto;
+
+        @media screen and (max-width: 727px + 20px*2) {
+            width: 110px;        
+        }
+        @media screen and (min-width: 728px + 20px*2) {
+            width: 110px;       
+        }
+        @media screen and (min-width: 1140px + 20px + 20px) {
+            width: 135px;
+        }
+    }
 }

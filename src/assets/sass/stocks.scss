@@ -39,12 +39,21 @@
 .stocks__block-title {
     grid-area: title;
     display: flex;
-    justify-content: flex-end;
+
+    @media screen and (max-width: 727px + 20px*2) {
+        justify-content: flex-start;
+    }
+    @media screen and (min-width: 728px + 20px*2) {
+        justify-content: flex-end;
+    }
+    @media screen and (min-width: 1140px + 20px + 20px) {
+        justify-content: flex-end;
+    } 
 
     & .block-title__wrap {
         display: inline-block;
         @media screen and (max-width: 727px + 20px*2) {
-            width: 100%
+            width: 100%;
         }
         @media screen and (min-width: 728px + 20px*2) {
             width: ( (728px + 20px*2)/2 - (728px + 20px*2)*0.05 );
@@ -134,7 +143,7 @@
         flex-shrink: 1;
         width: 100%;
         height: 100%;
-        background-image: url('../images/002-akcii_cut-photo.ru.jpg');
+        background-image: url('../images/002_Img.jpg');
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat; 
