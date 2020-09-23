@@ -61,10 +61,11 @@
 
 @import 'ui-components.scss';
 @import 'header.scss';
-@import 'hello-block.scss';
-@import 'stocks.scss';
-@import 'instagram-card.scss';
-@import 'all-progects.scss';
-@import 'map-with-projects.scss';
-@import 'advantages.scss';
-@import 'consultation-about-credits.scss';
+@import 'main-page/hello-block.scss';
+@import 'main-page/stocks.scss';
+@import 'main-page/instagram-card.scss';
+@import 'main-page/all-progects.scss';
+@import 'main-page/map-with-projects.scss';
+@import 'main-page/advantages.scss';
+@import 'main-page/consultation-about-credits.scss';
+@import 'main-page/question-panel.scss';
