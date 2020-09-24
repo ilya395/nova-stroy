@@ -162,8 +162,14 @@ h4 {
         color: #333333;
         opacity: .6;
     }
+    &.text-black {
+        color: #000;
+    }
     &.default {
         margin: 0;
+    }
+    &.bold {
+        font-weight: bold;
     }
 
     &.uppercase {
@@ -193,7 +199,7 @@ h4 {
     }
 }
 
-.typography-simple-text {
+.typography-simple-text, h5 {
     font-family: Montserrat;
     font-weight: normal;
     font-stretch: normal;
