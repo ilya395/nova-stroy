@@ -227,6 +227,9 @@ h4 {
         color: #f0f0f0;
         opacity: .6;
     }
+    &.text-orange, & .text-orange {
+        color: #ff7f50;
+    }
     &.text-dark {
         color: #4d4d4d;
     }
@@ -236,4 +239,28 @@ h4 {
     &.text-center {
         text-align: center;
     }
+
+    &.typography-simple-text__l-h {
+        @media screen and (max-width: 727px + 20px*2) {
+            line-height: 1.6;
+        }
+        @media screen and (min-width: 728px + 20px*2) {
+            line-height: 1.6;
+        }
+        @media screen and (min-width: 1140px + 20px + 20px) {
+            line-height: 1.65;
+        }       
+    }
+}
+
+.typography-little-text {
+    opacity: 0.5;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: #000000;
 }
