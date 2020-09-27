@@ -142,10 +142,10 @@ const plugins = () => {
                 //     from: path.resolve(__dirname, './src/assets/**/*'),
                 //     to: path.resolve(__dirname, './dist/')
                 // }
-                // {
-                //     from: path.resolve(__dirname, './src/assets/fonts/**/*'),
-                //     to: path.resolve(__dirname, './dist/')
-                // },
+                {
+                    from: path.resolve(__dirname, './src/assets/js/utils/*'),
+                    to: path.resolve(__dirname, './dist/')
+                },
                 {
                     from: path.resolve(__dirname, './src/assets/images/**/*'),
                     to: path.resolve(__dirname, './dist/'),
@@ -283,6 +283,12 @@ module.exports = {
                         }                        
                     }
                 ]
+            },
+            {
+                test: /\.json$/,
+                // loader: 'json-loader',
+                use: ['json-loader'],
+                type: 'javascript/auto'
             },
             {
                 test: /\.js$/,

@@ -21,7 +21,7 @@
         @media screen and (max-width: 727px + 20px*2) {
             grid-template-areas: "txt" "fts" "btn";
             grid-template-columns: 100%;
-            grid-template-rows: calc(186px) calc(204px + 20px*2 + 40px) 50px;
+            grid-template-rows: calc(186px + 30px) calc(204px + 20px*2 + 40px) 50px;
             // padding-left: 20px !important; 
             // padding-right: 20px !important;
         }

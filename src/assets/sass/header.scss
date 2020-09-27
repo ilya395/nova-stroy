@@ -23,6 +23,10 @@
     @media screen and (min-width: 1140px + 20px + 20px) {
         background-color: transparent;
     }
+
+    &.filling {
+        background-color: #0b1741;
+    }
     
 }
 .navigation__wrapper {
@@ -48,6 +52,125 @@
     @media screen and (min-width: 1140px + 20px + 20px) {
         
         display: flex;
+    }
+
+    &.open-mob-menu {
+        display: block;
+        position: absolute;
+        z-index: 101;
+        top: 69px;
+        left: 0;
+        background-color: #0b1741;
+        width: 100vw;
+        height: calc(100vh - 69px);
+        overflow: auto;
+
+        @media screen and (min-width: 728px + 20px*2) {
+            padding-right: 144px;
+            padding-left: 144px;
+        }
+
+        & ul {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+
+            &::before {
+                content: "";
+                position: absolute;
+                z-index: 101;
+                bottom: 0;
+                left: 0;
+                height: 1px;
+                background-color: #9f9f9f;
+                width: calc(100% - 20px*2);
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+            // border-bottom: 1px solid #9f9f9f;
+
+            @media screen and (max-width: 727px + 20px*2) {
+                padding-bottom: 70px;// 30px;
+                padding-top: calc(30px - 26px);
+            }
+            @media screen and (min-width: 728px + 20px*2) {
+                padding-bottom: 36px;
+                padding-top: calc(50px - 26px);
+            }
+
+            & li {
+                margin-top: 26px;
+            }
+
+            & a {
+                font-family: Montserrat;
+                font-size: 24px;
+                font-weight: normal;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: normal;
+                letter-spacing: normal;
+                color: #ffffff;               
+            }
+        }
+    }
+    & .menu__mobil-footer {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        padding-top: 30px;
+
+        @media screen and (max-width: 727px + 20px*2) {
+            display: block;
+        }
+        @media screen and (min-width: 728px + 20px*2) {
+            display: block;
+        }
+        @media screen and (min-width: 1140px + 20px + 20px) {
+            display: none;
+        }  
+        
+        & .upper-block__adresses {
+            display: flex;
+            flex-wrap: nowrap; 
+
+            @media screen and (max-width: 727px + 20px*2) {
+                flex-direction: column;
+                padding-right: 20px;
+                padding-left: 20px;
+            }
+            @media screen and (min-width: 728px + 20px*2) {
+                flex-direction: row;
+                justify-content: space-between;
+                padding-right: 20px;
+                padding-left: 20px;
+            }    
+
+            & .adresses__in-soc {
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+    
+                @media screen and (max-width: 727px + 20px*2) {
+                    margin-bottom: 20px;
+                    order: -1;
+                }
+                @media screen and (min-width: 728px + 20px*2) {
+                    margin-bottom: 0px;
+                }
+    
+                & .adresses__item {
+                    width: 30px;
+                    height: 30px;
+                    
+                    @media screen and (max-width: 727px + 20px*2) {
+                        margin-right: 30px;
+                    }
+                    @media screen and (min-width: 728px + 20px*2) {
+                        margin-left: 30px;
+                    }
+                }
+            }
+        }
     }
 
     & li {
@@ -135,4 +258,8 @@
             width: 135px;
         }
     }
+}
+.header-menu__icon-image {
+    color: #fff;
+    fill: #fff;
 }

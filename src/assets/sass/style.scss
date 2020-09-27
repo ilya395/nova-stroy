@@ -58,6 +58,12 @@
         display: flex;
     } 
 }
+.hidden {
+    overflow: hidden;
+}
+.opacity {
+    opacity: 0;
+}
 
 @import 'ui-components.scss';
 @import 'header.scss';

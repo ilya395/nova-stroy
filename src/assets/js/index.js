@@ -5,7 +5,38 @@ import 'normalize.css';
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min';
 import '../sass/style.scss';
-import * as _ from 'lodash';
-import tmpHeader from '../templates/includes/header.html';
+//
+import './libs/lottie_svg.js';
+import './libs/bodymovin';
+import { SimpleMenu, MobileMenu } from './sevices/menu';
+import { AutoSlider } from './sevices/sliders';
 
-const header = _.template(tmpHeader)();
+// work area
+window.addEventListener('load', () => {
+    console.log('scripts starting');
+
+    const topMenu = new SimpleMenu({url: 'nav.navigation'});
+    topMenu.init();
+
+    const mobMenu = new MobileMenu({
+        urlOpenBtn: '[data-object="mob-menu"]', // '.burger-button__wrap',
+        urlContainer: '.navigation__menu'
+    });
+    mobMenu.openingListenerInit();
+
+    if ( document.querySelector('.main-page') ) {
+
+        if ( window.matchMedia('(min-width:728px)').matches ) {
+            const autoSlider = new AutoSlider({
+                urlItems: '.hello-block .slider-block__container',
+                delay: 5
+            });
+            autoSlider.autoSlidingInit();
+        }
+
+    }
+});
+
+window.addEventListener('click', (event) => {
+    console.log(event.target);
+});
