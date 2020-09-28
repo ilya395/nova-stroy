@@ -355,7 +355,7 @@
                 </div>
                 <div class="stocks__block-information">
                     <div class="block-information__wrap">
-                        <div class="block-information__container-with-info">
+                        <div class="block-information__container-with-info active" data-object="slider-text">
                             <h2 class="text-dark block-information__title">
                                 Меняем автомобиль на первоначальный взнос
                             </h2>
@@ -366,6 +366,28 @@
                                 Узнать больше
                             </button>
                         </div>
+                        <div class="block-information__container-with-info" data-object="slider-text">
+                            <h2 class="text-dark block-information__title">
+                                Беспроцентная рассрочка
+                            </h2>
+                            <div class="typography-simple-text text-dark block-information__sub-title">
+                                Первоначальный взнос - от 50%
+                            </div>
+                            <button class="waves-effect waves-orange btn custom-buttom custom-buttom_rectangle hovered">
+                                Заказать консультацию
+                            </button>                            
+                        </div>
+                        <div class="block-information__container-with-info" data-object="slider-text">
+                            <h2 class="text-dark block-information__title">
+                                Меняем автомобиль на первоначальный взнос
+                            </h2>
+                            <div class="typography-simple-text text-dark block-information__sub-title">
+                                ГК «КАН АВТО», купит ваше авто на специальных условиях. ГК «КАН АВТО», купит ваше авто на специальных условиях. ГК «КАН АВТО», купит ваше авто на специальных условиях.
+                            </div>
+                            <button class="waves-effect waves-orange btn custom-buttom custom-buttom_rectangle hovered">
+                                Узнать намного больше
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="stocks__block-image">
@@ -373,22 +395,30 @@
                         <div class="block-image__container-with-imgs">
                             <div 
                                 class="block-image__item active"
+                                data-object="slider-image"
                             >
                             </div>
                             <div 
                                 class="block-image__item"
+                                data-object="slider-image"
+                                style="background-image: url('/assets/images/rassrochka_pic.jpg');"
+                            >
+                            </div>
+                            <div 
+                                class="block-image__item"
+                                data-object="slider-image"
                             >
                             </div>
                         </div>
 
                         <div class="block-image__slider-navigation">
-                            <div class="slider-navigation__elem left hovered">
+                            <div class="slider-navigation__elem left hovered" data-object="slider-arrow" data-direction="left">
                                 <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-left" class="svg-inline--fa fa-angle-left fa-w-8" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
                                     <path fill="currentColor" d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z">
                                     </path>
                                 </svg>
                             </div>
-                            <div class="slider-navigation__elem right hovered">
+                            <div class="slider-navigation__elem right hovered" data-object="slider-arrow" data-direction="right">
                                 <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" class="svg-inline--fa fa-angle-right fa-w-8" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
                                     <path fill="currentColor" d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z">
                                     </path>
@@ -398,10 +428,9 @@
 
                         <div class="block-image__slider-dots">
                             <ul>
-                                <li class="active"></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
+                                <li class="active" data-object="slider-dots" data-index="0"></li>
+                                <li data-object="slider-dots" data-index="1"></li>
+                                <li data-object="slider-dots" data-index="2"></li>
                             </ul>
                         </div>
                     </div>

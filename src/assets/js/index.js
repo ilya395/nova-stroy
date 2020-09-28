@@ -9,7 +9,7 @@ import '../sass/style.scss';
 import './libs/lottie_svg.js';
 import './libs/bodymovin';
 import { SimpleMenu, MobileMenu } from './sevices/menu';
-import { AutoSlider } from './sevices/sliders';
+import { AutoSlider, BigSlider } from './sevices/sliders';
 
 // work area
 window.addEventListener('load', () => {
@@ -33,6 +33,16 @@ window.addEventListener('load', () => {
             });
             autoSlider.autoSlidingInit();
         }
+
+        const stocksSlider = new BigSlider({
+            urlContainer: '.stocks',
+            urlImagesItems: '.stocks__block-image [data-object="slider-image"]',
+            urlTextsItems: '.block-information__wrap [data-object="slider-text"]',
+            urlArrowsItems: '.block-image__slider-navigation [data-object="slider-arrow"]',
+            urlDotsItems: '.block-image__slider-dots [data-object="slider-dots"]'
+        });
+        stocksSlider.dotsJumpInit();
+        stocksSlider.arrowsMoveInit();
 
     }
 });
