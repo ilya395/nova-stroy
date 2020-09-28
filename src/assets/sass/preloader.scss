@@ -1,0 +1,37 @@
+.preloader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 900;
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
+    transition: all .4s linear;
+    overflow: hidden;
+
+    & .preloader__container {
+        @media screen and (max-width: 727px + 20px*2) {
+            width: 80vw;
+            height: 20vh;
+        }
+        @media screen and (min-width: 728px + 20px*2) {
+            width: 400px;
+            height: 150px;
+        }
+        @media screen and (min-width: 1140px + 20px + 20px) {
+            width: 400px;
+            height: 150px;
+        }  
+    }
+
+    &.stop {
+        opacity: 0;
+        overflow: visible;
+        // transform: translateY(-100vh);
+    }
+    &.close {
+        display: none;
+        z-index: -900;
+    }
+}

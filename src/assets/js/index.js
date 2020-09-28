@@ -1,4 +1,5 @@
 console.log('Hello, bro! This project work with Webpack!');
+import { Preloader } from './sevices/preloader';
 //
 import 'normalize.css';
 // import 'materialize-css';
@@ -10,8 +11,15 @@ import './libs/lottie_svg.js';
 import './libs/bodymovin';
 import { SimpleMenu, MobileMenu } from './sevices/menu';
 import { AutoSlider, BigSlider } from './sevices/sliders';
+import { MovingHeader } from './sevices/headers';
+
 
 // work area
+const preLoader = new Preloader({
+    urlContainer: '.preloader',
+});
+preLoader.init();
+
 window.addEventListener('load', () => {
     console.log('scripts starting');
 
@@ -43,6 +51,23 @@ window.addEventListener('load', () => {
         });
         stocksSlider.dotsJumpInit();
         stocksSlider.arrowsMoveInit();
+
+        const urlsHeader = [
+            '.stocks .section-move_default',
+            '.instagram-card .section-move_default',
+            '.all-progects .section-move_default',
+            '.map-with-projects .section-move_default',
+            '.advantages .section-move_default',
+            '.clips-about-projects .section-move_default',// <--
+            '.consultation-about-credits .section-move_default',
+            '.question-panel .section-move_default',
+            '.news .section-move_default',
+            '.instagram-gallery .section-move_default'
+        ];
+        urlsHeader.forEach(item => {
+            new MovingHeader({urlHeaders: item}).init();
+        });
+
 
     }
 });

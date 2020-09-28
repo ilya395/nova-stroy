@@ -65,6 +65,20 @@
     opacity: 0;
 }
 
+.section-move_default {
+    transform: translateY(60px);
+    transition: transform 3s ease, opacity 1s linear;
+    opacity: 0;
+
+    &.visible {
+        opacity: 1;
+    }
+    &.section-move_interact {
+        transform: translateY(0px);
+    }
+}
+
+@import 'preloader.scss';
 @import 'ui-components.scss';
 @import 'header.scss';
 @import 'main-page/hello-block.scss';

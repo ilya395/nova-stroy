@@ -72,9 +72,21 @@
     & .block-information__wrap {
 
         & .block-information__container-with-info {
-            display: none;
-            &.active {
-                display: block;
+            &.move_default {
+                display: none;
+                transform: translateY(60px);
+                opacity: 0;
+                transition: transform .4s linear, opacity .4s linear;
+
+                &.move_interact {
+                    transform: translateY(0px);
+                }
+                &.visible {
+                    opacity: 1;
+                }
+                &.active {
+                    display: block;
+                }
             }
         }
         @media screen and (max-width: 727px + 20px*2) {
@@ -112,7 +124,7 @@
         }
         @media screen and (min-width: 1140px + 20px + 20px) {
             min-height: 56px + 40;
-            margin-bottom: 10px; // 60px;
+            margin-bottom: 60px;
         }   
     }
 }
@@ -165,8 +177,19 @@
         }
         @media screen and (min-width: 1140px + 20px + 20px) {
             display: none;
-        }   
+        }  
         
+        &.move_default {
+            transform: scale(0.8, 0.8);
+            opacity: 0;
+            transition: all .4s linear;
+        }
+        &.move_interact {
+            transform: scale(1, 1);
+        }
+        &.visible {
+            opacity: 1;
+        } 
         &.active {
             display: block;
         }
@@ -199,8 +222,8 @@
         }
 
         & svg {
-            width: 12px;
-            height: 12px;
+            width: calc(12px*1.5);
+            height: calc(12px*1.5);
             color: #1c1c1c;
             fill: #1c1c1c;
             pointer-events: none;

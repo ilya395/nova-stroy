@@ -70,14 +70,43 @@ class BigSlider {
         imageItems.forEach((item, index) => {
             if ( item.classList.contains('active') ) {
                 thisIndex = index;
-                item.classList.remove('active');
+                const handlImage = () => {
+                    item.classList.remove('move_interact', 'active');
+                    //
+                    item.removeEventListener('transitionend', handlImage);
+                    //
+                    imageItems[number].classList.add('active');
+                    window.requestAnimationFrame(() => {
+                        window.requestAnimationFrame(() => {
+                            imageItems[number].classList.add('visible', 'move_interact');
+                        });
+                    });
+                }
+                item.addEventListener('transitionend', handlImage);
+                item.classList.remove('visible');
             }
         });
-        textItems[thisIndex].classList.remove('active');
+        //
+        const handleText = () => {
+            textItems[thisIndex].classList.remove('move_interact', 'active');
+            //
+            textItems[thisIndex].removeEventListener('transitionend', handleText);
+            //
+            textItems[number].classList.add('active');
+            window.requestAnimationFrame(() => {
+                window.requestAnimationFrame(() => {
+                    textItems[number].classList.add('visible', 'move_interact');
+                });
+            });
+        }
+        textItems[thisIndex].addEventListener('transitionend', handleText);
+        textItems[thisIndex].classList.remove('visible');
+        //
         dots[thisIndex].classList.remove('active');
         //
-        imageItems[number].classList.add('active');
-        textItems[number].classList.add('active');
+        
+
+        //
         dots[number].classList.add('active');
     }
 
