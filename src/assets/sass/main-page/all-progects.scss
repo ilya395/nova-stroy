@@ -45,12 +45,23 @@
         margin-left: -0.75rem;
         margin-right: -0.75rem;
 
+        & .tabs__tab-item {
+            & .tab-item__wrap h3 {
+                pointer-events: none;
+            }
+        }
+
         @media screen and (max-width: 727px + 20px*2) {
             display: none;
         }
         @media screen and (min-width: 728px + 20px*2) {
             padding-bottom: 50px;
             display: flex;
+            overflow: auto;
+
+            & .tabs__tab-item {
+                min-width: 33.33333%;
+            }
         }
         @media screen and (min-width: 1140px + 20px + 20px) {
             padding-bottom: 40px;
@@ -126,7 +137,33 @@
             width: calc( (1140px + 20px + 20px)/2 );
             padding-left: 30px;
             padding-right: 60px * 2;
-        }     
+        }  
+        
+        & .block-information__container-with-info {
+            display: none;
+
+            @media screen and (min-width: 728px + 20px*2) {
+                padding-right: 20px;
+            }
+            @media screen and (min-width: 1140px + 20px + 20px) {
+                padding-right: 0px;
+            }
+
+            &.move_default {
+                transform: translateY(60px);
+                opacity: 0;
+                transition: transform .4s linear, opacity .4s linear;                
+            }
+            &.move_interact {
+                transform: translateY(0px);
+            }
+            &.visible {
+                opacity: 1;
+            }
+            &.active {
+                display: block;
+            }
+        }
     }
     & .block-information__title {
         @media screen and (max-width: 727px + 20px*2) {
@@ -161,9 +198,14 @@
 
         @media screen and (max-width: 727px + 20px*2) {
             flex-direction: column;
+
+            & a.btn {
+                max-width: 220px;
+            }
         }
         @media screen and (min-width: 728px + 20px*2) {
             flex-direction: column;
+            padding-right: 20px;
         }
         @media screen and (min-width: 1140px + 20px + 20px) {
             flex-direction: row;
@@ -193,8 +235,8 @@
         flex-wrap: nowrap;
         // overflow: hidden;
         @media screen and (max-width: 727px + 20px*2) {            margin-left: 10px;
-            margin-left: -10px;
-            margin-right: -10px;
+            margin-left: 0px; // -10px;
+            margin-right: 0px; // -10px;
         } 
     }
     & .block-image__item {
@@ -211,9 +253,9 @@
         background-repeat: no-repeat; 
 
         @media screen and (max-width: 727px + 20px*2) {
-            display: block;
-            margin-left: 10px;
-            margin-right: 10px;
+            display: none; // block;
+            // margin-left: 10px;
+            // margin-right: 10px;
             height: 144px;
         }
         @media screen and (min-width: 728px + 20px*2) {
@@ -224,7 +266,18 @@
             display: none;
             height: 391px;
         }   
-        
+
+        &.move_default {
+            transform: scale(0.8, 0.8);
+            opacity: 0;
+            transition: all .4s linear;
+        }
+        &.move_interact {
+            transform: scale(1, 1);
+        }
+        &.visible {
+            opacity: 1;
+        }
         &.active {
             display: block;
 
@@ -271,10 +324,13 @@
         @media screen and (max-width: 727px + 20px*2) {
             width: 100%;
             position: absolute;
-            bottom: -650px; //-315px; // -77vh;
+            bottom: -625px; //-315px; // -77vh;
             left: 0;
             justify-content: flex-start;
             display: flex;
+        }
+        @media screen and (max-width: 280px + 20px*2) {
+            bottom: -650px;
         }
         @media screen and (min-width: 728px + 20px*2) {
             width: ( (728px + 20px*2)/2 );
@@ -353,6 +409,11 @@
         // align-items: center;
         color: #006cff;
         fill: #006cff;
+
+        & svg {
+            width: 100%;
+            height: 100%;
+        }
 
         @media screen and (max-width: 727px + 20px*2) {
             width: 25px;

@@ -62,9 +62,11 @@ class BigSlider {
     }
 
     _openNewSlide (number) {
+        // console.log(this)
         const imageItems = document.querySelectorAll(this.urlImagesItems) || document.querySelector(this.urlContainer).querySelectorAll(this.urlImagesItems);
         const textItems = document.querySelectorAll(this.urlTextsItems);
         const dots = document.querySelectorAll(this.urlDotsItems);
+        // console.log(imageItems, textItems, dots);
         let thisIndex = 0;
         //
         imageItems.forEach((item, index) => {
@@ -122,8 +124,7 @@ class BigSlider {
     }
 
     arrowsMoveInit () {
-        const handler = (event) => {
-            
+        const handler = (event) => {    
             if ( event.target.dataset.object === 'slider-arrow' ) {
                 const direction = event.target.dataset.direction;
                 const imageItems = document.querySelectorAll(this.urlImagesItems) || document.querySelector(this.urlContainer).querySelectorAll(this.urlImagesItems);
@@ -148,4 +149,35 @@ class BigSlider {
 
 }
 
-export { AutoSlider, BigSlider }
+class BigSliderWithTabs extends BigSlider {
+    constructor (object) {
+        super(object);
+        
+        this.urlContainer = object.urlContainer;
+        this.urlImagesItems = object.urlImagesItems;
+        this.urlTextsItems = object.urlTextsItems;
+        this.urlArrowsItems = object.urlArrowsItems;
+        this.urlDotsItems = object.urlDotsItems;
+        this.urlTabsItems = object.urlTabsItems;
+    }
+
+    tabsClickInit () {
+        console.log(this.urlContainer, this.urlImagesItems, this.urlDotsItems, this.urlArrowsItems, this.urlTabsItems);
+        const tabs = document.querySelectorAll(this.urlTabsItems);
+        const handler = (event) => {
+            if ( event.target.dataset.object === 'tab' ) {
+                // dotIndex = event.target.dataset.index;
+                tabs.forEach(item => {
+                    // if ( item.classList.contains('active') ) {
+                    //     item.classList.remove('active');
+                    // }
+                    item.dataset.tab == +event.target.dataset.tab ? item.classList.add('active') : item.classList.remove('active');
+                });
+                super._openNewSlide(+event.target.dataset.tab);
+            }
+        }
+        document.querySelector(this.urlContainer).addEventListener('click', handler);
+    }
+}
+
+export { AutoSlider, BigSlider, BigSliderWithTabs }

@@ -10,8 +10,8 @@ import '../sass/style.scss';
 import './libs/lottie_svg.js';
 import './libs/bodymovin';
 import { SimpleMenu, MobileMenu } from './sevices/menu';
-import { AutoSlider, BigSlider } from './sevices/sliders';
-import { MovingHeader } from './sevices/headers';
+import { AutoSlider, BigSlider, BigSliderWithTabs } from './sevices/sliders';
+import { MovingHeader, MovingRows } from './sevices/headers';
 
 
 // work area
@@ -44,10 +44,10 @@ window.addEventListener('load', () => {
 
         const stocksSlider = new BigSlider({
             urlContainer: '.stocks',
-            urlImagesItems: '.stocks__block-image [data-object="slider-image"]',
-            urlTextsItems: '.block-information__wrap [data-object="slider-text"]',
-            urlArrowsItems: '.block-image__slider-navigation [data-object="slider-arrow"]',
-            urlDotsItems: '.block-image__slider-dots [data-object="slider-dots"]'
+            urlImagesItems: '.stocks .stocks__block-image [data-object="slider-image"]',
+            urlTextsItems: '.stocks .block-information__wrap [data-object="slider-text"]',
+            urlArrowsItems: '.stocks .block-image__slider-navigation [data-object="slider-arrow"]',
+            urlDotsItems: '.stocks .block-image__slider-dots [data-object="slider-dots"]'
         });
         stocksSlider.dotsJumpInit();
         stocksSlider.arrowsMoveInit();
@@ -68,6 +68,27 @@ window.addEventListener('load', () => {
             new MovingHeader({urlHeaders: item}).init();
         });
 
+        const sliderWithTabs = new BigSliderWithTabs({
+            urlContainer: '.all-progects',
+            urlImagesItems: '.all-progects [data-object="slider-image"]',
+            urlTextsItems: '.all-progects [data-object="slider-text"]',
+            urlArrowsItems: null, // '.block-image__slider-navigation [data-object="slider-arrow"]',
+            urlDotsItems: '.all-progects [data-object="slider-dots"]',
+            urlTabsItems: '.all-progects [data-object="tab"]'         
+        });
+        sliderWithTabs.tabsClickInit();
+        if ( window.matchMedia('(max-width:727px)').matches ) {
+            sliderWithTabs.dotsJumpInit();
+        }
+
+        const rows = [
+            '.advantages .move_default'
+        ];
+
+        const rowMove = new MovingRows({
+            urlRows: rows[0]
+        });
+        rowMove.init();
 
     }
 });

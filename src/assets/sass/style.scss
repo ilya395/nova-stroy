@@ -66,9 +66,19 @@
 }
 
 .section-move_default {
-    transform: translateY(60px);
-    transition: transform 3s ease, opacity 1s linear;
     opacity: 0;
+    transition: transform 3s ease, opacity 1s linear;
+
+
+    @media screen and (max-width: 728px + 20px*2) {
+        transform: translateY(30px);
+    }
+    @media screen and (min-width: 728px + 20px*2) {
+        transform: translateY(60px);
+    }
+    @media screen and (min-width: 1140px + 20px + 20px) {
+        transform: translateY(60px);
+    }
 
     &.visible {
         opacity: 1;
