@@ -180,4 +180,159 @@ class BigSliderWithTabs extends BigSlider {
     }
 }
 
-export { AutoSlider, BigSlider, BigSliderWithTabs }
+class DefCarousel {
+    constructor (object) {
+        this.urlContainer = object.urlContainer;
+        this.urlItems = object.urlItems;
+        this.containerForItems = object.containerForItems;
+        //
+        this.sdvig = 0;
+        this.notVisibleElements = {
+            left: null,
+            right: null
+        }
+    }
+
+    _go (direction) {
+        const containerForItems = document.querySelector(this.containerForItems);
+        const items = containerForItems.querySelectorAll(this.urlItems);
+
+        const activeItemWidth = items[0].offsetWidth;
+
+        const visibleItemsCount = Math.round( containerForItems.offsetWidth/activeItemWidth ); // от 1 до 3
+
+        if (direction == 'left') {
+            this.sdvig += activeItemWidth;
+            containerForItems.style.transform = `translateX(${this.sdvig}px)`;
+            // console.log(`-${activeItemWidth}`);
+        } else if (direction == 'right') {
+            this.sdvig -= activeItemWidth;
+            containerForItems.style.transform = `translateX(${this.sdvig}px)`;
+            // console.log(`+${activeItemWidth}`);
+        } else {
+            console.log('Барин, да не могу я!!!')
+        }
+    }
+
+    _jump (number) {
+
+    }
+
+    _permissionGoToLeft (what) {
+        const leftArrow = document.querySelector(this.urlContainer).querySelector('[data-direction="left"]')
+        if ( what == 'no' ) {
+            leftArrow.classList.add('stop');
+        } else {
+            if ( leftArrow.classList.contains('stop') ) {
+                leftArrow.classList.remove('stop');
+            }
+        }
+    }
+    _permissionGoToRight (what) {
+        const rightArrow = document.querySelector(this.urlContainer).querySelector('[data-direction="right"]')
+        if ( what == 'no' ) {
+            rightArrow.classList.add('stop');
+        } else {
+            if ( rightArrow.classList.contains('stop') ) {
+                rightArrow.classList.remove('stop');
+            }
+        }
+    }
+
+    // init () {
+    //     const containerForItems = document.querySelector(this.containerForItems);
+
+    //     const items = containerForItems.querySelectorAll(this.urlItems);
+
+    //     const visibleItemsCount = containerForItems.offsetWidth/items[0].offsetWidth; // от 1 до 3
+        
+    //     this.notVisibleElements.left = 0;
+
+    //     this.notVisibleElements.right = items.length - visibleItemsCount;
+    // }
+
+    initArrows () {
+        const containerForItems = document.querySelector(this.containerForItems);
+        
+        const items = containerForItems.querySelectorAll(this.urlItems);
+
+        const visibleItemsCount = Math.round( containerForItems.offsetWidth/items[0].offsetWidth ); // от 1 до 3
+        
+        this.notVisibleElements.left = 0;
+
+        this.notVisibleElements.right = items.length - visibleItemsCount;
+
+
+        const container = document.querySelectorAll(this.urlContainer);
+
+        const handler = (event) => {
+            if (event.target.dataset.object == 'slider-arrow') { // клик по стрелкам
+                if ( event.target.dataset.direction == 'right' ) {
+                    this.notVisibleElements.left++;
+                    this.notVisibleElements.right--;
+                    if ( this.notVisibleElements.left <= ( items.length - visibleItemsCount ) && this.notVisibleElements.right >= 0 ) {
+                        this._permissionGoToRight('yes');
+                        this._permissionGoToLeft('yes');
+                        this._go('right');
+                    } else {
+                        this._permissionGoToRight('no');
+                        this.notVisibleElements.right = 0;
+                        this._permissionGoToLeft('yes');
+                        this.notVisibleElements.left = items.length - visibleItemsCount;
+                    }
+                }
+                if ( event.target.dataset.direction == 'left' ) {
+                    this.notVisibleElements.left--;
+                    this.notVisibleElements.right++;
+                    if ( this.notVisibleElements.left >= 0 && this.notVisibleElements.right <= ( items.length - visibleItemsCount ) ) {
+                        this._permissionGoToLeft('yes');
+                        this._permissionGoToRight('yes');
+                        this._go('left');
+                    } else {
+                        this._permissionGoToLeft('no');
+                        this.notVisibleElements.left = 0;
+                        this._permissionGoToRight('yes');
+                        this.notVisibleElements.right = items.length - visibleItemsCount;
+                    }
+                    
+                }
+                console.log(this.notVisibleElements.left, this.notVisibleElements.right);
+            }
+        }
+        container[0].addEventListener('click', handler);
+    }
+    initDots () {
+        const container = document.querySelectorAll(urlContainer);
+        const handler = (event) => {
+            if (event.target.dataset.object == 'slider-dots') {
+                this._jump( +event.target.dataset.index );
+            }
+        }
+        container[0].addEventListener('click', handler);        
+    }
+}
+
+const DefaultCarusel = (object) => {
+
+    const { urlContainer, urlArrows, options } = object;
+
+    const elemsOfMCarousel = document.querySelectorAll(urlContainer);
+    const mCarouselInstances = M.Carousel.init(elemsOfMCarousel, options || {});
+
+    const arrows = document.querySelectorAll(urlArrows);
+
+    const methods = {
+        init () {
+            const handler = (event) => {
+                if (event.target.dataset.object == 'slider-arrow') {
+                    event.target.dataset.direction == 'right' ? mCarouselInstances.next() : mCarouselInstances.prev()
+                }
+            }
+            elemsOfMCarousel[0].addEventListener('click', handler);
+        }
+    }
+
+    return methods;
+}
+
+export { AutoSlider, BigSlider, BigSliderWithTabs, DefaultCarusel, DefCarousel }

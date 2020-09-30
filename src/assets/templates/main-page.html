@@ -1024,13 +1024,13 @@
                             </h4>
                         </div>
                         <div class="news__slider-navigation">
-                            <div class="slider-navigation__elem left hovered">
+                            <div class="slider-navigation__elem left hovered stop" data-object="slider-arrow" data-direction="left">
                                 <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-left" class="svg-inline--fa fa-angle-left fa-w-8" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
                                     <path fill="currentColor" d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z">
                                     </path>
                                 </svg>
                             </div>
-                            <div class="slider-navigation__elem right hovered">
+                            <div class="slider-navigation__elem right hovered" data-object="slider-arrow" data-direction="right">
                                 <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" class="svg-inline--fa fa-angle-right fa-w-8" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
                                     <path fill="currentColor" d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z">
                                     </path>
@@ -1041,89 +1041,139 @@
 
                     <div class="block-image__slider-dots">
                         <ul>
-                            <li class="active"></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
+                            <li class="active" data-object="slider-dots" data-index="0"></li>
+                            <li data-object="slider-dots" data-index="1"></li>
+                            <li data-object="slider-dots" data-index="2"></li>
+                            <li data-object="slider-dots" data-index="3"></li>
                         </ul>
                     </div>
                     <div class="news__slider-container">
-                        <div class="row row_with-flex">
+                        <div class="row row_with-flex default-carousel">
 
-                            <div class="col xl4 m6 s12 news__one-news">
-                                <article class="one-news">
-                                    <div class="one-news__header">
-                                        <h4 class="one-news__header-title text-dark uppercase default">
-                                            29 октября 2020.
-                                        </h4>
-                                        <h4 class="one-news__header-title text-dark bold uppercase default">
-                                            Таун-парк «Сокуров»
-                                        </h4>
-                                    </div>
-                                    <h5 class="typography-simple-text text-dark bold">
-                                        Старт продаж квартир в новом проекте
-                                    </h5>
-                                    <p class="typography-simple-text text-dark">
-                                        Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. 
-                                    </p>
-                                </article>
+                            <div class="col xl4 m6 s12 news__one-news" data-object="slide" data-index="0">
+                                <a href="#">
+                                    <article class="one-news">
+                                        <div class="one-news__header">
+                                            <h4 class="one-news__header-title text-dark uppercase default">
+                                                29 октября 2020.
+                                            </h4>
+                                            <h4 class="one-news__header-title text-dark bold uppercase default">
+                                                Таун-парк «Сокуров»
+                                            </h4>
+                                        </div>
+                                        <h5 class="typography-simple-text text-dark bold">
+                                            Старт продаж квартир в новом проекте
+                                        </h5>
+                                        <p class="typography-simple-text text-dark">
+                                            Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. 
+                                        </p>
+                                    </article>
+                                </a>
                             </div>
 
-                            <div class="col xl4 m6 s12 news__one-news">
-                                <article class="one-news">
-                                    <div class="one-news__header">
-                                        <h4 class="one-news__header-title text-dark uppercase default">
-                                            29 октября 2020.
-                                        </h4>
-                                        <h4 class="one-news__header-title bold uppercase text-dark default">
-                                            Таун-парк «Сокуров» Таун-парк «Сокуров» Таун-парк «Сокуров»
-                                        </h4>
-                                    </div>
-                                    <h5 class="typography-simple-text text-dark bold">
-                                        Старт продаж квартир в новом проекте
-                                    </h5>
-                                    <p class="typography-simple-text text-dark">
-                                        Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта.
-                                    </p>
-                                </article>
+                            <div class="col xl4 m6 s12 news__one-news" data-object="slide" data-index="1">
+                                <a href="#">
+                                    <article class="one-news">
+                                        <div class="one-news__header">
+                                            <h4 class="one-news__header-title text-dark uppercase default">
+                                                29 октября 2020.
+                                            </h4>
+                                            <h4 class="one-news__header-title bold uppercase text-dark default">
+                                                Таун-парк «Сокуров» Таун-парк «Сокуров» Таун-парк «Сокуров»
+                                            </h4>
+                                        </div>
+                                        <h5 class="typography-simple-text text-dark bold">
+                                            Старт продаж квартир в новом проекте
+                                        </h5>
+                                        <p class="typography-simple-text text-dark">
+                                            Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта.
+                                        </p>
+                                    </article>
+                                </a>
                             </div>
 
-                            <div class="col xl4 m6 s12 news__one-news">
-                                <article class="one-news">
-                                    <div class="one-news__header">
-                                        <h4 class="one-news__header-title text-dark uppercase default">
-                                            29 октября 2020.
-                                        </h4>
-                                        <h4 class="one-news__header-title bold uppercase text-dark default">
-                                            Таун-парк «Сокуров»
-                                        </h4>
-                                    </div>
-                                    <h5 class="typography-simple-text text-dark bold">
-                                        Старт продаж квартир в новом проекте
-                                    </h5>
-                                    <p class="typography-simple-text text-dark">
-                                        Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта.
-                                    </p>
-                                </article>
+                            <div class="col xl4 m6 s12 news__one-news" data-object="slide" data-index="2">
+                                <a href="#">
+                                    <article class="one-news">
+                                        <div class="one-news__header">
+                                            <h4 class="one-news__header-title text-dark uppercase default">
+                                                29 октября 2020.
+                                            </h4>
+                                            <h4 class="one-news__header-title bold uppercase text-dark default">
+                                                Таун-парк «Сокуров»
+                                            </h4>
+                                        </div>
+                                        <h5 class="typography-simple-text text-dark bold">
+                                            Старт продаж квартир в новом проекте
+                                        </h5>
+                                        <p class="typography-simple-text text-dark">
+                                            Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта.
+                                        </p>
+                                    </article>
+                                </a>
                             </div>
 
-                            <div class="col xl4 m6 s12 news__one-news">
-                                <article class="one-news">
-                                    <div class="one-news__header">
-                                        <h4 class="one-news__header-title text-dark uppercase default">
-                                            29 октября 2020.
-                                        </h4>
-                                        <h4 class="one-news__header-title bold uppercase text-dark default">
-                                            Таун-парк «Сокуров»
-                                        </h4>
-                                    </div>
-                                    <h5 class="typography-simple-text text-dark bold">
-                                        Старт продаж квартир в новом проекте
-                                    </h5>
-                                    <p class="typography-simple-text text-dark">
-                                        Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта.
-                                    </p>
-                                </article>
+                            <div class="col xl4 m6 s12 news__one-news" data-object="slide" data-index="3">
+                                <a href="#">
+                                    <article class="one-news">
+                                        <div class="one-news__header">
+                                            <h4 class="one-news__header-title text-dark uppercase default">
+                                                29 октября 2020.
+                                            </h4>
+                                            <h4 class="one-news__header-title bold uppercase text-dark default">
+                                                Таун-парк «Сокуров»
+                                            </h4>
+                                        </div>
+                                        <h5 class="typography-simple-text text-dark bold">
+                                            Старт продаж квартир в новом проекте
+                                        </h5>
+                                        <p class="typography-simple-text text-dark">
+                                            Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта.
+                                        </p>
+                                    </article>
+                                </a>
+                            </div>
+
+                            <div class="col xl4 m6 s12 news__one-news" data-object="slide" data-index="4">
+                                <a href="#">
+                                    <article class="one-news">
+                                        <div class="one-news__header">
+                                            <h4 class="one-news__header-title text-dark uppercase default">
+                                                29 октября 2020.
+                                            </h4>
+                                            <h4 class="one-news__header-title bold uppercase text-dark default">
+                                                Таун-парк «Сокуров»
+                                            </h4>
+                                        </div>
+                                        <h5 class="typography-simple-text text-dark bold">
+                                            Старт продаж квартир в новом проекте
+                                        </h5>
+                                        <p class="typography-simple-text text-dark">
+                                            Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта.
+                                        </p>
+                                    </article>
+                                </a>
+                            </div>
+
+                            <div class="col xl4 m6 s12 news__one-news" data-object="slide" data-index="5">
+                                <a href="#">
+                                    <article class="one-news">
+                                        <div class="one-news__header">
+                                            <h4 class="one-news__header-title text-dark uppercase default">
+                                                29 октября 2020.
+                                            </h4>
+                                            <h4 class="one-news__header-title bold uppercase text-dark default">
+                                                Таун-парк «Сокуров»
+                                            </h4>
+                                        </div>
+                                        <h5 class="typography-simple-text text-dark bold">
+                                            Старт продаж квартир в новом проекте
+                                        </h5>
+                                        <p class="typography-simple-text text-dark">
+                                            Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта. Начались продажи квартир в корпусе нового проекта.
+                                        </p>
+                                    </article>
+                                </a>
                             </div>
 
                         </div>

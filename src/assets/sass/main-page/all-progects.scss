@@ -46,8 +46,12 @@
         margin-right: -0.75rem;
 
         & .tabs__tab-item {
-            & .tab-item__wrap h3 {
-                pointer-events: none;
+            & .tab-item__wrap {
+                cursor: pointer;
+                
+                & h3 {
+                    pointer-events: none;
+                }
             }
         }
 

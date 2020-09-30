@@ -57,7 +57,7 @@ class MovingRows {
         }
 
         if ( elementPosition.top < windowPosition.bottom ) { // верхняя граница элемента < нижней границы окна
-            console.log(elementPosition.top, windowPosition.bottom)
+            // console.log(elementPosition.top, windowPosition.bottom)
             !element.classList.contains('visible', 'move_interact') ? element.classList.add('visible', 'move_interact') : this._foo ();
         } else {
             element.classList.contains('visible', 'move_interact') ? element.classList.remove('visible', 'move_interact') : this._foo ();

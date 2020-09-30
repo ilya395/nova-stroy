@@ -10,7 +10,7 @@ import '../sass/style.scss';
 import './libs/lottie_svg.js';
 import './libs/bodymovin';
 import { SimpleMenu, MobileMenu } from './sevices/menu';
-import { AutoSlider, BigSlider, BigSliderWithTabs } from './sevices/sliders';
+import { AutoSlider, BigSlider, BigSliderWithTabs, DefaultCarusel, DefCarousel } from './sevices/sliders';
 import { MovingHeader, MovingRows } from './sevices/headers';
 
 
@@ -89,6 +89,22 @@ window.addEventListener('load', () => {
             urlRows: rows[0]
         });
         rowMove.init();
+
+        // const carusel = DefaultCarusel({
+        //     urlContainer: '.news .carousel',
+        //     options: {
+        //         dist: 0
+        //     }
+        // });
+        // carusel.init();
+
+        const carousel = new DefCarousel({
+            urlContainer: '.news',
+            containerForItems: '.news .default-carousel',
+            urlItems: '.news .news__one-news',
+
+        });
+        carousel.initArrows();
 
     }
 });
