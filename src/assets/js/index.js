@@ -12,6 +12,8 @@ import './libs/bodymovin';
 import { SimpleMenu, MobileMenu } from './sevices/menu';
 import { AutoSlider, BigSlider, BigSliderWithTabs, DefaultCarusel, DefCarousel } from './sevices/sliders';
 import { MovingHeader, MovingRows } from './sevices/headers';
+import { PopUp } from './sevices/modal';
+import { DefaultForm } from './sevices/forms';
 
 
 // work area
@@ -90,14 +92,6 @@ window.addEventListener('load', () => {
         });
         rowMove.init();
 
-        // const carusel = DefaultCarusel({
-        //     urlContainer: '.news .carousel',
-        //     options: {
-        //         dist: 0
-        //     }
-        // });
-        // carusel.init();
-
         const carousel = new DefCarousel({
             urlContainer: '.news',
             containerForItems: '.news .default-carousel',
@@ -105,6 +99,26 @@ window.addEventListener('load', () => {
 
         });
         carousel.initArrows();
+
+        const openPopUpHandler = (event) => {
+            if (event.target.dataset.object == 'request') {
+                event.preventDefault();
+                const target = event.target;
+                const popUpForForm = new PopUp({
+                    content: {
+                        object: DefaultForm,
+                        data: {
+                            urlContainer: '.modal .modal__container',
+                            title: 'Бесплатная консультация по ипотеке',
+                            subTitle: 'Отправьте ваш номер и мы перезвоним в ближайшее время',
+                            formTitle: target.dataset.title,
+                        }
+                    }
+                });
+                popUpForForm.init();
+            }
+        }
+        window.addEventListener('click', openPopUpHandler);
 
     }
 });

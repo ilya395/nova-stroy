@@ -1,0 +1,146 @@
+.form-block
+    height: 456px
+    @media screen and (max-width: 728px + 20px*2)
+        width: calc(100% - 20px*2)
+        padding: 31px 20px 40px 20px
+    @media screen and (min-width: 728px + 20px*2)
+        width: 555px
+        padding:
+            top: 56px
+            bottom: 60px
+            left: 97px
+            right: 97px
+    @media screen and (min-width: 1140px + 20px + 20px)
+        min-width: 555px
+
+// .form-block__title
+//     font-family: GothamPro
+//     font-weight: normal
+//     font-stretch: normal
+//     font-style: normal
+//     letter-spacing: normal
+//     text-align: center
+//     color: #d09b58
+//     opacity: 0.8
+//     margin-bottom: 1.1rem
+//     @media screen and (max-width: 576px)
+//         font-size: 24px // 16px // 12px
+//         line-height: 1.08
+//     @media screen and (min-width: 576px)
+//         font-size: 24px // 16px // 12px
+//         line-height: 1.08
+//     @media screen and (min-width: 1200px)
+//         font-size: 35px
+//         line-height: 1.11
+.contacts
+    & .form-block__title
+        @media screen and (max-width: 576px)
+            margin:
+                bottom: 4rem
+        @media screen and (min-width: 576px)
+            margin:
+                bottom: 4rem
+        @media screen and (min-width: 1200px)
+            margin:
+                bottom: 8.3rem        
+// .form-block__sub-title
+//     opacity: 0.8
+//     font-family: GothamPro
+//     font-weight: normal
+//     font-stretch: normal
+//     font-style: normal
+//     letter-spacing: normal
+//     text-align: center
+//     color: #282630
+//     margin-bottom: 2.4rem
+//     @media screen and (max-width: 576px)
+//         font-size: 16px // 12px
+//         line-height: 1.08
+//     @media screen and (min-width: 576px)
+//         font-size: 16px // 12px
+//         line-height: 1.08
+//     @media screen and (min-width: 1200px)
+//         font-size: 20px // 25px
+//         line-height: 1.12
+.form-block__content
+    display: flex
+    flex-direction: column
+    align-items: center
+.form-block__field
+    width: 300px
+    margin-bottom: 3rem
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+.form-block__label, .modal-content__warning
+    text-decoration: none
+    display: inline-block
+    font-family: GothamPro
+    font-weight: 300
+    font-stretch: normal
+    font-style: italic
+    line-height: 1.08
+    letter-spacing: normal
+    text-align: left
+    color: #282630 // #b2a6a6
+    opacity: .8
+    margin-bottom: 5px
+    @media screen and (max-width: 576px)
+        font-size: 12px
+    @media screen and (min-width: 576px)
+        font-size: 16px   
+.form-block__input
+    background-color: #ffffff
+    color: #282630
+    border: 1px solid #707070
+    border-radius: 3px
+    font-size: 24px
+    font-family: GothamPro
+    font-weight: normal
+    font-stretch: normal
+    font-style: normal
+    letter-spacing: normal
+    text-align: center
+    vertical-align: middle
+    outline: none
+    padding: 0 20px
+    height: 50px
+    width: 100%
+.modal-content__warning
+    text-align: center
+    margin-top: 2rem
+.simple-button_for-form
+    font-size: 20px
+    font-weight: 500
+    line-height: 1.12
+    padding: 1.5rem 4rem 1.5rem 4rem
+
+.form-block__messages
+    width: 100%
+    height: auto
+    position: relative
+.form-block__success
+    text-align: center
+    display: none
+    opacity: 0
+    width: 100%
+    height: auto
+    position: absolute
+    padding: 30px
+    background-color: #66bb6a
+    transform: translateY(0%)
+    transition: opacity .6s linear, transform .6s linear
+    span
+        font-family: GothamPro
+        font-weight: normal
+        font-stretch: normal
+        font-style: normal
+        letter-spacing: normal
+        text-align: center
+        color: #fff
+        margin-bottom: 2.4rem
+    &.active
+        display: block
+    &.movie
+        opacity: 1
+        transform: translateY(-230%)

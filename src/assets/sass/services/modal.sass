@@ -1,0 +1,186 @@
+.modal
+    width: 100vw
+    height: 100vh
+    max-height: 100vh
+    display: none
+    justify-content: center
+    align-items: center
+    position: fixed
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    z-index: 115
+    background-color: #0b1741 // rgba(35, 35, 37, .68)
+    opacity: 0
+    transition: opacity .3s linear
+    &.active
+        display: flex
+    &.movie
+        opacity: 1
+.modal__wrap
+    display: block
+    @media screen and (max-width: 728px + 20px*2)
+        min-width: calc(100% - 20px*2)
+    @media screen and (min-width: 728px + 20px*2)
+        min-width: 555px
+    @media screen and (min-width: 1140px + 20px + 20px)
+        min-width: 555px
+    height: auto
+    min-height: 456px
+    background-color: #fff
+    display: flex
+    justify-content: center
+    align-items: center 
+    position: relative
+    border-radius: 5px
+.modal__container
+    text-align: center
+    vertical-align: middle
+    width: 100%
+    height: 100%
+    // @media screen and (max-width: 728px + 20px*2)
+    //     padding: 31px 20px 40px 20px
+        max-height: 458px // 100vh
+        // overflow: scroll
+    // @media screen and (min-width: 728px + 20px*2)
+    //     padding:
+    //         top: 56px
+    //         bottom: 60px
+    //         left: 97px
+    //         right: 97px
+        // max-height: 81vh
+        // overflow: scroll
+    // @media screen and (min-width: 1200px)
+    //     padding:
+    //         top: 4rem
+    //         bottom: 4rem
+    //         left: 4rem
+    //         right: 4rem
+    // display: flex
+    // justify-content: center
+    // align-items: center
+    // & .form-block
+    //     @media screen and (max-width: 576px)
+    //         width: 100%
+    //     @media screen and (min-width: 576px)
+    //         width: 50rem
+    //     @media screen and (min-width: 1200px)
+    //         width: 80rem
+    // & .interactive-content
+    //     @media screen and (max-width: 576px)
+    //         width: 100%
+    //     @media screen and (min-width: 500px)
+    //         width: 100%
+    //     @media screen and (min-width: 1200px)
+    //         width: 80rem
+    // & .interactive-content__preview
+    //     img
+    //         width: 100%
+    // & .interactive-content__title-wrap
+    //     color: #304f61
+    //     text-align: center
+    //     @media screen and (max-width: 576px)
+    //         padding:
+    //             top: 2rem
+    //             bottom: 2rem
+    //     @media screen and (min-width: 576px)
+    //         padding:
+    //             top: 2rem
+    //             bottom: 2rem            
+    // & .interactive-content__sub-title
+    //     color: #304f61
+    //     font-family: GothamPro
+    //     font-weight: 500
+    //     font-stretch: normal
+    //     font-style: normal
+    //     letter-spacing: normal
+    //     text-align: center
+    //     @media screen and (max-width: 576px)
+    //         font-size: 14px
+    //         line-height: 1.14
+    //         padding:
+    //             bottom: 2rem
+    //     @media screen and (min-width: 576px)
+    //         font-size: 14px
+    //         line-height: 1.14
+    //         padding:
+    //             bottom: 2rem
+    //     @media screen and (min-width: 1200px)
+    //         font-size: 30px
+    //         line-height: 1.13
+    // & .interactive-content__body, & .interactive-content__body p
+    //     font-family: GothamPro
+    //     font-weight: 500
+    //     font-stretch: normal
+    //     font-style: normal
+    //     letter-spacing: normal
+    //     text-align: left
+    //     color: #304f61
+    //     @media screen and (max-width: 576px)
+    //         font-size: 18px
+    //         line-height: 1.17
+    //     @media screen and (min-width: 576px)
+    //         font-size: 18px
+    //         line-height: 1.17
+    //     @media screen and (min-width: 1200px)
+    //         font-size: 20px
+    //         line-height: 1.1
+    // & .interactive-content__body p
+        @media screen and (max-width: 576px)
+            padding:
+                top: 2rem
+        @media screen and (min-width: 576px)
+            padding:
+                top: 2rem
+.modal__close-btn
+    position: absolute 
+    display: block
+    width: 36px
+    height: 36px
+    border: solid 1px #ff7f50
+    border-radius: 50%
+    background-color: transparent
+    cursor: pointer
+    z-index: 116
+    &::after, &::before
+        content: ""
+        position: absolute
+        z-index: 117
+        width: 1px
+        height: 20px
+        background-color: #ff7f50
+        top: 50%
+        left: 50%
+        transform: translateX(-50%) translateY(-50%) rotate(45deg)
+    &::before
+        transform: translateX(-50%) translateY(-50%) rotate(-45deg)
+
+    @media screen and (max-width: 728px + 20px*2)
+        top: calc(-36px - 14px)
+        right: 10px
+    @media screen and (min-width: 728px + 20px*2)
+        top: 20px
+        right: 20px
+
+//
+.modal-content__warning
+    text-align: center
+    margin-top: 2rem
+.modal-content__warning
+    text-decoration: none
+    display: inline-block
+    font-family: GothamPro
+    font-weight: 300
+    font-stretch: normal
+    font-style: italic
+    line-height: 1.08
+    letter-spacing: normal
+    text-align: left
+    color: #282630 // #b2a6a6
+    opacity: .8
+    margin-bottom: 5px
+    @media screen and (max-width: 576px)
+        font-size: 12px
+    @media screen and (min-width: 576px)
+        font-size: 16px 
