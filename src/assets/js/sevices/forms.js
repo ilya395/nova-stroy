@@ -1,3 +1,71 @@
+import '../libs/inputmask';
+
+// для форма обратной связи
+function imOkey(n) {
+    if (n != '' && n != null && n != 'undefined') {
+        var numbersArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+        let str = n.split('');
+        var countNumber = 0;
+        for(var i = 0; i < str.length; i++) {
+          if (str[i] == ' ') {
+            continue;
+          }
+            for(var j = 0; j < numbersArray.length; j++) {
+                if (str[i] == numbersArray[j]) {
+                    // console.log(str[i], numbersArray[j]);
+                    countNumber++;
+                };
+            };
+        };
+    
+        var goodOrBadValue = false;
+        var badNumbers = [
+            "+7 (911) 111-11-11", 
+            "+7 (922) 222-22-22", 
+            "+7 (933) 333-33-33",
+            "+7 (944) 444-44-44",
+            "+7 (955) 555-55-55",
+            "+7 (966) 666-66-66",
+            "+7 (977) 777-77-77",
+            "+7 (988) 888-88-88",
+            "+7 (999) 999-99-99"
+            ];
+        for( var i = 0; i < badNumbers.length; i++) {
+            if (n == badNumbers[i]) {
+                goodOrBadValue = true;
+            };
+        }; 
+        
+        // console.log(n, typeof n, countNumber, goodOrBadValue);
+        if (countNumber == 11 && goodOrBadValue == false) {
+            return true;
+        } else {
+            return false;
+        };
+    }
+  };
+
+// инпут для телефона
+function makeMasks() {
+    if(document.querySelectorAll(".phonemask").length > 0){
+        // console.log(document.querySelectorAll(".phonemask").lenght);
+        let inputMask = document.querySelectorAll(".phonemask");
+        Inputmask.extendDefinitions({
+          'f': {"validator": "[9\(\)\.\+/ ]"}
+        });
+        //
+        let im = new Inputmask("+7(f99)999-99-99");
+        // 
+        for (let i of inputMask) {
+            if (typeof i != 'undefined') {
+                im.mask(i);
+            }
+        }
+    } else {
+        console.log('нету масок на инпутах');
+    }    
+}
+
 class DefaultForm {
     constructor (object) {
         this.urlContainer = object.urlContainer;
@@ -16,29 +84,21 @@ class DefaultForm {
                     <form class="form-block__content">
                         <input type="hidden" name="title">
                         <div class="form-block__field">
-                            <label for="name" class="form-block__label">
-                                Ваше имя
-                            </label>
-                            <input type="text" id="name" name="name" class="form-block__input name">
+                            <input type="tel" id="phone" name="phone" class="form-block__input phone phonemask focused" placeholder="Номер телефона">
                         </div>
-                        <div class="form-block__field">
-                            <label for="phone" class="form-block__label">
-                                Ваш телефон
+                        <div class="main-form__agreement">
+                            <input type="checkbox" checked="checked" name="agree" class="agreement__check-box" id="checkThis">
+                            <label for="checkThis" class="agreement__check-box-text">
+                                Соласен на обработку <a href="#" class="agreement__warn">персональных данных</a>
                             </label>
-                            <input type="tel" id="phone" name="phone" class="form-block__input phone phonemask">
                         </div>
-                        <a href="#" class="modal-content__warning">
-                            Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь c политикой конфиденциальности
-                        </a>
-                        <button class="form-block__button simple-button simple-button_for-form">
+                        <button type="submit" class="waves-effect waves-light btn custom-buttom hovered">
                             Отправить
                         </button>
-                        <div class="form-block__messages">
-                            <div class="form-block__success">
-                                <span>
-                                    Благодарим за заявку!
-                                </span>
-                            </div>
+                        <div class="form-block__success">
+                            <h3 class="text-white default bold"">
+                                Благодарим за заявку!
+                            </h3>
                         </div>
                     </form>
                 </div>
@@ -52,7 +112,7 @@ class DefaultForm {
 
     _buildForm () {
         const container = document.querySelector(this.urlContainer);
-        console.log(this._containerElement(), document.querySelector(this.urlContainer), container, this.urlContainer);
+        // console.log(this._containerElement(), document.querySelector(this.urlContainer), container, this.urlContainer);
         this._containerElement().innerHTML = '';
         const html = this.html({
             title: this.title,
@@ -107,10 +167,15 @@ class DefaultForm {
         _fetchForm ();
     }
 
+    makeMasksInMyForm () {
+        makeMasks();
+    }
+
     async init () {
         // const container = document.querySelector(this.urlContainer);
         await this._buildForm ();
-        await this._containerElement().querySelector('form').addEventListener('submit', this._formWorking)
+        await this._containerElement().querySelector('form').addEventListener('submit', this._formWorking);
+        await this.makeMasksInMyForm ();
     }
 
     clear () {

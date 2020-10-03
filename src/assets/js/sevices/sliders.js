@@ -162,7 +162,7 @@ class BigSliderWithTabs extends BigSlider {
     }
 
     tabsClickInit () {
-        console.log(this.urlContainer, this.urlImagesItems, this.urlDotsItems, this.urlArrowsItems, this.urlTabsItems);
+        // console.log(this.urlContainer, this.urlImagesItems, this.urlDotsItems, this.urlArrowsItems, this.urlTabsItems);
         const tabs = document.querySelectorAll(this.urlTabsItems);
         const handler = (event) => {
             if ( event.target.dataset.object === 'tab' ) {

@@ -7,7 +7,7 @@ class PopUp {
         this.html = () => {
             return `
                 <div class="modal__wrap">
-                    <div class="modal__close-btn">
+                    <div class="modal__close-btn" data-object="close-btn">
                     </div>
                     <div class="modal__container">
                         <div class="content-loader light">
@@ -41,7 +41,7 @@ class PopUp {
         this._pasteModal();
     }
 
-    open() {
+    open () {
         const elemForMovie = document.querySelector('.modal');
         elemForMovie.classList.add('active');
         window.requestAnimationFrame(() => {
@@ -56,7 +56,7 @@ class PopUp {
             : body.classList.add('hidden');
     }
 
-    close() {
+    close () {
         const elemForMovie = document.querySelector('.modal');
         function handlerCloseModal() {
             elemForMovie.classList.remove('active');
@@ -72,10 +72,12 @@ class PopUp {
             : body.classList.add('hidden');          
     }
 
-    putListenerForClosing() {
-        function handler(e) {
+    putListenerForClosing () {
+        const handler = (event) => {
             if (
-                e.target == document.querySelector('.modal .modal__close-btn')
+                // e.target == document.querySelector('.modal .modal__close-btn')
+                event.target.dataset.object == 'close-btn'
+
             ) {
                 this.close();
 
@@ -87,22 +89,24 @@ class PopUp {
         document.querySelector('.modal').addEventListener('click', handler);             
     }
 
-    makeContent() {
+    makeContent () {
         
         const {data, object} = this.content;
+        
         const {
             url, 
             ...props
         } = data;
-        console.log(document.querySelector(url))
+
         this.initObj = new object({
             url,
             ...props
         });
+
         this.initObj.init();
     }
 
-    async init() {
+    async init () {
         if (
             document.querySelector('.modal')
         ) {

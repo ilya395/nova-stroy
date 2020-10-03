@@ -21,7 +21,8 @@
 .modal__wrap
     display: block
     @media screen and (max-width: 728px + 20px*2)
-        min-width: calc(100% - 20px*2)
+        margin: 0 20px
+        min-width: calc(100vw - 20px*2)
     @media screen and (min-width: 728px + 20px*2)
         min-width: 555px
     @media screen and (min-width: 1140px + 20px + 20px)
@@ -39,9 +40,12 @@
     vertical-align: middle
     width: 100%
     height: 100%
-    // @media screen and (max-width: 728px + 20px*2)
-    //     padding: 31px 20px 40px 20px
+    @media screen and (max-width: 728px + 20px*2)
+        display: flex
+        justify-content: center
+        align-items: center
         max-height: 458px // 100vh
+        // padding: 31px 20px 40px 20px
         // overflow: scroll
     // @media screen and (min-width: 728px + 20px*2)
     //     padding:
@@ -164,23 +168,23 @@
         right: 20px
 
 //
-.modal-content__warning
-    text-align: center
-    margin-top: 2rem
-.modal-content__warning
-    text-decoration: none
-    display: inline-block
-    font-family: GothamPro
-    font-weight: 300
-    font-stretch: normal
-    font-style: italic
-    line-height: 1.08
-    letter-spacing: normal
-    text-align: left
-    color: #282630 // #b2a6a6
-    opacity: .8
-    margin-bottom: 5px
-    @media screen and (max-width: 576px)
-        font-size: 12px
-    @media screen and (min-width: 576px)
-        font-size: 16px 
+// .modal-content__warning
+//     text-align: center
+//     margin-top: 2rem
+// .modal-content__warning
+//     text-decoration: none
+//     display: inline-block
+//     font-family: GothamPro
+//     font-weight: 300
+//     font-stretch: normal
+//     font-style: italic
+//     line-height: 1.08
+//     letter-spacing: normal
+//     text-align: left
+//     color: #282630 // #b2a6a6
+//     opacity: .8
+//     margin-bottom: 5px
+//     @media screen and (max-width: 576px)
+//         font-size: 12px
+//     @media screen and (min-width: 576px)
+//         font-size: 16px 
