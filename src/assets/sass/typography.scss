@@ -61,6 +61,10 @@ h2 {
     &.default {
         margin: 0;
     }
+    &.text-orange, & .text-orange, & a {
+        text-decoration: none;
+        color: #ff7f50;
+    }
 
     &.big-title {
         font-family: Montserrat;
@@ -157,6 +161,9 @@ h4 {
     &.text-white {
         color: #d8d8d8;
         opacity: .6;
+    }
+    &.text-light {
+        color: #9f9f9f;
     }
     &.text-dark {
         color: #333333;
