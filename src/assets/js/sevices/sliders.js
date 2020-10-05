@@ -57,15 +57,15 @@ class BigSlider {
         this.urlContainer = object.urlContainer;
         this.urlImagesItems = object.urlImagesItems || '[data-object="slider-image"]';
         this.urlTextsItems = object.urlTextsItems || '[data-object="slider-text"]';
-        this.urlArrowsItems = object.urlArrowsItems || '[data-object="slider-arrow"]';
+        // this.urlArrowsItems = object.urlArrowsItems || '[data-object="slider-arrow"]';
         this.urlDotsItems = object.urlDotsItems || '[data-object="slider-dots"]';
     }
 
     _openNewSlide (number) {
         // console.log(this)
-        const imageItems = document.querySelectorAll(this.urlImagesItems) || document.querySelector(this.urlContainer).querySelectorAll(this.urlImagesItems);
-        const textItems = document.querySelectorAll(this.urlTextsItems);
-        const dots = document.querySelectorAll(this.urlDotsItems);
+        const imageItems = document.querySelectorAll(this.urlImagesItems) || document.querySelector(this.urlContainer).querySelectorAll(this.urlImagesItems) || null;
+        const textItems = document.querySelectorAll(this.urlTextsItems) || null;
+        const dots = document.querySelectorAll(this.urlDotsItems) || null;
         // console.log(imageItems, textItems, dots);
         let thisIndex = 0;
         //
@@ -104,12 +104,11 @@ class BigSlider {
         textItems[thisIndex].addEventListener('transitionend', handleText);
         textItems[thisIndex].classList.remove('visible');
         //
-        dots[thisIndex].classList.remove('active');
-        //
-        
 
-        //
-        dots[number].classList.add('active');
+        if ( dots ) {
+            dots[thisIndex].classList.remove('active');
+            dots[number].classList.add('active');
+        }
     }
 
     dotsJumpInit () {
@@ -156,8 +155,8 @@ class BigSliderWithTabs extends BigSlider {
         this.urlContainer = object.urlContainer;
         this.urlImagesItems = object.urlImagesItems;
         this.urlTextsItems = object.urlTextsItems;
-        this.urlArrowsItems = object.urlArrowsItems;
-        this.urlDotsItems = object.urlDotsItems;
+        // this.urlArrowsItems = object.urlArrowsItems; //
+        this.urlDotsItems = object.urlDotsItems;     //
         this.urlTabsItems = object.urlTabsItems;
     }
 
@@ -179,6 +178,26 @@ class BigSliderWithTabs extends BigSlider {
         document.querySelector(this.urlContainer).addEventListener('click', handler);
     }
 }
+
+class BigSliderWithTabsAndSelect extends BigSliderWithTabs {
+    constructor (object) {
+        super(object);
+
+        this.urlSelectElement = object.urlSelectElement;
+    }
+
+    selectClickInit () {
+        const select = document.querySelector(this.urlSelectElement);
+        const handler = () => {
+            const index = select.selectedIndex; // индекс выбранного options
+            const value = select.options[index];
+
+            super._openNewSlide(+index);
+        }
+        select.addEventListener('change', handler);
+    }
+}
+
 
 class DefCarousel {
     constructor (object) {

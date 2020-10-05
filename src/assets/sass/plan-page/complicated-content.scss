@@ -1,0 +1,272 @@
+.complicated-content {
+    background-color: #f8f9fb;
+
+    @media screen and (max-width: 728px + 20px*2) {
+        padding-top: calc(54px + 70px);
+        padding-bottom: 101px;
+    }
+    @media screen and (min-width: 728px + 20px*2) {
+        padding-top: calc(93px + 70px);
+        padding-bottom: 86px;
+    }
+    @media screen and (min-width: 1140px + 20px + 20px) {
+        padding-top: calc(104px + 70px);
+        padding-bottom: 159px;
+    }    
+
+    & .complicated-content__container {
+        display: grid;
+
+        @media screen and (max-width: 728px + 20px*2) {
+            grid-template-areas: "back-link""title-block""plan-images""plan-info";
+            grid-template-columns: 100%;
+            grid-template-rows: auto auto auto auto;
+        }
+        @media screen and (min-width: 728px + 20px*2) {
+            grid-template-areas: "back-link""title-block""plan-images""plan-info";
+            grid-template-columns: 100%;
+            grid-template-rows: auto auto auto auto;
+        }
+        @media screen and (min-width: 1140px + 20px + 20px) {
+            grid-template-areas: "back-link back-link""title-block plan-images" "plan-info plan-images" ". plan-images";
+            grid-template-columns: auto 653px;
+            grid-template-rows: auto auto auto auto;
+        }   
+    }
+
+    & .complicated-content__back-link {
+        grid-area: back-link;
+
+        @media screen and (max-width: 728px + 20px*2) {
+            margin-bottom: 41px;
+        }
+        @media screen and (min-width: 728px + 20px*2) {
+            margin-bottom: 48px;
+        }
+        @media screen and (min-width: 1140px + 20px + 20px) {
+            margin-bottom: 56px;
+        } 
+
+        & .back-link__wrap {
+            display: inline-flex;
+            flex-wrap: nowrap;
+            // align-items: center;
+
+            &.hovered:hover {
+                & h4 {
+                    color: #ff7f50;
+                }
+                & svg {
+                    color: #ff7f50;
+                    fill: #ff7f50;
+                }
+            }
+
+            & .back-link__arrow {
+                width: 8px;
+                height: 14px;
+
+                & svg {
+                    color: #333333;
+                    fill: #333333;
+                }
+            }
+
+            & .back-link__where-are-we-go {
+                margin-left: 12px;
+            }
+        } 
+    }
+
+    & .complicated-content__title {
+        grid-area: title-block;
+
+        @media screen and (min-width: 1140px + 20px + 20px) {
+            padding-right: 34px;
+        }
+
+        & h2 {
+            @media screen and (max-width: 728px + 20px*2) {
+                margin-bottom: 30px;
+            }
+            @media screen and (min-width: 728px + 20px*2) {
+                margin-bottom: 40px;
+            }
+            @media screen and (min-width: 1140px + 20px + 20px) {
+                margin-bottom: 50px;
+            }  
+        }
+    }
+
+    & .complicated-content__plan-info {
+        grid-area: plan-info;
+
+        @media screen and (min-width: 1140px + 20px + 20px) {
+            padding-right: 34px;
+        }
+
+        & .plan-info__tbl {
+
+            @media screen and (max-width: 728px + 20px*2) {
+                margin-top: 47px;
+            }
+            @media screen and (min-width: 728px + 20px*2) {
+                margin-top: 70px;
+            }
+            @media screen and (min-width: 1140px + 20px + 20px) {
+                margin-top: 0px;
+            } 
+
+            & .row {
+                border-bottom: solid 1px #eaeaea;
+
+                @media screen and (max-width: 728px + 20px*2) {
+                    padding-top: 11px;
+                    padding-bottom: 17px;
+                }
+                @media screen and (min-width: 728px + 20px*2) {
+                    padding-top: 21px;
+                    padding-bottom: 14px;
+                }
+
+                &:last-child {
+                    border-bottom: solid 1px transparent;
+                }
+            }
+            margin-bottom: 40px;
+
+            & .tbl__name {
+                text-align: left;
+            }
+            & .tbl__value {
+                text-align: right;
+            }
+        }
+
+        & .plan-info__buttons-block {
+            @media screen and (max-width: 728px + 20px*2) {
+                display: flex;
+                flex-direction: column;
+            }
+            @media screen and (min-width: 728px + 20px*2) {
+                display: flex;
+                flex-direction: column;
+            }
+            @media screen and (min-width: 1140px + 20px + 20px) {
+                display: flex;
+                flex-direction: row;
+            }    
+            
+            & .custom-buttom {
+
+                @media screen and (max-width: 728px + 20px*2) {
+                    min-width: 280px;
+                }
+                @media screen and (min-width: 728px + 20px*2) {
+                    max-width: 226px;
+                }
+                @media screen and (min-width: 1140px + 20px + 20px) {
+                    max-width: 200px;
+                }
+
+                &.custom-buttom_rectangle {
+                    @media screen and (max-width: 728px + 20px*2) {
+                        margin-top: 20px;
+                    }
+                    @media screen and (min-width: 728px + 20px*2) {
+                        margin-left: 0px;
+                        margin-top: 20px;
+                    }
+                    @media screen and (min-width: 1140px + 20px + 20px) {
+                        margin-left: 20px;
+                        margin-top: 0px;
+                    }
+                }
+            }
+        }
+
+        & .plan-info__text {
+            @media screen and (max-width: 728px + 20px*2) {
+                margin-top: 22px;
+            }
+            @media screen and (min-width: 728px + 20px*2) {
+                margin-top: 19px;
+            }
+            @media screen and (min-width: 1140px + 20px + 20px) {
+                margin-top: 28px;
+            }              
+        }
+
+    }
+
+    & .complicated-content__plan-images {
+        grid-area: plan-images;
+
+        @media screen and (min-width: 1140px + 20px + 20px) {
+            padding-left: 34px;
+        }
+
+        & .plan-images__preview-one {
+            border-radius: 5px;
+            box-shadow: 0 6px 10px 0 rgba(11, 23, 65, 0.12);
+            background-color: #ffffff;
+            width: 100%;
+            background-size: contain;
+            background-position: center center;
+            background-repeat: no-repeat;
+
+            @media screen and (max-width: 728px + 20px*2) {
+                min-height: 250px;
+            }
+            @media screen and (min-width: 728px + 20px*2) {
+                min-height: 647px;
+            }
+            @media screen and (min-width: 1140px + 20px + 20px) {
+                min-height: 580px;
+            } 
+        }
+
+        & .plan-images__sub-title {
+            font-family: Montserrat;
+            font-size: 11px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.82;
+            letter-spacing: 1px;
+            color: #333333; 
+            
+            @media screen and (max-width: 728px + 20px*2) {
+                margin-top: 34px;
+                margin-bottom: 40px; 
+            }
+            @media screen and (min-width: 728px + 20px*2) {
+                margin-top: 54px;
+                margin-bottom: 40px; 
+            }
+            @media screen and (min-width: 1140px + 20px + 20px) {
+                margin-bottom: 34px;
+            }
+        }
+
+        & .plan-images__preview-two {
+            width: 100%;
+            background-color: #ffffff;
+            background-size: contain;
+            background-position: center center;
+            background-repeat: no-repeat;
+
+            @media screen and (max-width: 728px + 20px*2) {
+                min-height: 105px;
+            }
+            @media screen and (min-width: 728px + 20px*2) {
+                min-height: 223px;
+            }
+            @media screen and (min-width: 1140px + 20px + 20px) {
+                min-height: 200px;
+            } 
+        }
+    }
+
+
+}

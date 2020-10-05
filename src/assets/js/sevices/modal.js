@@ -46,7 +46,7 @@ class PopUp {
         elemForMovie.classList.add('active');
         window.requestAnimationFrame(() => {
             window.requestAnimationFrame(() => {
-                elemForMovie.classList.add('movie');
+                elemForMovie.classList.add('move');
             });
         });
         //
@@ -64,7 +64,11 @@ class PopUp {
             elemForMovie.removeEventListener('transitionend', handlerCloseModal)
         }
         elemForMovie.addEventListener('transitionend', handlerCloseModal)
-        elemForMovie.classList.remove('movie');  
+        window.requestAnimationFrame(() => {
+            window.requestAnimationFrame(() => {
+                elemForMovie.classList.remove('move');
+            });
+        });
         //
         const body = document.querySelector('body');
         body.classList.contains('hidden')
@@ -92,7 +96,7 @@ class PopUp {
     makeContent () {
         
         const {data, object} = this.content;
-        
+
         const {
             url, 
             ...props

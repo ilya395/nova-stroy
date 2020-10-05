@@ -131,6 +131,22 @@ const plugins = () => {
             },
             inject: true,
         }),
+        new HTMLWebpackPlugin({
+            filename: 'project.html',
+            template: './assets/templates/project-page.html',
+            minify: {
+                collapseWhitespace: isProd
+            },
+            inject: true,
+        }),
+        new HTMLWebpackPlugin({
+            filename: 'plan.html',
+            template: './assets/templates/plan-page.html',
+            minify: {
+                collapseWhitespace: isProd
+            },
+            inject: true,
+        }),
         // new webpack.ProvidePlugin({
         //     'window.jQuery': 'jquery',
         //     'window.$': 'jquery',

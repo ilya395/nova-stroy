@@ -7,8 +7,8 @@ import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min';
 import '../sass/style.scss';
 //
-import './libs/lottie_svg.js';
-import './libs/bodymovin';
+// import './libs/lottie_svg.js';
+// import './libs/bodymovin';
 import { SimpleMenu, MobileMenu } from './sevices/menu';
 import { AutoSlider, BigSlider, BigSliderWithTabs, DefaultCarusel, DefCarousel } from './sevices/sliders';
 import { MovingHeader, MovingRows } from './sevices/headers';
@@ -99,28 +99,61 @@ window.addEventListener('load', () => {
 
         });
         carousel.initArrows();
+    }
 
-        const openPopUpHandler = (event) => {
-            if (event.target.dataset.object == 'request') {
-                event.preventDefault();
-                const target = event.target;
-                const popUpForForm = new PopUp({
-                    content: {
-                        object: DefaultForm,
-                        data: {
-                            urlContainer: '.modal .modal__container',
-                            title: 'Бесплатная консультация по ипотеке',
-                            subTitle: 'Отправьте ваш номер и мы перезвоним в ближайшее время',
-                            formTitle: target.dataset.title,
-                        }
-                    }
-                });
-                popUpForForm.init();
+    const callPopUp = (object) => {
+        const popUpForForm = new PopUp({
+            content: {
+                object: DefaultForm,
+                data: {
+                    urlContainer: '.modal .modal__container',
+                    title: object.titleForPopUp,
+                    subTitle: object.subTitleForPopUp,
+                    formTitle: object.hiddenTitleForPopUp,
+                }
             }
+        });
+        popUpForForm.init();
+    }
+
+    const openPopUpHandler = (event) => {
+
+        let titleForPopUp = 'Форма обратной связи';
+        let subTitleForPopUp = 'Отправьте ваш номер и мы перезвоним в ближайшее время';
+        let hiddenTitleForPopUp = 'Вызов формы обратной связи по умолчанию';
+
+        if ( event.target.dataset.object == 'ipoteka' ) {
+            event.preventDefault();
+            const target = event.target;
+
+            titleForPopUp = 'Бесплатная консультация по ипотеке';
+            subTitleForPopUp = 'Отправьте ваш номер и мы перезвоним в ближайшее время';
+            hiddenTitleForPopUp = target.dataset.title;
+
+            callPopUp({
+                titleForPopUp,
+                subTitleForPopUp,
+                hiddenTitleForPopUp
+            });
+
+        } else if ( event.target.dataset.object == 'stock' ) {
+            event.preventDefault();
+            const target = event.target;
+
+            titleForPopUp = 'Наши специалисты расскажут вам об условиях акции подробнее ';
+            subTitleForPopUp = 'Просто отправьте ваш номер и мы перезвоним в ближайшее время';
+            hiddenTitleForPopUp = target.dataset.title;
+
+            callPopUp({
+                titleForPopUp,
+                subTitleForPopUp,
+                hiddenTitleForPopUp
+            });
         }
-        window.addEventListener('click', openPopUpHandler);
 
     }
+    window.addEventListener('click', openPopUpHandler);
+
 });
 
 window.addEventListener('click', (event) => {

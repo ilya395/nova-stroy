@@ -96,6 +96,9 @@
         @media screen and (min-width: 728px + 20px*2) {
             align-items: center;
         }
+        @media screen and (min-width: 1140px + 20px + 20px) {
+            align-items: flex-start;
+        }
 
         & .instagram-card__link-to-soc {
             display: inline-flex;

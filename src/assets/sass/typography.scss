@@ -29,6 +29,7 @@ h1 {
     &.default {
         margin: 0;
     }
+    
 }
 h2 {
     font-family: Montserrat;
@@ -206,7 +207,7 @@ h4 {
     }
 }
 
-.typography-simple-text, h5 {
+.typography-simple-text, h5, .typography-simple-text a {
     font-family: Montserrat;
     font-weight: normal;
     font-stretch: normal;
