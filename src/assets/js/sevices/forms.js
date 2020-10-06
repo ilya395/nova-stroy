@@ -96,7 +96,7 @@ class DefaultForm {
                             Отправить
                         </button>
                         <div class="form-block__success">
-                            <h3 class="text-white default bold"">
+                            <h3 class="text-white default bold">
                                 Благодарим за заявку!
                             </h3>
                         </div>

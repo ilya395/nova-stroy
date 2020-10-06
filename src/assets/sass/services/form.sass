@@ -56,24 +56,24 @@
             border-bottom: 1px solid #ff7f50 // #26a69a
             box-shadow: 0 1px 0 0 #ff7f50 // #26a69a
 
-        & .form-block__success
-            text-align: center
-            display: none
-            opacity: 0
-            width: 100%
-            height: auto
-            position: absolute
-            top: 50%
-            left: 0
-            padding: 30px
-            background-color: #66bb6a
-            transform: translateX(-50%) translateY(0%)
-            transition: opacity .6s linear, transform .6s linear
-            &.active
-                display: block
-            &.move
-                opacity: 1
-                transform: translateY(-100%)
+    & .form-block__success
+        text-align: center
+        display: none
+        opacity: 0
+        width: 100%
+        height: auto
+        position: absolute
+        top: 50%
+        left: 0
+        padding: 30px
+        background-color: #66bb6a
+        transform: translateX(-50%) translateY(0%)
+        transition: opacity .6s linear, transform .6s linear
+        &.active
+            display: block
+        &.move
+            opacity: 1
+            transform: translateY(-100%)
 
     & .main-form__agreement
         @media screen and (max-width: 728px + 20px*2)

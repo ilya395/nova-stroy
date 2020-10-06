@@ -124,6 +124,14 @@ const plugins = () => {
             inject: true,
         }),
         new HTMLWebpackPlugin({
+            filename: 'payment.html',
+            template: './assets/templates/payment-page.html',
+            minify: {
+                collapseWhitespace: isProd
+            },
+            inject: true,
+        }),
+        new HTMLWebpackPlugin({
             filename: 'content.html',
             template: './assets/templates/content-page.html',
             minify: {
