@@ -164,7 +164,8 @@
         display: flex;
         flex-wrap: nowrap;
         overflow: hidden;
-        @media screen and (max-width: 727px + 20px*2) {            margin-left: 10px;
+        @media screen and (max-width: 727px + 20px*2) {            
+            margin-left: 10px;
             margin-left: -10px;
             margin-right: -10px;
         } 
