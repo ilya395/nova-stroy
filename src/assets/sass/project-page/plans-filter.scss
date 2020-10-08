@@ -1,0 +1,264 @@
+.plans-filter {
+    background-color: #f8f9fb;
+
+    @media screen and (max-width: 728px + 20px*2) {
+        padding-top: 53px;
+        padding-bottom: 61px;
+    }
+    @media screen and (min-width: 728px + 20px*2) {
+        padding-top: 94px;
+        padding-bottom: 100px;
+    }
+    @media screen and (min-width: 1140px + 20px + 20px) {
+        padding-top: 103px;
+        padding-bottom: 140px;
+    } 
+
+    & .row {
+        @media screen and (max-width: 728px + 20px*2) {
+            margin-right: -10px;
+            margin-left: -10px;
+        }
+        @media screen and (min-width: 728px + 20px*2) {
+            margin-right: -10px;
+            margin-left: -10px;
+        }
+        @media screen and (min-width: 1140px + 20px + 20px) {
+            margin-right: -10px;
+            margin-left: -10px;
+        }        
+    }
+
+    & .plans-filter__section-name {
+        @media screen and (max-width: 728px + 20px*2) {
+            margin-bottom: 55px;
+        }
+        @media screen and (min-width: 728px + 20px*2) {
+            margin-bottom: 54px;
+        }
+        @media screen and (min-width: 1140px + 20px + 20px) {
+            margin-bottom: 71px;
+        }          
+    }
+
+    // & .filter-block__wrap {
+
+    // }
+
+    & .filter-block__open-filter {
+        @media screen and (max-width: 728px + 20px*2) {
+            display: block;
+        }
+        @media screen and (min-width: 728px + 20px*2) {
+            display: block;
+        }
+        @media screen and (min-width: 1140px + 20px + 20px) {
+            display: none;
+        }    
+    }
+
+    & .filter-block__filter-blyat {
+        border-radius: 5px;
+        box-shadow: 0 1px 5px 0 rgba(11, 23, 65, 0.12);
+        background-color: #ffffff;
+        padding: 30px 20px 40px 20px;
+
+        @media screen and (max-width: 728px + 20px*2) {
+            display: none;
+            margin-top: 20px;
+            &.active {
+                display: block;
+            }
+        }
+        @media screen and (min-width: 728px + 20px*2) {
+            display: none;
+            margin-top: 20px;
+            &.active {
+                display: block;
+            }
+        }
+        @media screen and (min-width: 1140px + 20px + 20px) {
+            display: block;
+            margin-top: 0px;
+        }  
+
+        & .filter-blyat__rooms-count {
+
+            & .rooms-count__room-number {
+                margin-bottom: 10px;
+
+                @media screen and (min-width: 728px + 20px*2) {
+                    display: flex;
+                    flex-wrap: wrap;
+                    flex-direction: row;
+                }
+                @media screen and (min-width: 1140px + 20px + 20px) {
+                    display: block;
+                }
+            }
+            & .room-number__wrap {
+                display: block;
+                padding-bottom: 19px;
+                padding-top: 20px;
+                border-bottom: solid 1px #eaeaea;
+
+                @media screen and (min-width: 728px + 20px*2) {
+                    flex-basis: 50%;
+                    flex-grow: 0;
+                    flex-shrink: 1;
+                }
+
+                &:last-child {
+                    border-bottom: solid 1px transparent;
+                }
+            }
+            & .room-number__wrap [type=checkbox]+span:not(.lever):before {
+                width: 20px;
+                height: 20px;
+                border-radius: 3px;
+                border: solid 1px #006cff;
+                background-color: #ffffff;
+            }
+            & .room-number__wrap [type=checkbox]:checked+span:not(.lever):before {
+                content: "\2714";
+                color: #ffffff;
+                font-size: 13px;
+                text-align: center;
+                vertical-align: middle;
+                line-height: 16px;
+                background-color: #007aff;
+                transform: rotate(0deg);
+                top: 0;
+                left: 0;
+            }
+        }
+
+        & .filter-blyat__square {
+            margin-bottom: 40px;
+            & h5 {
+                margin-bottom: 20px;
+            }
+            & .square__row {
+                display: flex;
+                flex-wrap: nowrap;
+                flex-direction: row;
+                justify-content: space-between;
+                border-radius: 3px;
+                border: solid 1px #eaeaea;
+                padding: 8px 20px 8px 20px;
+                max-width: 280px;
+            }
+            & .square__field {
+                display: flex;
+                align-items: center;
+                flex-basis: 53px;
+                flex-grow: 0;
+                flex-shrink: 1;
+
+                & span {
+                    margin-right: 10px;
+                }
+                & input[type=number]:not(.browser-default) {
+                    margin-bottom: 0px;
+                    opacity: 0.5;
+                    font-family: Montserrat;
+                    font-size: 16px;
+                    font-weight: normal;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: 1;
+                    letter-spacing: normal;
+                    color: #4d4d4d;
+                    height: 21px;
+                    width: 25px;
+                    border-bottom: 1px solid transparent;
+                }
+            }
+        }
+
+        & .filter-blyat__buttons {
+            @media screen and (max-width: 728px + 20px*2) {
+                & .custom-buttom_rectangle {
+                    margin-top: 20px;
+                    margin-left: 0px;
+                }
+            }
+            @media screen and (min-width: 728px + 20px*2) {
+                & .custom-buttom_rectangle {
+                    margin-top: 0px;
+                    margin-left: 20px;
+                }
+            }
+            @media screen and (min-width: 1140px + 20px + 20px) {
+                & .custom-buttom_rectangle {
+                    margin-top: 20px;
+                    margin-left: 0px;
+                }
+            }
+        }
+    }
+
+    & .plans-filter__plans-block {
+
+        & .plans-block__wrap {
+            border-radius: 5px;
+            box-shadow: 0 1px 5px 0 rgba(11, 23, 65, 0.12);
+            border: solid 1px #eaeaea;
+            background-color: #ffffff;
+            padding: 15px 20px 34px 20px;
+        }
+
+        & .plans-block__link {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+
+            & .plans-block__arrow {
+                & svg {
+                    width: 7px;
+                    height: 11px;
+                    color: #1c1c1c;
+                    fill: #1c1c1c;
+                }
+            }
+        }
+        & .plans-block__preview {
+            @media screen and (max-width: 728px + 20px*2) {
+                min-height: 202;
+            }
+            @media screen and (min-width: 728px + 20px*2) {
+                min-height: 265px;
+            }
+            @media screen and (min-width: 1140px + 20px + 20px) {
+                min-height: 270px;
+            } 
+            & .plans-block__image {
+                border: solid 1px #ff7f50;
+                width: 100%;
+                padding-bottom: 20px;
+                border-bottom: solid 1px #eaeaea;
+            }
+            & .plans-block__image {
+                width: 100%;
+                height: 100%;
+                background-size: contain;
+                background-position: center center;
+                background-repeat: no-repeat;
+            }
+        }
+        & .plans-block__information {
+            margin-top: 15px;
+
+            & .plans-block__value {
+                font-family: Montserrat;
+                font-size: 22px;
+                font-weight: normal;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: 1.55;
+                letter-spacing: normal;
+                color: #333333;
+            }
+        }
+    }
+}

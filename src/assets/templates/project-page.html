@@ -293,6 +293,166 @@
                 </div>
             </div>
         </section>
+        <section class="plans-filter">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 plans-filter__section-name">
+                        <h4 class="text-dark uppercase default">
+                            выбор планировки
+                        </h4>
+                    </div>
+                    <div class="col s12 xl3 plans-filter__filter-block">
+                        <div class="filter-block__wrap">
+
+                            <div class="filter-block__open-filter">
+                                <a href="#" class="waves-effect waves-light btn custom-buttom hovered">
+                                    Подбор по параметрам
+                                </a>
+                            </div>
+
+                            <div class="filter-block__filter-blyat">
+                                <div class="filter-blyat__form">
+                                    <div class="filter-blyat__rooms-count">
+                                        <h5 class="text-dark default">
+                                            Количество комнат:
+                                        </h5>
+                                        <div class="rooms-count__ckeck-boxs">
+                                            <div class="rooms-count__room-number">
+                                                <label for="room-number__studio" class="room-number__wrap">
+                                                    <input 
+                                                        class="room-number__value"
+                                                        type="checkbox"
+                                                        id="room-number__studio"
+                                                        value="studio"
+                                                    >
+                                                    <span>Студия</span>
+                                                </label>
+                                                <label for="room-number__one" class="room-number__wrap">
+                                                    <input 
+                                                        class="room-number__value"
+                                                        type="checkbox"
+                                                        id="room-number__one"
+                                                        value="1"
+                                                    >
+                                                    <span>1 комната</span>
+                                                </label>
+                                                <label for="room-number__two" class="room-number__wrap">
+                                                    <input 
+                                                        class="room-number__value"
+                                                        type="checkbox"
+                                                        id="room-number__two"
+                                                        value="2"
+                                                    >
+                                                    <span>2 комнаты</span>
+                                                </label>
+                                                <label for="room-number__three-and-more" class="room-number__wrap">
+                                                    <input 
+                                                        class="room-number__value"
+                                                        type="checkbox"
+                                                        id="room-number__three-and-more"
+                                                        value="3"
+                                                    >
+                                                    <span>3+ комнаты</span>
+                                                </label>
+                                            </div>
+                                        </div>                              
+                                    </div>
+                                    <div class="filter-blyat__square">
+                                        <h5 class="text-dark default">
+                                            Общая площадь
+                                        </h5>
+                                        <div class="square__row">
+                                            <label for="min-square" class="square__field">
+                                                <span class="square__text typography-simple-text text-dark bold">от</span>
+                                                <input 
+                                                    type="number" 
+                                                    class="square__min-value" 
+                                                    id="min-square"
+                                                    value="25"
+                                                    min="25"
+                                                    max="55"
+                                                    placeholder="25"
+                                                >
+                                            </label>
+                                            <label class="square__field">
+                                                <span class="square__text typography-simple-text text-dark bold">до</span>
+                                                <input 
+                                                    type="number" 
+                                                    class="square__max-value" 
+                                                    id="max-square"
+                                                    value="55"
+                                                    min="25"
+                                                    max="55"
+                                                    placeholder="55"
+                                                >
+                                            </label>
+                                            <div class="square__metr typography-simple-text text-dark">
+                                                м<sup>2</sup>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="filter-blyat__buttons">
+                                        <button href="#" class="waves-effect waves-light btn custom-buttom hovered">
+                                            Применить
+                                        </button>
+                                        <button class="waves-effect waves-orange btn custom-buttom custom-buttom_rectangle hovered">
+                                            Сбросить фильтры
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 xl9 plans-filter__plans-block">
+                        <div class="col s12 m6 plans-block__item">
+                            <div class="plans-block__wrap">
+
+                                <a href="#" class="plans-block__link">
+                                    <div class="plans-block__text">
+                                       <h4 class="text-black uppercase default">
+                                           подробнее
+                                       </h4> 
+                                    </div>
+                                    <div class="plans-block__arrow">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" class="svg-inline--fa fa-angle-right fa-w-8" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
+                                            <path fill="currentColor" d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z">
+                                            </path>
+                                        </svg>                                        
+                                    </div>
+                                </a>
+
+                                <div class="plans-block__preview">
+                                    <div 
+                                        class="plans-block__image"
+                                        style="background-image: url('assets/images/houses/5/2_A.1_57_02.svg');"
+                                    >
+                                    </div>
+                                </div>
+
+                                <div class="plans-block__information">
+                                    <div class="col s6">
+                                        <div class="plans-block__name typography-little-text text-light">
+                                            Планировка
+                                        </div>
+                                        <div class="plans-block__value">
+                                            2А.1-2
+                                        </div>
+                                    </div>
+                                    <div class="col s6">
+                                        <div class="plans-block__name typography-little-text text-light">
+                                            Общая площадь, м<sup>2</sup>
+                                        </div>
+                                        <div class="plans-block__value">
+                                            45.5
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section class="gen-plan">
             <div class="gen-plan__container">
                 <!-- <div class="gen-plan__layer-back"></div> -->
