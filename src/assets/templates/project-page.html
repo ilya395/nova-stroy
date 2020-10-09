@@ -71,9 +71,9 @@
 
                         <div class="navigation__menu">
                             <ul class="menu__list">
-                                <li><a href="#">Проекты</a></li>
-                                <li><a href="#">О компании</a></li>
-                                <li><a href="#">Варианты оплаты</a></li>
+                                <li><a href="/project.html">Проекты</a></li>
+                                <li><a href="/about.html">О компании</a></li>
+                                <li><a href="/payment.html">Варианты оплаты</a></li>
                                 <li><a href="#">Офисы продаж</a></li>
                                 <li><a href="/content.html">Новости</a></li>
                             </ul>
@@ -239,12 +239,12 @@
                             style="background-image: url('/assets/images/projects/skrv/sldr_skrv_001.jpg');"
                         ></div>
 
-                        <div class="block-image__item"
+                        <div class="block-image__item move_default"
                         data-object="slider-image"
                         style="background-image: url('/assets/images/projects/skrv/sldr_skrv_002.jpg');"
                         ></div>
 
-                        <div class="block-image__item"
+                        <div class="block-image__item move_default"
                         data-object="slider-image"
                         style="background-image: url('/assets/images/projects/skrv/sldr_skrv_003.jpg');"
                         ></div>
@@ -305,7 +305,11 @@
                         <div class="filter-block__wrap">
 
                             <div class="filter-block__open-filter">
-                                <a href="#" class="waves-effect waves-light btn custom-buttom hovered">
+                                <a 
+                                    href="#" 
+                                    class="waves-effect waves-light btn custom-buttom hovered"
+                                    data-object="toggle-filter"
+                                >
                                     Подбор по параметрам
                                 </a>
                             </div>
@@ -404,10 +408,11 @@
                         </div>
                     </div>
                     <div class="col s12 xl9 plans-filter__plans-block">
+
                         <div class="col s12 m6 plans-block__item">
                             <div class="plans-block__wrap">
 
-                                <a href="#" class="plans-block__link">
+                                <a href="#" class="plans-block__link hovered">
                                     <div class="plans-block__text">
                                        <h4 class="text-black uppercase default">
                                            подробнее
@@ -429,7 +434,7 @@
                                     </div>
                                 </div>
 
-                                <div class="plans-block__information">
+                                <div class="plans-block__information row">
                                     <div class="col s6">
                                         <div class="plans-block__name typography-little-text text-light">
                                             Планировка
@@ -449,6 +454,128 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col s12 m6 plans-block__item">
+                            <div class="plans-block__wrap">
+
+                                <a href="#" class="plans-block__link hovered">
+                                    <div class="plans-block__text">
+                                       <h4 class="text-black uppercase default">
+                                           подробнее
+                                       </h4> 
+                                    </div>
+                                    <div class="plans-block__arrow">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" class="svg-inline--fa fa-angle-right fa-w-8" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
+                                            <path fill="currentColor" d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z">
+                                            </path>
+                                        </svg>                                        
+                                    </div>
+                                </a>
+
+                                <div class="plans-block__preview">
+                                    <div 
+                                        class="plans-block__image"
+                                        style="background-image: url('assets/images/houses/5/2_A.1_57_02.svg');"
+                                    >
+                                    </div>
+                                </div>
+
+                                <div class="plans-block__information row">
+                                    <div class="col s6">
+                                        <div class="plans-block__name typography-little-text text-light">
+                                            Планировка
+                                        </div>
+                                        <div class="plans-block__value">
+                                            2А.1-2
+                                        </div>
+                                    </div>
+                                    <div class="col s6">
+                                        <div class="plans-block__name typography-little-text text-light">
+                                            Общая площадь, м<sup>2</sup>
+                                        </div>
+                                        <div class="plans-block__value">
+                                            45.5
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col s12 m6 plans-block__item">
+                            <div class="plans-block__wrap">
+
+                                <a href="#" class="plans-block__link hovered">
+                                    <div class="plans-block__text">
+                                       <h4 class="text-black uppercase default">
+                                           подробнее
+                                       </h4> 
+                                    </div>
+                                    <div class="plans-block__arrow">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" class="svg-inline--fa fa-angle-right fa-w-8" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
+                                            <path fill="currentColor" d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z">
+                                            </path>
+                                        </svg>                                        
+                                    </div>
+                                </a>
+
+                                <div class="plans-block__preview">
+                                    <div 
+                                        class="plans-block__image"
+                                        style="background-image: url('assets/images/houses/5/2_A.1_57_02.svg');"
+                                    >
+                                    </div>
+                                </div>
+
+                                <div class="plans-block__information row">
+                                    <div class="col s6">
+                                        <div class="plans-block__name typography-little-text text-light">
+                                            Планировка
+                                        </div>
+                                        <div class="plans-block__value">
+                                            2А.1-2
+                                        </div>
+                                    </div>
+                                    <div class="col s6">
+                                        <div class="plans-block__name typography-little-text text-light">
+                                            Общая площадь, м<sup>2</sup>
+                                        </div>
+                                        <div class="plans-block__value">
+                                            45.5
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col s12 m6 plans-block__item">
+                            <div class="plans-block__wrap plans-block__sign-up">
+
+                                <a href="#" class="plans-block__link hovered">
+                                    <div class="plans-block__text">
+                                       <h4 class="text-black uppercase default">
+                                            Записаться
+                                       </h4> 
+                                    </div>
+                                    <div class="plans-block__arrow">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" class="svg-inline--fa fa-angle-right fa-w-8" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
+                                            <path fill="currentColor" d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z">
+                                            </path>
+                                        </svg>                                        
+                                    </div>
+                                </a>
+
+                                <h3 class="text-dark bold default">
+                                    Приглашаем на экскурсию<br>
+                                    Такси за наш счет!
+                                </h3>
+
+                                <div class="sign-up__image">
+                                    <img src="/assets/images/excurs.png" alt="" class="sign-up__img">
+                                </div>
+
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -579,7 +706,7 @@
                             <a href="#" 
                                 class="waves-effect waves-light btn custom-buttom hovered"
                                 data-object="excursion"
-                                data-title="Кнопка «Записаться» консультация по ипотеке"
+                                data-title="Кнопка «Записаться» на эксурсию в проект ..."
                             >
                                 Записаться
                             </a>

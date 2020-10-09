@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>О нас</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.3/lottie_svg.min.js" integrity="sha512-E1gYB1OGBGeO9U77qWL/DEeFa0tm3jGFh9KbVBzDqL6oroMzDKS1xPhDffnU9AP88ndosrm0QXXHl7R+beNeRA==" crossorigin="anonymous"></script>
 </head>
 <body>
 	<div class="work-area inside-page about-page">
@@ -66,10 +67,11 @@
 
                         <div class="navigation__menu">
                             <ul class="menu__list">
-                                <li><a href="#">Проекты</a></li>
-                                <li><a href="#">О компании</a></li>
-                                <li><a href="#">Варианты оплаты</a></li>
-                                <li><a href="#">Офисы оплаты</a></li>
+                                <li><a href="/project.html">Проекты</a></li>
+                                <li><a href="/about.html">О компании</a></li>
+                                <li><a href="/payment.html">Варианты оплаты</a></li>
+                                <li><a href="#">Офисы продаж</a></li>
+                                <li><a href="/content.html">Новости</a></li>
                               </ul>
                         </div>
 
@@ -356,9 +358,14 @@
                             <span class="text-orange">Казань,&nbsp;Туфана Минуллина,&nbsp;8а</span>
                         </div>
                         <div class="contacts-block__callback-wrap">
-                            <div class="waves-effect waves-light btn custom-buttom hovered">
+                            <a 
+                                href="#" 
+                                class="waves-effect waves-light btn custom-buttom hovered"
+                                data-object="call"
+                                data-title="Заказ обратного звонка"
+                            >
                                 Перезвоните мне
-                            </div>
+                            </a>
                             <div class="callback-wrap__note">
                                 Отправьте ваш номер телефона<br>и мы перезвоним!
                             </div>
@@ -645,7 +652,7 @@
         </footer>
 	</div>
 
-	<script>
+	<!-- <script>
 		document.addEventListener('DOMContentLoaded', function() {
 			var elems = document.querySelectorAll('.carousel.carousel-slider');
 		    var instances = M.Carousel.init(elems, {
@@ -654,6 +661,6 @@
 			    dist: -20
 			});
 		});
-	</script>
+	</script> -->
 </body>
 </html>

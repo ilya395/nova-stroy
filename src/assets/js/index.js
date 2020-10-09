@@ -101,6 +101,42 @@ window.addEventListener('load', () => {
         carousel.initArrows();
     }
 
+    if ( document.querySelector('.about-page') ) {
+
+		// document.addEventListener('DOMContentLoaded', function() {
+			var elems = document.querySelectorAll('.carousel.carousel-slider');
+		    var instances = M.Carousel.init(elems, {
+			    indicators: true,
+			    numVisible: 1,
+			    dist: -20
+			});
+        // });
+        
+    }
+
+    if ( document.querySelector('.project-page') ) {
+
+        const stocksSliderInProjectPage = new BigSlider({
+            urlContainer: '.stocks',
+            urlImagesItems: '.stocks .stocks__block-image [data-object="slider-image"]',
+            urlTextsItems: '.stocks .block-information__wrap [data-object="slider-text"]',
+            // urlArrowsItems: '.stocks .block-image__slider-navigation [data-object="slider-arrow"]',
+            urlDotsItems: '.stocks .block-image__slider-dots [data-object="slider-dots"]'
+        });
+        stocksSliderInProjectPage.dotsJumpInit();
+        stocksSliderInProjectPage.arrowsMoveInit();
+
+        const sliderInFirstSection = new BigSlider({
+            urlContainer: '.project-hello-block__block-image',
+            urlImagesItems: '.project-hello-block__block-image [data-object="slider-image"]',
+            urlTextsItems: null,
+            // urlArrowsItems: '.project-hello-block__block-image [data-object="slider-arrow"]',
+            urlDotsItems: '.project-hello-block__block-image [data-object="slider-dots"]'            
+        });
+        sliderInFirstSection.dotsJumpInit();
+        sliderInFirstSection.arrowsMoveInit();
+    }
+
     const callPopUp = (object) => {
         const popUpForForm = new PopUp({
             content: {
@@ -149,6 +185,22 @@ window.addEventListener('load', () => {
                 subTitleForPopUp,
                 hiddenTitleForPopUp
             });
+        } else if ( event.target.dataset.object == 'toggle-filter' ) {
+            event.preventDefault();
+            document.querySelector('.filter-block__filter-blyat').classList.toggle('active');
+        } else if ( event.target.dataset.object == 'call' ) {
+            event.preventDefault();
+            const target = event.target;
+
+            titleForPopUp = 'Бесплатная консультация по телефону';
+            subTitleForPopUp = 'Отправьте ваш номер и мы перезвоним в ближайшее время';
+            hiddenTitleForPopUp = target.dataset.title;
+
+            callPopUp({
+                titleForPopUp,
+                subTitleForPopUp,
+                hiddenTitleForPopUp
+            });           
         }
 
     }

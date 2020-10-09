@@ -109,6 +109,12 @@
 	color: #333333;
 	width: 100vw;
 	overflow-x: hidden;
+	display: none;
+	background-color: #f8f9fb;
+
+	&.active {
+		display: block;
+	}
 
 	& .tab-content__flex-content-wrap {
 		padding-bottom: 70px;

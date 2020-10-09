@@ -69,40 +69,73 @@ class BigSlider {
         // console.log(imageItems, textItems, dots);
         let thisIndex = 0;
         //
-        imageItems.forEach((item, index) => {
-            if ( item.classList.contains('active') ) {
-                thisIndex = index;
-                const handlImage = () => {
-                    item.classList.remove('move_interact', 'active');
-                    //
-                    item.removeEventListener('transitionend', handlImage);
-                    //
-                    imageItems[number].classList.add('active');
-                    window.requestAnimationFrame(() => {
-                        window.requestAnimationFrame(() => {
-                            imageItems[number].classList.add('visible', 'move_interact');
-                        });
-                    });
+        if (imageItems) {
+            imageItems.forEach((item, index) => {
+                if ( item.classList.contains('active') ) {
+                    thisIndex = index;
                 }
-                item.addEventListener('transitionend', handlImage);
-                item.classList.remove('visible');
-            }
-        });
-        //
-        const handleText = () => {
-            textItems[thisIndex].classList.remove('move_interact', 'active');
-            //
-            textItems[thisIndex].removeEventListener('transitionend', handleText);
-            //
-            textItems[number].classList.add('active');
-            window.requestAnimationFrame(() => {
-                window.requestAnimationFrame(() => {
-                    textItems[number].classList.add('visible', 'move_interact');
-                });
+            }); 
+        } else {
+            textItems.forEach((item, index) => {
+                if ( item.classList.contains('active') ) {
+                    thisIndex = index;
+                }                
             });
         }
-        textItems[thisIndex].addEventListener('transitionend', handleText);
-        textItems[thisIndex].classList.remove('visible');
+        //
+        if ( imageItems ) {
+            // imageItems.forEach((item, index) => {
+            //     if ( item.classList.contains('active') ) {
+            //         thisIndex = index;
+            //         const handlImage = () => {
+            //             item.classList.remove('move_interact', 'active');
+            //             //
+            //             item.removeEventListener('transitionend', handlImage);
+            //             //
+            //             imageItems[number].classList.add('active');
+            //             window.requestAnimationFrame(() => {
+            //                 window.requestAnimationFrame(() => {
+            //                     imageItems[number].classList.add('visible', 'move_interact');
+            //                 });
+            //             });
+            //         }
+            //         item.addEventListener('transitionend', handlImage);
+            //         item.classList.remove('visible');
+            //     }
+            // });
+            //
+            const handlImage = () => {
+                imageItems[thisIndex].classList.remove('move_interact', 'active');
+                //
+                imageItems[thisIndex].removeEventListener('transitionend', handlImage);
+                //
+                imageItems[number].classList.add('active');
+                window.requestAnimationFrame(() => {
+                    window.requestAnimationFrame(() => {
+                        imageItems[number].classList.add('visible', 'move_interact');
+                    });
+                });
+            }
+            imageItems[thisIndex].addEventListener('transitionend', handlImage);
+            imageItems[thisIndex].classList.remove('visible');            
+        }
+        //
+        if ( textItems ) {
+            const handleText = () => {
+                textItems[thisIndex].classList.remove('move_interact', 'active');
+                //
+                textItems[thisIndex].removeEventListener('transitionend', handleText);
+                //
+                textItems[number].classList.add('active');
+                window.requestAnimationFrame(() => {
+                    window.requestAnimationFrame(() => {
+                        textItems[number].classList.add('visible', 'move_interact');
+                    });
+                });
+            }
+            textItems[thisIndex].addEventListener('transitionend', handleText);
+            textItems[thisIndex].classList.remove('visible');
+        }
         //
 
         if ( dots ) {
