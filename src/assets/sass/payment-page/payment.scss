@@ -520,7 +520,11 @@
 	}
 }
 
-
+.tab-item__wrap {
+	& h3 {
+		pointer-events: none;
+	}
+}
 
 
 

@@ -64,7 +64,7 @@
     } 
 }
 .hidden {
-    overflow: hidden;
+    overflow: hidden !important;
 }
 .opacity {
     opacity: 0;

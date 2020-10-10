@@ -1,6 +1,7 @@
 .gen-plan {
     width: 100%;
     background-color: #f8f9fb;
+    position: relative;
 
     @media screen and (max-width: 728px + 20px*2) {
         height: auto; // 426px;
@@ -101,6 +102,35 @@
                 // } 
             }
         }
+    }
+
+    & .gen-plan__to-swap {
+
+        @media screen and (max-width: 728px + 20px*2) {
+            display: none;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 5px;
+            left: 0;
+            z-index: -12;
+            background-color: rgba(0, 0, 0, .6);
+            background-image: url('/assets/images/services/swipe0.svg');
+            background-size: 20%;
+            background-position: center center;
+            background-repeat: no-repeat;
+
+            &.active {
+                display: block;
+                z-index: 12;
+            }
+        }
+        @media screen and (min-width: 728px + 20px*2) {
+            display: none;
+        }
+        @media screen and (min-width: 1140px + 20px + 20px) {
+            display: none;
+        }         
     }
 
 }

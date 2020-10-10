@@ -10,10 +10,11 @@ import '../sass/style.scss';
 // import './libs/lottie_svg.js';
 // import './libs/bodymovin';
 import { SimpleMenu, MobileMenu } from './sevices/menu';
-import { AutoSlider, BigSlider, BigSliderWithTabs, DefaultCarusel, DefCarousel } from './sevices/sliders';
+import { AutoSlider, BigSlider, BigSliderWithTabs, DefaultCarusel, DefCarousel, BigSliderWithTabsAndSelect } from './sevices/sliders';
 import { MovingHeader, MovingRows } from './sevices/headers';
 import { PopUp } from './sevices/modal';
 import { DefaultForm } from './sevices/forms';
+import { swips } from './sevices/swips';
 
 
 // work area
@@ -135,6 +136,47 @@ window.addEventListener('load', () => {
         });
         sliderInFirstSection.dotsJumpInit();
         sliderInFirstSection.arrowsMoveInit();
+
+        const removeLyer = () => {
+            // console.log('#### removeLyer');
+            const targetWin = document.querySelector('.gen-plan');
+            targetWin.classList.remove('hidden');
+            targetWin.querySelector('.gen-plan__to-swap').classList.remove('active');
+        }
+
+        const listenerForSwipesOnGenPlan = swips({
+            container: '.gen-plan',
+            move: {
+                forvard: removeLyer,
+                back: removeLyer,
+                up: null,
+                down: null
+            },
+            destroy: true,
+        });
+        listenerForSwipesOnGenPlan.init();
+    }
+
+    if ( document.querySelector('.payment-page') ) {
+
+        const bigTabsWithMobSelect = new BigSliderWithTabsAndSelect({
+            urlContainer: '.payment-tabs',
+            urlImagesItems: null,
+            urlTextsItems: null,
+            urlArrowsItems: null,
+            urlDotsItems: '.payment-tabs .payment-tabs__tab-content',
+            urlTabsItems: '.payment-tabs .tab-item__wrap',
+            urlSelectElement: '.payment-tabs .select-element'
+
+        });
+        if ( window.matchMedia('(min-width:727px)').matches ) {
+            bigTabsWithMobSelect.tabsClickInit();
+        }
+        if ( window.matchMedia('(max-width:727px)').matches ) {
+            bigTabsWithMobSelect.selectClickInit();
+        }
+
+        
     }
 
     const callPopUp = (object) => {

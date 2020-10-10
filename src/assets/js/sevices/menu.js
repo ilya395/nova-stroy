@@ -2,9 +2,10 @@
 // import './menu-V2.json';
 // import fileJson from './menu-V2.json';
 // import { bodymovin } from 'bodymovin';
-import '../libs/lottie_svg.js';
-import '../libs/lottie_svg.min.js';
-import '../libs/bodymovin';
+
+// import '../libs/lottie_svg.js';
+// import '../libs/lottie_svg.min.js';
+// import '../libs/bodymovin';
 
 class MobileMenu {
 

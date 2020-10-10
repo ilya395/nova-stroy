@@ -55,10 +55,10 @@ class AutoSlider {
 class BigSlider {
     constructor (object) {
         this.urlContainer = object.urlContainer;
-        this.urlImagesItems = object.urlImagesItems || '[data-object="slider-image"]';
-        this.urlTextsItems = object.urlTextsItems || '[data-object="slider-text"]';
+        this.urlImagesItems = object.urlImagesItems; // || '[data-object="slider-image"]';
+        this.urlTextsItems = object.urlTextsItems; // || '[data-object="slider-text"]';
         // this.urlArrowsItems = object.urlArrowsItems || '[data-object="slider-arrow"]';
-        this.urlDotsItems = object.urlDotsItems || '[data-object="slider-dots"]';
+        this.urlDotsItems = object.urlDotsItems; // || '[data-object="slider-dots"]';
     }
 
     _openNewSlide (number) {
@@ -66,24 +66,30 @@ class BigSlider {
         const imageItems = document.querySelectorAll(this.urlImagesItems) || document.querySelector(this.urlContainer).querySelectorAll(this.urlImagesItems) || null;
         const textItems = document.querySelectorAll(this.urlTextsItems) || null;
         const dots = document.querySelectorAll(this.urlDotsItems) || null;
-        // console.log(imageItems, textItems, dots);
+        console.log(imageItems, textItems, dots);
         let thisIndex = 0;
         //
-        if (imageItems) {
+        if (imageItems.length > 0) {
             imageItems.forEach((item, index) => {
                 if ( item.classList.contains('active') ) {
                     thisIndex = index;
                 }
             }); 
-        } else {
+        } else if (textItems.length > 0) {
             textItems.forEach((item, index) => {
                 if ( item.classList.contains('active') ) {
                     thisIndex = index;
                 }                
             });
+        } else {
+            dots.forEach((item, index) => {
+                if ( item.classList.contains('active') ) {
+                    thisIndex = index;
+                }                
+            });            
         }
         //
-        if ( imageItems ) {
+        if ( imageItems.length > 0 ) {
             // imageItems.forEach((item, index) => {
             //     if ( item.classList.contains('active') ) {
             //         thisIndex = index;
@@ -120,7 +126,7 @@ class BigSlider {
             imageItems[thisIndex].classList.remove('visible');            
         }
         //
-        if ( textItems ) {
+        if ( textItems.length > 0 ) {
             const handleText = () => {
                 textItems[thisIndex].classList.remove('move_interact', 'active');
                 //
@@ -138,7 +144,7 @@ class BigSlider {
         }
         //
 
-        if ( dots ) {
+        if ( dots.length > 0 ) {
             dots[thisIndex].classList.remove('active');
             dots[number].classList.add('active');
         }
@@ -196,19 +202,22 @@ class BigSliderWithTabs extends BigSlider {
     tabsClickInit () {
         // console.log(this.urlContainer, this.urlImagesItems, this.urlDotsItems, this.urlArrowsItems, this.urlTabsItems);
         const tabs = document.querySelectorAll(this.urlTabsItems);
-        const handler = (event) => {
-            if ( event.target.dataset.object === 'tab' ) {
-                // dotIndex = event.target.dataset.index;
-                tabs.forEach(item => {
-                    // if ( item.classList.contains('active') ) {
-                    //     item.classList.remove('active');
-                    // }
-                    item.dataset.tab == +event.target.dataset.tab ? item.classList.add('active') : item.classList.remove('active');
-                });
-                super._openNewSlide(+event.target.dataset.tab);
+        if (tabs.length > 0) {
+            const handler = (event) => {
+                if ( event.target.dataset.object === 'tab' ) {
+                    // dotIndex = event.target.dataset.index;
+                    
+                    tabs.forEach(item => {
+                        // if ( item.classList.contains('active') ) {
+                        //     item.classList.remove('active');
+                        // }
+                        item.dataset.tab == +event.target.dataset.tab ? item.classList.add('active') : item.classList.remove('active');
+                    });
+                    super._openNewSlide(+event.target.dataset.tab);
+                }
             }
+            document.querySelector(this.urlContainer).addEventListener('click', handler);
         }
-        document.querySelector(this.urlContainer).addEventListener('click', handler);
     }
 }
 
@@ -387,4 +396,4 @@ const DefaultCarusel = (object) => {
     return methods;
 }
 
-export { AutoSlider, BigSlider, BigSliderWithTabs, DefaultCarusel, DefCarousel }
+export { AutoSlider, BigSlider, BigSliderWithTabs, DefaultCarusel, DefCarousel, BigSliderWithTabsAndSelect }
