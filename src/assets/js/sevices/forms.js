@@ -1,4 +1,5 @@
 import '../libs/inputmask';
+const AJAX_REQUEST_SUBMIT_FORM = 'ajax_submit_form';
 
 // для форма обратной связи
 function imOkey(n) {
@@ -7,9 +8,9 @@ function imOkey(n) {
         let str = n.split('');
         var countNumber = 0;
         for(var i = 0; i < str.length; i++) {
-          if (str[i] == ' ') {
-            continue;
-          }
+            if (str[i] == ' ') {
+                continue;
+            }
             for(var j = 0; j < numbersArray.length; j++) {
                 if (str[i] == numbersArray[j]) {
                     // console.log(str[i], numbersArray[j]);
@@ -43,7 +44,7 @@ function imOkey(n) {
             return false;
         };
     }
-  };
+};
 
 // инпут для телефона
 function makeMasks() {
@@ -87,7 +88,7 @@ class DefaultForm {
                             <input type="tel" id="phone" name="phone" class="form-block__input phone phonemask focused" placeholder="Номер телефона">
                         </div>
                         <div class="main-form__agreement">
-                            <input type="checkbox" checked="checked" name="agree" class="agreement__check-box" id="checkThis">
+                            <input type="checkbox" name="agree" class="agreement__check-box" id="checkThis">
                             <label for="checkThis" class="agreement__check-box-text">
                                 Соласен на обработку <a href="#" class="agreement__warn">персональных данных</a>
                             </label>
@@ -111,7 +112,7 @@ class DefaultForm {
     }
 
     _buildForm () {
-        const container = document.querySelector(this.urlContainer);
+        // const container = document.querySelector(this.urlContainer);
         // console.log(this._containerElement(), document.querySelector(this.urlContainer), container, this.urlContainer);
         this._containerElement().innerHTML = '';
         const html = this.html({
@@ -151,20 +152,106 @@ class DefaultForm {
     }
 
     _fetchForm () {
-        console.log('yep, we go fetch!')
+        console.log('yep, we go fetch!'); 
+        M.toast({html: 'Go Request!'});
+
+        const container = this._containerElement(); // document.querySelector(this.urlContainer);
+        const collectionOfInputs = container.querySelectorAll('input');
+
+        let validate = false;
+
+        let formData = `action=${AJAX_REQUEST_SUBMIT_FORM}`;
+        collectionOfInputs.forEach(item => {
+            if (item.getAttribute('name') == 'name') {
+                if (item.value != '' && item.value.length < 25) {
+                    validate = true;
+                } else {
+                    validate = false;
+                    M.toast({html: 'Введите корректное имя!'});
+                }
+            }
+            if (item.getAttribute('name') == 'phone') {
+                if (item.value != '' && imOkey( item.value ) == true) {
+                    validate = true
+                } else {
+                    validate = false;
+                    M.toast({html: 'Введите корректное номер!'});
+                }
+            }
+            if (item.getAttribute('name') == 'agree') {
+                if (item.checked == true) {
+                    validate = true
+                } else {
+                    validate = false;
+                    M.toast({html: 'Дайте свое согласие на обработку персональных данных!'});
+                };
+            }
+
+            let str = `&${item.getAttribute('name')}=${item.getAttribute('value')}`;
+            formData += str;
+        });
+        
+        let sendAjax = function (formData) {
+            // console.log(formData);
+            fetch(
+                window.wp.ajax_url, // '/wp-admin/admin-ajax.php', // точка входа
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded', // отправляемые данные 
+                    },
+                    body: formData
+                }
+            )
+            .then(
+                response => {
+                    // console.log('Сообщение отправлено методом fetch')
+                    return response.json()
+                }
+            )
+            .then(
+                response => {
+                    // console.log(response)
+                    M.toast({html: 'Все отлично!'});
+                    movieSuccessMessage();
+                    const name = collectionOfInputs.find(item => {
+                        return item.setAttribute('name') == 'name';
+                    });
+                    name.value = '';
+                    const phone = collectionOfInputs.find(item => {
+                        return item.setAttribute('phone') == 'phone';
+                    });
+                    phone.value = ''
+                }
+            )
+            .catch(
+                error => {
+                    console.error(error);
+                    M.toast({html: 'Упс! Что-то не получилось...'});
+                }
+            )
+        }
+
+        // let formData = `action=${AJAX_REQUEST_SUBMIT_FORM}&name=${name ? name.value : ''}&phone=${phone ? phone.value : ''}&title=${title ? title.value : ''}`;
+        
+        if (
+            validate == true
+        ) {
+            sendAjax(formData);
+        }
     }
 
     _formWorking (event) {
         event.preventDefault();
-        _fetchForm ();
+        this._fetchForm();
     }
 
     buidtMyForm () {
-        _buildForm();
+        this._buildForm();
     }
 
     submitForm () {
-        _fetchForm ();
+        this._fetchForm();
     }
 
     makeMasksInMyForm () {
@@ -174,12 +261,17 @@ class DefaultForm {
     async init () {
         // const container = document.querySelector(this.urlContainer);
         await this._buildForm ();
-        await this._containerElement().querySelector('form').addEventListener('submit', this._formWorking);
+        await this._containerElement().querySelector('form').addEventListener('submit', this._formWorking.bind(this));
         await this.makeMasksInMyForm ();
     }
 
     clear () {
         this._containerElement().querySelector('form').removeEventListener('submit', this._formWorking)
+    }
+
+    async initWithoutBildForm () {
+        await this._containerElement().querySelector('form').addEventListener('submit', this._formWorking.bind(this));
+        await this.makeMasksInMyForm ();
     }
 }
 

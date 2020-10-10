@@ -155,6 +155,14 @@ window.addEventListener('load', () => {
             destroy: true,
         });
         listenerForSwipesOnGenPlan.init();
+
+        const formFromProjectPage = new DefaultForm({
+            urlContainer: '.form-container__wrapper',
+            title: null,
+            subTitle: null,
+            hiddenTitle: `Форма обратной связи со старницы проекта`            
+        });
+        formFromProjectPage.initWithoutBildForm();
     }
 
     if ( document.querySelector('.payment-page') ) {
