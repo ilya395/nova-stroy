@@ -72,15 +72,15 @@ const swips = (object) => {
     }
 
     const _touchStartHadler = (e) => {
-        console.log('### touchstart');
+        // console.log('### touchstart');
             
         let touchObject = e.changedTouches[0];
         distanceX = 0;
         distanceY = 0;
         startX = touchObject.pageX
         startY = touchObject.pageY
-        startTime = new Date().getTime() // время контакта с поверхностью сенсора
-        e.preventDefault();        
+        startTime = new Date().getTime() // время (точная дата) контакта с поверхностью сенсора
+        // e.preventDefault();        
     }
 
     const _touchMoveHandler = (e) => {
@@ -88,7 +88,7 @@ const swips = (object) => {
     }
 
     const _touchEndHandler = (e) => {
-        console.log('#### touchend');
+        // console.log('#### touchend');
 
         let touchObject = e.changedTouches[0];
         distanceX = touchObject.pageX - startX; // получаем пройденную дистанцию
@@ -102,10 +102,13 @@ const swips = (object) => {
             && Math.abs(distanceY) <= 100
             && Math.abs(distanceX) >= minInterval
         ) {
-            // console.log('#### _showMustGoOn: GO!');
+            console.log('#### success swipe');
             _showMustGoOn(distanceX, distanceY);
+            e.preventDefault();
+        } else {
+            console.log('#### unsuccess swipe');
         }
-        e.preventDefault();
+        
     }
 
     function _run() { // для свайпов

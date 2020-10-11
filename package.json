@@ -24,7 +24,8 @@
     "css-loader": "^4.3.0",
     "file-loader": "^6.1.0",
     "handlebars-loader": "^1.7.1",
-    "html-webpack-plugin": "^4.4.1",
+    "html-webpack-externals-plugin": "^3.8.0",
+    "html-webpack-plugin": "^4.5.0",
     "image-webpack-loader": "^7.0.0",
     "json-loader": "^0.5.7",
     "lodash": "^4.17.20",
@@ -42,8 +43,6 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "bodymovin": "^4.13.0",
-    "lottie-web": "^5.7.3",
     "materialize-css": "^1.0.0-rc.2",
     "normalize.css": "^8.0.1"
   }

@@ -1,3 +1,5 @@
+import { swips } from './swips';
+
 class AutoSlider {
     constructor (object) {
         this.urlItems = object.urlItems;
@@ -145,8 +147,17 @@ class BigSlider {
         //
 
         if ( dots.length > 0 ) {
-            dots[thisIndex].classList.remove('active');
-            dots[number].classList.add('active');
+            // dots[thisIndex].classList.remove('active');
+            // dots[number].classList.add('active');
+
+            dots.forEach((item, index) => {
+                if ( item.classList.contains('active') ) {
+                    item.classList.remove('active');
+                }
+                if ( index == number ) {
+                    item.classList.add('active');
+                }
+            });
         }
     }
 
@@ -183,6 +194,58 @@ class BigSlider {
             }
         }
         document.querySelector(this.urlContainer).addEventListener('click', handler);
+    }
+
+    swipsInit () {
+        const parent = document.querySelector(this.urlImagesItems).parentElement;
+        const imageItems = document.querySelectorAll(this.urlImagesItems) || document.querySelector(this.urlContainer).querySelectorAll(this.urlImagesItems);
+
+        const giveMePlzSliderIndex = (direction) => {
+ 
+            let thisIndex = 0;
+
+            imageItems.forEach((item, index) => {
+                if ( item.classList.contains('active') ) {
+                    thisIndex = index;
+                }
+            });
+
+            let nextItem = thisIndex + 1;
+
+            let prevItem = thisIndex - 1;
+
+            if ( nextItem > imageItems.length - 1 ) {
+                nextItem = 0;
+            }
+
+            if ( prevItem < 0 ) {
+                prevItem = imageItems.length - 1;
+            }
+
+            // console.log(parent.className, document.querySelector(`.${parent.className}`))
+            return direction == 'right' ? nextItem : prevItem;
+        }
+
+        const goNext = () => {
+            console.log()
+            this._openNewSlide( giveMePlzSliderIndex('right') );
+        }
+
+        const goPrev = () => {
+            this._openNewSlide( giveMePlzSliderIndex('left') );
+        }
+
+        const swipeListener = swips({
+            container: this.urlContainer, // `.${parent.className}`,
+            move: {
+                forvard: goNext,
+                back: goPrev,
+                up: null,
+                down: null
+            },
+            destroy: false,
+        });
+        swipeListener.init();
     }
 
 }

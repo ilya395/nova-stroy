@@ -13,6 +13,7 @@ class MapMover {
         const zoom = this.zoomValue;
         const container = document.querySelector(this.urlContainer);
         const tabItems = document.querySelectorAll(this.urlTabItems);
+        const select = document.querySelector(this.urlSelect);
 
         DG.then(function () {
             map = DG.map(mapContainer, {
@@ -51,23 +52,36 @@ class MapMover {
                 .bindPopup('ЖК Янтарный Берег'); // яб
 
             
-            const handler = (event) => {
-                event.preventDefault();
-                if ( event.target.dataset.object == 'tab' ) {
-                    tabItems.forEach(item => {
-                        if (item.classList.contains('active')) {
-                            item.classList.remove('active');
-                        }
-                    });
-
-                    event.target.classList.add('active');
-
-                    const name = event.target.dataset.item;
-
-                    map.setView(projects[name], zoom);
+            if (window.matchMedia('(min-width:768px)').matches) {
+                const handler = (event) => {
+                    event.preventDefault();
+                    if ( event.target.dataset.object == 'tab' ) {
+                        tabItems.forEach(item => {
+                            if (item.classList.contains('active')) {
+                                item.classList.remove('active');
+                            }
+                        });
+    
+                        event.target.classList.add('active');
+    
+                        const name = event.target.dataset.item;
+    
+                        map.setView(projects[name], zoom);
+                    }
                 }
+                container.addEventListener('click', handler);                
             }
-            container.addEventListener('click', handler);
+            if (window.matchMedia('(max-width:768px)').matches) {
+                const handler = () => {
+                    const index = select.selectedIndex; // индекс выбранного options
+
+                    const item = select.options[index];
+
+                    map.setView(projects[item.value], zoom);
+                }
+                select.addEventListener('change', handler);
+            }
+
         });
     }
 }

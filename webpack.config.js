@@ -7,7 +7,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin') // копируй-пе�
 const MiniCssExtractPlugin = require('mini-css-extract-plugin') // работай с css (вставляй стили в файл css)
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin') // минифицируй css
 const TerserWebpackPlugin = require('terser-webpack-plugin') // минифицируй js
-// const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin') // через него прикрутить externals с массивом объектов, содержащих урлы с cdn библтотек
+const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin') // через него прикрутить externals с массивом объектов, содержащих урлы с cdn библтотек
 
 const isDev = process.env.NODE_ENV === 'development' // определяй в каком сейчас режиме
 const isProd = !isDev                                //
@@ -170,10 +170,6 @@ const plugins = () => {
         new CleanWebpackPlugin(),
         new CopyWebpackPlugin({
             patterns: [
-                // {
-                //     from: path.resolve(__dirname, './src/assets/**/*'),
-                //     to: path.resolve(__dirname, './dist/')
-                // }
                 {
                     from: path.resolve(__dirname, './src/assets/js/utils/*'),
                     to: path.resolve(__dirname, './dist/')
@@ -188,25 +184,20 @@ const plugins = () => {
             filename: 'assets/css/' + filename('css') // filename('css') // 'assets/css/' + filename('css')
         }),
         // new HtmlWebpackPlugin(),
-        // new HtmlWebpackExternalsPlugin({
-        //     externals: [
-        //         {
-        //             module: 'jquery',
-        //             entry: 'https://code.jquery.com/jquery-3.4.1.min.js',
-        //             global: 'jQuery',
-        //         },
-        //         {
-        //             module: 'swiper',
-        //             entry: 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.js',
-        //             global: 'Swiper',
-        //         },
-        //         {
-        //             module: 'throttle_debounce',
-        //             entry: 'https://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js',
-        //             global: 'jquery_throttle_debounce',                    
-        //         }
-        //     ]
-        // })
+        new HtmlWebpackExternalsPlugin({
+            externals: [
+                {
+                    module: 'lottie',
+                    entry: 'https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.3/lottie_svg.min.js',
+                    global: 'lottie',
+                },
+                {
+                    module: 'map2gis',
+                    entry: 'https://maps.api.2gis.ru/2.0/loader.js?pkg=full',
+                    global: 'map2gis',
+                },
+            ]
+        })
     ]
 
     return base 

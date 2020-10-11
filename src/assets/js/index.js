@@ -55,6 +55,9 @@ window.addEventListener('load', () => {
         });
         stocksSlider.dotsJumpInit();
         stocksSlider.arrowsMoveInit();
+        if ( window.matchMedia('(max-width:728px)').matches ) {
+            stocksSlider.swipsInit();
+        }
 
         const urlsHeader = [
             '.stocks .section-move_default',
