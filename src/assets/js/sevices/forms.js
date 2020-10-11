@@ -1,5 +1,6 @@
 import '../libs/inputmask';
 const AJAX_REQUEST_SUBMIT_FORM = 'ajax_submit_form';
+const AJAX_REQUEST_SUBMIT_FILTER = 'ajax_submit_filter';
 
 // для форма обратной связи
 function imOkey(n) {
@@ -88,7 +89,7 @@ class DefaultForm {
                             <input type="tel" id="phone" name="phone" class="form-block__input phone phonemask focused" placeholder="Номер телефона">
                         </div>
                         <div class="main-form__agreement">
-                            <input type="checkbox" name="agree" class="agreement__check-box" id="checkThis">
+                            <input type="checkbox" name="agree" class="agreement__check-box" id="checkThis" checked="checked">
                             <label for="checkThis" class="agreement__check-box-text">
                                 Соласен на обработку <a href="#" class="agreement__warn">персональных данных</a>
                             </label>
@@ -105,6 +106,7 @@ class DefaultForm {
                 </div>
             `;
         }
+        this.ajaxToken = object.ajaxToken || AJAX_REQUEST_SUBMIT_FORM;
     }
 
     _containerElement () {
@@ -151,20 +153,35 @@ class DefaultForm {
         });
     }
 
-    _fetchForm () {
+    _fetchForm (callback) {
         console.log('yep, we go fetch!'); 
         M.toast({html: 'Go Request!'});
 
-        const container = this._containerElement(); // document.querySelector(this.urlContainer);
+        // console.log(this);
+        const container = this._containerElement() || document.querySelector(this.urlContainer);
         const collectionOfInputs = container.querySelectorAll('input');
 
         let validate = false;
 
-        let formData = `action=${AJAX_REQUEST_SUBMIT_FORM}`;
+        let formData = `action=${this.ajaxToken}`;
+
+        let roomsCount = '';
+
+        const makeStrBigger = (name, value) => {
+            let str = `&${name}=${value}`;
+            formData += str;
+            console.log(formData);
+        }
+
         collectionOfInputs.forEach(item => {
+            // let name = '';
+            let val = null;
+
             if (item.getAttribute('name') == 'name') {
                 if (item.value != '' && item.value.length < 25) {
                     validate = true;
+                    // val = item.value;
+                    makeStrBigger(item.getAttribute('name'), item.value);
                 } else {
                     validate = false;
                     M.toast({html: 'Введите корректное имя!'});
@@ -172,7 +189,9 @@ class DefaultForm {
             }
             if (item.getAttribute('name') == 'phone') {
                 if (item.value != '' && imOkey( item.value ) == true) {
-                    validate = true
+                    validate = true;
+                    // val = item.value;
+                    makeStrBigger(item.getAttribute('name'), item.value);
                 } else {
                     validate = false;
                     M.toast({html: 'Введите корректное номер!'});
@@ -180,19 +199,45 @@ class DefaultForm {
             }
             if (item.getAttribute('name') == 'agree') {
                 if (item.checked == true) {
-                    validate = true
+                    validate = true;
+                    // val = item.checked;
+                    makeStrBigger(item.getAttribute('name'), item.checked);
                 } else {
                     validate = false;
                     M.toast({html: 'Дайте свое согласие на обработку персональных данных!'});
                 };
             }
 
-            let str = `&${item.getAttribute('name')}=${item.getAttribute('value')}`;
-            formData += str;
-        });
-        
-        let sendAjax = function (formData) {
+            if ( item.dataset.object == 'filter-field' ) {
+                console.log(item.getAttribute('type'), item.checked, item.value);
+                if ( item.getAttribute('type') == 'checkbox' && item.checked == true ) {
+                    // val = item.checked == true ? item.value : false;
+                    roomsCount == '' ? roomsCount += item.value : roomsCount += `,${item.value}`;
+                } else if ( item.getAttribute('type') == 'checkbox' && item.checked == false )  {
+                    roomsCount == '' ? roomsCount += false : roomsCount += `,${false}`;
+                }
+                if (item.getAttribute('type') == 'number') {
+                    makeStrBigger(item.getAttribute('name'), item.value);
+                }
+            }
+
+            // let str = `&${item.getAttribute('name')}=${val || item.value}`;
+            // formData += str;
             // console.log(formData);
+        });
+
+        const testArray = roomsCount.split(',');
+        let test = testArray.reduce((testing, item) => {
+            return item == 'false' ? testing += 1 : testing;
+        }, 0);
+        if (test == 4) {
+            roomsCount = 'studio,1,2,3';
+        }
+
+        makeStrBigger('rooms_count', roomsCount);
+        
+        let sendAjax = function (formData, callback) {
+            console.log(formData, callback);
             fetch(
                 window.wp.ajax_url, // '/wp-admin/admin-ajax.php', // точка входа
                 {
@@ -221,9 +266,15 @@ class DefaultForm {
                     const phone = collectionOfInputs.find(item => {
                         return item.setAttribute('phone') == 'phone';
                     });
-                    phone.value = ''
+                    phone.value = '';
+                    return response;
                 }
             )
+            .then(response => {
+                if (callback) {
+                    callback(response);
+                }
+            })
             .catch(
                 error => {
                     console.error(error);
@@ -237,7 +288,8 @@ class DefaultForm {
         if (
             validate == true
         ) {
-            sendAjax(formData);
+            console.log(formData, callback);
+            sendAjax(formData, callback);
         }
     }
 
@@ -275,4 +327,158 @@ class DefaultForm {
     }
 }
 
-export { DefaultForm }
+class FilterForm extends DefaultForm {
+    constructor (object) {
+        super(object);
+
+        // this.urlContainer = object.urlContainer;
+        this.ajaxToken = object.ajaxToken || AJAX_REQUEST_SUBMIT_FILTER;
+
+        this.urlReWriteContainer = object.urlReWriteContainer;
+        this.urlAddButton = object.urlAddButton;
+
+        this.invateHtml = () => {
+            return `
+                <div class="plans-block__wrap plans-block__sign-up">
+
+                    <a 
+                        href="#" 
+                        class="plans-block__link hovered"
+                        data-object="excursion"
+                        data-title="Запись на экскурсию на странице проекта ..."
+                    >
+                        <div class="plans-block__text">
+                        <h4 class="text-black uppercase default">
+                                Записаться
+                        </h4> 
+                        </div>
+                        <div class="plans-block__arrow">
+                            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" class="svg-inline--fa fa-angle-right fa-w-8" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
+                                <path fill="currentColor" d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z">
+                                </path>
+                            </svg>                                        
+                        </div>
+                    </a>
+
+                    <h3 class="text-dark bold default">
+                        Приглашаем на экскурсию<br>
+                        Такси за наш счет!
+                    </h3>
+
+                    <div class="sign-up__image">
+                        <img src="/assets/images/excurs.png" alt="" class="sign-up__img">
+                    </div>
+
+                </div>            
+            `;
+        }
+        this.planHtml = (obj) => {
+            return `
+            <div class="plans-block__wrap">
+
+                <a href="${obj.link}" class="plans-block__link hovered">
+                    <div class="plans-block__text">
+                    <h4 class="text-black uppercase default">
+                        подробнее
+                    </h4> 
+                    </div>
+                    <div class="plans-block__arrow">
+                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" class="svg-inline--fa fa-angle-right fa-w-8" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
+                            <path fill="currentColor" d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z">
+                            </path>
+                        </svg>                                        
+                    </div>
+                </a>
+
+                <div class="plans-block__preview">
+                    <div 
+                        class="plans-block__image"
+                        style="background-image: url('${obj.planUrl}');"
+                    >
+                    </div>
+                </div>
+
+                <div class="plans-block__information row">
+                    <div class="col s6">
+                        <div class="plans-block__name typography-little-text text-light">
+                            Планировка
+                        </div>
+                        <div class="plans-block__value">
+                            ${onj.planName}
+                        </div>
+                    </div>
+                    <div class="col s6">
+                        <div class="plans-block__name typography-little-text text-light">
+                            Общая площадь, м<sup>2</sup>
+                        </div>
+                        <div class="plans-block__value">
+                            ${obj.planSquare}
+                        </div>
+                    </div>
+                </div>
+            </div>            
+            `;
+        }
+        this.localData = {}
+    }
+
+    _render (data) {
+        const container = document.querySelector(this.urlReWriteContainer);
+        container.innerHTML = '';
+
+        this.localData = {};
+
+        this.localData = data;
+
+        let allHtml = '';
+
+        for (let i = 0; i < this.localData.length; i++) {
+            if (i != 2) {
+                allHtml += this.invateHtml;
+            } else {
+                allHtml += this.planHtml(this.localData[i]);
+            }
+        }
+
+        container.insertAdjacentHTML('beforeend', allHtml);
+    }
+
+    _updateData (event) {
+        event.preventDefault();
+        // console.log(this);
+        super._fetchForm(this._render);
+    }
+
+    _clearFilter () {
+        const form = document.querySelector(this.urlContainer);
+        const collectionOfInputs = form.querySelectorAll('input');
+        collectionOfInputs.forEach(item => {
+            if ( item.dataset.object == 'filter-field' ) {
+                if ( item.getAttribute('type') == 'checkbox' ) {
+                    item.checked = false;
+                }
+                if ( item.getAttribute('type') == 'number' ) {
+                    item.value = item.getAttribute('placeholder');
+                }
+            }            
+        });
+        this._fetchForm(this._render);    
+    }
+
+    initFilter () {
+        this._fetchForm(this._render);
+
+        const container = document.querySelector(this.urlContainer);
+
+        container.querySelector('form').addEventListener('submit', this._updateData.bind(this));
+
+        // const updateDataBtn = container.querySelector('button[data-object="update-data"]');
+        // updateDataBtn.addEventListener('click', this._updateData);
+        // console.log(updateDataBtn);
+
+        const clearDataBtn = document.querySelector(this.urlContainer).querySelector('button[data-object="clear-filter"]');
+        clearDataBtn.addEventListener('click', this._clearFilter.bind(this));
+    }
+}
+
+export { DefaultForm, FilterForm }

@@ -66,7 +66,7 @@ class BigSlider {
         const imageItems = document.querySelectorAll(this.urlImagesItems) || document.querySelector(this.urlContainer).querySelectorAll(this.urlImagesItems) || null;
         const textItems = document.querySelectorAll(this.urlTextsItems) || null;
         const dots = document.querySelectorAll(this.urlDotsItems) || null;
-        console.log(imageItems, textItems, dots);
+        // console.log(imageItems, textItems, dots);
         let thisIndex = 0;
         //
         if (imageItems.length > 0) {

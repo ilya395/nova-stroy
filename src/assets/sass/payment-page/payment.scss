@@ -377,8 +377,10 @@
 		    }
 
 			& .bank-item__image {
-				height: 55px;
-				margin-bottom: 60px;
+				height: calc(55px + 60px);
+				// margin-bottom: 60px;
+				display: flex;
+				align-items: flex-start;
 
 				& img {
 					max-width: 100%;

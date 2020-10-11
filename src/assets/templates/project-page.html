@@ -315,7 +315,7 @@
                             </div>
 
                             <div class="filter-block__filter-blyat">
-                                <div class="filter-blyat__form">
+                                <form class="filter-blyat__form">
                                     <div class="filter-blyat__rooms-count">
                                         <h5 class="text-dark default">
                                             Количество комнат:
@@ -328,6 +328,8 @@
                                                         type="checkbox"
                                                         id="room-number__studio"
                                                         value="studio"
+                                                        data-object="filter-field"
+                                                        name="room-check_studio"
                                                     >
                                                     <span>Студия</span>
                                                 </label>
@@ -337,6 +339,9 @@
                                                         type="checkbox"
                                                         id="room-number__one"
                                                         value="1"
+                                                        data-object="filter-field"
+                                                        name="room-check_one-room"
+
                                                     >
                                                     <span>1 комната</span>
                                                 </label>
@@ -346,6 +351,8 @@
                                                         type="checkbox"
                                                         id="room-number__two"
                                                         value="2"
+                                                        data-object="filter-field"
+                                                        name="room-check_two-room"
                                                     >
                                                     <span>2 комнаты</span>
                                                 </label>
@@ -355,6 +362,8 @@
                                                         type="checkbox"
                                                         id="room-number__three-and-more"
                                                         value="3"
+                                                        data-object="filter-field"
+                                                        name="room-check_three-room"
                                                     >
                                                     <span>3+ комнаты</span>
                                                 </label>
@@ -376,6 +385,8 @@
                                                     min="25"
                                                     max="55"
                                                     placeholder="25"
+                                                    data-object="filter-field"
+                                                    name="min-square"
                                                 >
                                             </label>
                                             <label class="square__field">
@@ -388,6 +399,8 @@
                                                     min="25"
                                                     max="55"
                                                     placeholder="55"
+                                                    data-object="filter-field"
+                                                    name="max-square"
                                                 >
                                             </label>
                                             <div class="square__metr typography-simple-text text-dark">
@@ -396,14 +409,21 @@
                                         </div>
                                     </div>
                                     <div class="filter-blyat__buttons">
-                                        <button href="#" class="waves-effect waves-light btn custom-buttom hovered">
+                                        <button
+                                            type="submit"
+                                            class="waves-effect waves-light btn custom-buttom hovered"
+                                            data-object="update-data"
+                                        >
                                             Применить
                                         </button>
-                                        <button class="waves-effect waves-orange btn custom-buttom custom-buttom_rectangle hovered">
+                                        <button 
+                                            class="waves-effect waves-orange btn custom-buttom custom-buttom_rectangle hovered"
+                                            data-object="clear-filter"
+                                        >
                                             Сбросить фильтры
                                         </button>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -550,7 +570,12 @@
                         <div class="col s12 m6 plans-block__item">
                             <div class="plans-block__wrap plans-block__sign-up">
 
-                                <a href="#" class="plans-block__link hovered">
+                                <a 
+                                    href="#" 
+                                    class="plans-block__link hovered"
+                                    data-object="excursion"
+                                    data-title="Запись на экскурсию на странице проекта ..."
+                                >
                                     <div class="plans-block__text">
                                        <h4 class="text-black uppercase default">
                                             Записаться

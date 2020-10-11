@@ -13,7 +13,7 @@ import { SimpleMenu, MobileMenu } from './sevices/menu';
 import { AutoSlider, BigSlider, BigSliderWithTabs, DefaultCarusel, DefCarousel, BigSliderWithTabsAndSelect } from './sevices/sliders';
 import { MovingHeader, MovingRows } from './sevices/headers';
 import { PopUp } from './sevices/modal';
-import { DefaultForm } from './sevices/forms';
+import { DefaultForm, FilterForm } from './sevices/forms';
 import { swips } from './sevices/swips';
 
 
@@ -163,6 +163,16 @@ window.addEventListener('load', () => {
             hiddenTitle: `Форма обратной связи со старницы проекта`            
         });
         formFromProjectPage.initWithoutBildForm();
+
+        const filter = new FilterForm({
+            urlContainer: '.filter-block__filter-blyat',
+            title: null,
+            subTitle: null,
+            hiddenTitle: null,
+            urlReWriteContainer: '.plans-filter__plans-block',
+            urlAddButton: null             
+        });
+        filter.initFilter();
     }
 
     if ( document.querySelector('.payment-page') ) {
@@ -251,6 +261,19 @@ window.addEventListener('load', () => {
                 subTitleForPopUp,
                 hiddenTitleForPopUp
             });           
+        } else if ( event.target.dataset.object == 'excursion' ) {
+            event.preventDefault();
+            const target = event.target;
+
+            titleForPopUp = 'Запишитесь на экскурсию!';
+            subTitleForPopUp = 'Оставьте номер телефона и мы перезвоним в ближайшее время';
+            hiddenTitleForPopUp = target.dataset.title;
+
+            callPopUp({
+                titleForPopUp,
+                subTitleForPopUp,
+                hiddenTitleForPopUp
+            });             
         }
 
     }
