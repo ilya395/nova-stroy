@@ -15,6 +15,7 @@ import { MovingHeader, MovingRows } from './sevices/headers';
 import { PopUp } from './sevices/modal';
 import { DefaultForm, FilterForm } from './sevices/forms';
 import { swips } from './sevices/swips';
+import { MapMover } from './sevices/mapMover';
 
 
 // work area
@@ -100,6 +101,14 @@ window.addEventListener('load', () => {
 
         });
         carousel.initArrows();
+
+        const map = new MapMover({
+            urlContainer: '.map-with-projects',
+            urlSelect: '.map-with-projects__mob-tabs .select-element',
+            urlTabItems: '.map-with-projects__tabs .tab-item__wrap',
+            urlMapContainer: '#map'
+        });
+        map.init();
     }
 
     if ( document.querySelector('.about-page') ) {

@@ -1,5 +1,6 @@
 .map-with-projects {
     background-color: #f8f9fb;
+    overflow: hidden;
 
     @media screen and (max-width: 727px + 20px*2) {
         & .row_with-flex {
@@ -86,6 +87,19 @@
         }
 
         & .tabs__tab-item .tab-item__wrap {
+ 
+            & .tab-item__title-block {
+                pointer-events: none;
+                & h3 {
+                    pointer-events: none;
+                }
+                & .tab-item__arrow {
+                    pointer-events: none;
+                }
+                & svg, & svg path {
+                    pointer-events: none;
+                }
+            }
             &.active {
                 border-bottom: 1px solid rgba(51, 51, 51, .5);
             }
@@ -127,8 +141,8 @@
 
     //
     & .map-with-projects__block-map {
-        background-color: #333333;
-        opacity: .1;
+        // background-color: #333333;
+        // opacity: .1;
         padding-left: 0;
         padding-right: 0;
 
