@@ -170,7 +170,7 @@ class DefaultForm {
         const makeStrBigger = (name, value) => {
             let str = `&${name}=${value}`;
             formData += str;
-            console.log(formData);
+            // console.log(formData);
         }
 
         collectionOfInputs.forEach(item => {
@@ -209,7 +209,7 @@ class DefaultForm {
             }
 
             if ( item.dataset.object == 'filter-field' ) {
-                console.log(item.getAttribute('type'), item.checked, item.value);
+                // console.log(item.getAttribute('type'), item.checked, item.value);
                 if ( item.getAttribute('type') == 'checkbox' && item.checked == true ) {
                     // val = item.checked == true ? item.value : false;
                     roomsCount == '' ? roomsCount += item.value : roomsCount += `,${item.value}`;

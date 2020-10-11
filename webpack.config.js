@@ -111,7 +111,7 @@ const plugins = () => {
             filename: 'index.html',
             template: './assets/templates/main-page.html',
             minify: {
-                collapseWhitespace: isProd
+                collapseWhitespace: !isProd
             },
             inject: true,
         }),
@@ -119,7 +119,7 @@ const plugins = () => {
             filename: 'about.html',
             template: './assets/templates/about-page.html',
             minify: {
-                collapseWhitespace: isProd
+                collapseWhitespace: !isProd
             },
             inject: true,
         }),
@@ -127,7 +127,7 @@ const plugins = () => {
             filename: 'payment.html',
             template: './assets/templates/payment-page.html',
             minify: {
-                collapseWhitespace: isProd
+                collapseWhitespace: !isProd
             },
             inject: true,
         }),
@@ -135,7 +135,7 @@ const plugins = () => {
             filename: 'content.html',
             template: './assets/templates/content-page.html',
             minify: {
-                collapseWhitespace: isProd
+                collapseWhitespace: !isProd
             },
             inject: true,
         }),
@@ -143,7 +143,7 @@ const plugins = () => {
             filename: 'project.html',
             template: './assets/templates/project-page.html',
             minify: {
-                collapseWhitespace: isProd
+                collapseWhitespace: !isProd
             },
             inject: true,
         }),
@@ -151,7 +151,7 @@ const plugins = () => {
             filename: 'plan.html',
             template: './assets/templates/plan-page.html',
             minify: {
-                collapseWhitespace: isProd
+                collapseWhitespace: !isProd
             },
             inject: true,
         }),
