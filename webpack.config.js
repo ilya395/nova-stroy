@@ -38,6 +38,7 @@ const cssLoaders  = (extra) => {
             options: {
                 hrm: isDev, // hot module replacement // изменяй определенные сущности без перезагрузки страницы 
                 reloadAll: true,
+                publicPath: '../../'
             },
         }, 
         'css-loader',
@@ -121,7 +122,7 @@ const plugins = () => {
             minify: {
                 collapseWhitespace: !isProd
             },
-            inject: true,
+            inject: false, // true,
         }),
         new HTMLWebpackPlugin({
             filename: 'payment.html',
@@ -129,7 +130,7 @@ const plugins = () => {
             minify: {
                 collapseWhitespace: !isProd
             },
-            inject: true,
+            inject: false, // true,
         }),
         new HTMLWebpackPlugin({
             filename: 'content.html',
@@ -137,7 +138,7 @@ const plugins = () => {
             minify: {
                 collapseWhitespace: !isProd
             },
-            inject: true,
+            inject: false, // true,
         }),
         new HTMLWebpackPlugin({
             filename: 'project.html',
@@ -145,7 +146,7 @@ const plugins = () => {
             minify: {
                 collapseWhitespace: !isProd
             },
-            inject: true,
+            inject: false, // true,
         }),
         new HTMLWebpackPlugin({
             filename: 'plan.html',
@@ -153,7 +154,7 @@ const plugins = () => {
             minify: {
                 collapseWhitespace: !isProd
             },
-            inject: true,
+            inject: false, // true,
         }),
         // new webpack.ProvidePlugin({
         //     'window.jQuery': 'jquery',
@@ -176,6 +177,10 @@ const plugins = () => {
                 },
                 {
                     from: path.resolve(__dirname, './src/assets/images/**/*'),
+                    to: path.resolve(__dirname, './dist/'),
+                },
+                {
+                    from: path.resolve(__dirname, './src/assets/video/**/*'),
                     to: path.resolve(__dirname, './dist/'),
                 },
             ]
@@ -310,7 +315,16 @@ module.exports = {
             {
                 test: /\.json$/,
                 // loader: 'json-loader',
-                use: ['json-loader'],
+                use: [
+                    'json-loader',
+                    // {
+                    //     loader: 'file-loader',
+                    //     options: {
+                    //         name: '[path][name].[ext]',
+                    //         publicPath: '../../',
+                    //     }
+                    // },
+                ],
                 type: 'javascript/auto'
             },
             {
@@ -337,6 +351,10 @@ module.exports = {
                 test: /\.hbs/,
                 loader: 'handlebars-loader',
                 exclude: /(node_modules|bower_components)/
+            },
+            {
+                test: /\.mp4/,
+                loader: 'file-loader',
             }
         ]
     }

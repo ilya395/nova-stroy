@@ -24,7 +24,7 @@ class MobileMenu {
                 renderer: 'svg',
                 loop: false,
                 autoplay: false,
-                path: '/assets/js/utils/menu-V2.json', // "https://raw.githubusercontent.com/thesvbd/Lottie-examples/master/assets/animations/menu.json",
+                path: process.env.NODE_ENV == 'development' ? '/assets/js/utils/menu-V2.json' : 'http://nova:7888/wp-content/themes/nova/assets/js/utils/menu-V2.json', // "https://raw.githubusercontent.com/thesvbd/Lottie-examples/master/assets/animations/menu.json",
                 rendererSettings: {
                     className: 'header-menu__icon-image'
                 }

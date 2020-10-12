@@ -16,12 +16,13 @@ class Preloader {
 
     init () {
         
+        console.log(process.env.NODE_ENV)
         const animationPreload = bodymovin.loadAnimation({
             container: document.querySelector('.preloader__container'),
             renderer: 'svg',
             loop: false,
             autoplay: true,
-            path: '/assets/js/utils/load.json', // "https://raw.githubusercontent.com/thesvbd/Lottie-examples/master/assets/animations/menu.json",
+            path: process.env.NODE_ENV == 'development' ? '/assets/js/utils/load.json' : 'http://nova:7888/wp-content/themes/nova/assets/js/utils/load.json', // "https://raw.githubusercontent.com/thesvbd/Lottie-examples/master/assets/animations/menu.json",
             rendererSettings: {
                 className: 'header-menu__icon-image'
             }

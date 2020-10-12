@@ -185,6 +185,13 @@ window.addEventListener('load', () => {
             urlAddButton: null             
         });
         filter.initFilter();
+
+        var elems = document.querySelectorAll('.carousel.carousel-slider');
+        var instances = M.Carousel.init(elems, {
+            indicators: true,
+            numVisible: 1,
+            dist: -20
+        });
     }
 
     if ( document.querySelector('.payment-page') ) {

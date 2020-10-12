@@ -221,6 +221,12 @@ class DefaultForm {
                 }
             }
 
+            if ( item.dataset.object = 'project-slug' ) {
+                if ( window.wp && window.wp.project_slug ) {
+                    item.value = window.wp.project_slug;
+                }
+            }
+
             // let str = `&${item.getAttribute('name')}=${val || item.value}`;
             // formData += str;
             // console.log(formData);

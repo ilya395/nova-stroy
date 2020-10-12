@@ -22,7 +22,7 @@ class MapMover {
             });
 
             const pin = DG.icon({
-                iconUrl: 'assets/images/logos/pin.svg',
+                iconUrl: process.env.NODE_ENV == 'development' ? 'assets/images/logos/pin.svg' : 'http://nova:7888/wp-content/themes/nova/assets/images/logos/pin.svg',
                 iconSize: [48, 48],
                 // html: '<img src="assets/images/logos/pin.svg">'
             });

@@ -56,9 +56,29 @@
     background-image: url('../images/BG_main_HDR_cloud.png');
     background-size: 100% 80%;
 }
+.video {
+    @media screen and (max-width: 727px + 20px*2) {
+        width: 100%;
+        height: auto;        
+    }
+    @media screen and (min-width: 728px + 20px*2) {
+        width: auto;
+        height: 100%;       
+    }
+    @media screen and (min-width: 1140px + 20px + 20px) {
+        width: auto;
+        height: 100%; 
+    }   
+}
 .backgound-block__town {
     width: 100%;
     height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9;
     
     background-position: center center;
     background-repeat: no-repeat;
