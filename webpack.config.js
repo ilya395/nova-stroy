@@ -122,7 +122,7 @@ const plugins = () => {
             minify: {
                 collapseWhitespace: !isProd
             },
-            inject: false, // true,
+            inject: true,
         }),
         new HTMLWebpackPlugin({
             filename: 'payment.html',
@@ -130,7 +130,7 @@ const plugins = () => {
             minify: {
                 collapseWhitespace: !isProd
             },
-            inject: false, // true,
+            inject: true,
         }),
         new HTMLWebpackPlugin({
             filename: 'content.html',
@@ -138,7 +138,7 @@ const plugins = () => {
             minify: {
                 collapseWhitespace: !isProd
             },
-            inject: false, // true,
+            inject: true,
         }),
         new HTMLWebpackPlugin({
             filename: 'project.html',
@@ -146,7 +146,7 @@ const plugins = () => {
             minify: {
                 collapseWhitespace: !isProd
             },
-            inject: false, // true,
+            inject: true,
         }),
         new HTMLWebpackPlugin({
             filename: 'plan.html',
@@ -154,7 +154,7 @@ const plugins = () => {
             minify: {
                 collapseWhitespace: !isProd
             },
-            inject: false, // true,
+            inject: true,
         }),
         // new webpack.ProvidePlugin({
         //     'window.jQuery': 'jquery',

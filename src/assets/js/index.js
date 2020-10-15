@@ -13,7 +13,7 @@ import { SimpleMenu, MobileMenu } from './sevices/menu';
 import { AutoSlider, BigSlider, BigSliderWithTabs, DefaultCarusel, DefCarousel, BigSliderWithTabsAndSelect } from './sevices/sliders';
 import { MovingHeader, MovingRows } from './sevices/headers';
 import { PopUp } from './sevices/modal';
-import { DefaultForm, FilterForm } from './sevices/forms';
+import { DefaultForm, FilterForm, AJAX_REQUEST_SUBMIT_FILTER } from './sevices/forms';
 import { swips } from './sevices/swips';
 import { MapMover } from './sevices/mapMover';
 
@@ -116,6 +116,7 @@ window.addEventListener('load', () => {
 
     if ( document.querySelector('.about-page') ) {
 
+        if ( window.matchMedia('(max-width:728px)').matches ) {
 		// document.addEventListener('DOMContentLoaded', function() {
 			var elems = document.querySelectorAll('.carousel.carousel-slider');
 		    var instances = M.Carousel.init(elems, {
@@ -124,7 +125,15 @@ window.addEventListener('load', () => {
 			    dist: -20
 			});
         // });
-        
+        }
+
+        const map = new MapMover({
+            urlContainer: '.map-with-projects',
+            urlSelect: '.map-with-projects__mob-tabs .select-element',
+            urlTabItems: '.map-with-projects__tabs .tab-item__wrap',
+            urlMapContainer: '#map'
+        });
+        map.init();
     }
 
     if ( document.querySelector('.project-page') ) {
@@ -176,15 +185,21 @@ window.addEventListener('load', () => {
         });
         formFromProjectPage.initWithoutBildForm();
 
-        const filter = new FilterForm({
-            urlContainer: '.filter-block__filter-blyat',
-            title: null,
-            subTitle: null,
-            hiddenTitle: null,
-            urlReWriteContainer: '.plans-filter__plans-block',
-            urlAddButton: null             
-        });
-        filter.initFilter();
+        if ( document.querySelector('.plans-filter') ) {
+
+            const filter = new FilterForm({
+                urlContainer: '.filter-block__filter-blyat',
+                title: null,
+                subTitle: null,
+                hiddenTitle: null,
+                urlReWriteContainer: '.plans-filter__plans-block',
+                urlAddButton: null,
+                // ajaxToken: AJAX_REQUEST_SUBMIT_FILTER
+                hardMode: true        
+            });
+            filter.initFilter();
+
+        }
 
         var elems = document.querySelectorAll('.carousel.carousel-slider');
         var instances = M.Carousel.init(elems, {
@@ -213,7 +228,16 @@ window.addEventListener('load', () => {
             bigTabsWithMobSelect.selectClickInit();
         }
 
-        
+        if ( window.matchMedia('(max-width:728px)').matches ) {
+		// document.addEventListener('DOMContentLoaded', function() {
+			var elems = document.querySelectorAll('.carousel.carousel-slider');
+		    var instances = M.Carousel.init(elems, {
+			    indicators: true,
+			    numVisible: 1,
+			    dist: -20
+			});
+        // });
+        }
     }
 
     const callPopUp = (object) => {
@@ -224,7 +248,7 @@ window.addEventListener('load', () => {
                     urlContainer: '.modal .modal__container',
                     title: object.titleForPopUp,
                     subTitle: object.subTitleForPopUp,
-                    formTitle: object.hiddenTitleForPopUp,
+                    hiddenTitle: object.hiddenTitleForPopUp,
                 }
             }
         });
@@ -243,21 +267,20 @@ window.addEventListener('load', () => {
 
             titleForPopUp = 'Бесплатная консультация по ипотеке';
             subTitleForPopUp = 'Отправьте ваш номер и мы перезвоним в ближайшее время';
-            hiddenTitleForPopUp = target.dataset.title;
+            hiddenTitleForPopUp = ( window.wp && window.wp.project_slug ) ? `${target.dataset.title} ${window.wp.project_slug}` : target.dataset.title;
 
             callPopUp({
                 titleForPopUp,
                 subTitleForPopUp,
                 hiddenTitleForPopUp
             });
-
         } else if ( event.target.dataset.object == 'stock' ) {
             event.preventDefault();
             const target = event.target;
 
             titleForPopUp = 'Наши специалисты расскажут вам об условиях акции подробнее ';
             subTitleForPopUp = 'Просто отправьте ваш номер и мы перезвоним в ближайшее время';
-            hiddenTitleForPopUp = target.dataset.title;
+            hiddenTitleForPopUp = ( window.wp && window.wp.project_slug ) ? `${target.dataset.title} ${window.wp.project_slug}` : target.dataset.title;
 
             callPopUp({
                 titleForPopUp,
@@ -273,7 +296,7 @@ window.addEventListener('load', () => {
 
             titleForPopUp = 'Бесплатная консультация по телефону';
             subTitleForPopUp = 'Отправьте ваш номер и мы перезвоним в ближайшее время';
-            hiddenTitleForPopUp = target.dataset.title;
+            hiddenTitleForPopUp = ( window.wp && window.wp.project_slug ) ? `${target.dataset.title} ${window.wp.project_slug}` : target.dataset.title;
 
             callPopUp({
                 titleForPopUp,
@@ -286,7 +309,7 @@ window.addEventListener('load', () => {
 
             titleForPopUp = 'Запишитесь на экскурсию!';
             subTitleForPopUp = 'Оставьте номер телефона и мы перезвоним в ближайшее время';
-            hiddenTitleForPopUp = target.dataset.title;
+            hiddenTitleForPopUp = ( window.wp && window.wp.project_slug ) ? `${target.dataset.title} ${window.wp.project_slug}` : target.dataset.title;
 
             callPopUp({
                 titleForPopUp,

@@ -107,6 +107,7 @@ class DefaultForm {
             `;
         }
         this.ajaxToken = object.ajaxToken || AJAX_REQUEST_SUBMIT_FORM;
+        this.hardMode = object.hardMode || false;
     }
 
     _containerElement () {
@@ -126,31 +127,34 @@ class DefaultForm {
     }
 
     _moveSuccessMessage () {
+        console.log('_moveSuccessMessage start!')
         // const container = document.querySelector(this.urlContainer);
         const successBlock = this._containerElement().querySelector('form .form-block__success');
-        
-        function handle() {
-            setTimeout(function(){
-                function handle() {
-                    successBlock.classList.remove('active');
-                    //
-                    successBlock.removeEventListener('transitionend', handle);                    
-                }
-                successBlock.addEventListener('transitionend', handle);
-                successBlock.classList.remove('movie');
-            }, 3000);
-            //
-            successBlock.removeEventListener('transitionend', handle);
-        }
 
-        successBlock.addEventListener('transitionend', handle);
-        
-        successBlock.classList.add('active');
-        window.requestAnimationFrame(() => {
+        if ( successBlock ) {
+            function handle() {
+                setTimeout(function(){
+                    function handle() {
+                        successBlock.classList.remove('active');
+                        //
+                        successBlock.removeEventListener('transitionend', handle);                    
+                    }
+                    successBlock.addEventListener('transitionend', handle);
+                    successBlock.classList.remove('move');
+                }, 3000);
+                //
+                successBlock.removeEventListener('transitionend', handle);
+            }
+    
+            successBlock.addEventListener('transitionend', handle);
+            
+            successBlock.classList.add('active');
             window.requestAnimationFrame(() => {
-                successBlock.classList.add('movie'); 
+                window.requestAnimationFrame(() => {
+                    successBlock.classList.add('move'); 
+                });
             });
-        });
+        }
     }
 
     _fetchForm (callback) {
@@ -170,12 +174,10 @@ class DefaultForm {
         const makeStrBigger = (name, value) => {
             let str = `&${name}=${value}`;
             formData += str;
-            // console.log(formData);
+            validate = true;
         }
 
         collectionOfInputs.forEach(item => {
-            // let name = '';
-            let val = null;
 
             if (item.getAttribute('name') == 'name') {
                 if (item.value != '' && item.value.length < 25) {
@@ -186,6 +188,7 @@ class DefaultForm {
                     validate = false;
                     M.toast({html: 'Введите корректное имя!'});
                 }
+                return;
             }
             if (item.getAttribute('name') == 'phone') {
                 if (item.value != '' && imOkey( item.value ) == true) {
@@ -196,6 +199,7 @@ class DefaultForm {
                     validate = false;
                     M.toast({html: 'Введите корректное номер!'});
                 }
+                return;
             }
             if (item.getAttribute('name') == 'agree') {
                 if (item.checked == true) {
@@ -206,6 +210,19 @@ class DefaultForm {
                     validate = false;
                     M.toast({html: 'Дайте свое согласие на обработку персональных данных!'});
                 };
+                return;
+            }
+
+            if (item.getAttribute('name') == 'title') {
+                console.log(item.getAttribute('name'), item.value, item.value.indexOf(' ', 0), item.value.length)
+                if (item.value.indexOf(' ', 0) != -1 && item.value.indexOf(' ', 0) != 0 && item.value.length < 50 ) {
+                    validate = true;
+                    // val = item.checked;
+                    makeStrBigger(item.getAttribute('name'), item.value);
+                } else {
+                    validate = false;
+                };
+                return;
             }
 
             if ( item.dataset.object == 'filter-field' ) {
@@ -214,39 +231,55 @@ class DefaultForm {
                     // val = item.checked == true ? item.value : false;
                     roomsCount == '' ? roomsCount += item.value : roomsCount += `,${item.value}`;
                 } else if ( item.getAttribute('type') == 'checkbox' && item.checked == false )  {
-                    roomsCount == '' ? roomsCount += false : roomsCount += `,${false}`;
+                    // roomsCount == '' ? roomsCount += false : roomsCount += `,${false}`;
+                    roomsCount += '';
                 }
                 if (item.getAttribute('type') == 'number') {
                     makeStrBigger(item.getAttribute('name'), item.value);
                 }
+                return;
             }
 
-            if ( item.dataset.object = 'project-slug' ) {
-                if ( window.wp && window.wp.project_slug ) {
-                    item.value = window.wp.project_slug;
-                }
-            }
+            // if ( item.dataset.object = 'project-slug' ) {
+            //     if ( window.wp && window.wp.project_slug ) {
+            //         item.value = window.wp.project_slug;
+            //     }
+            //     return;
+            // }
 
             // let str = `&${item.getAttribute('name')}=${val || item.value}`;
             // formData += str;
-            // console.log(formData);
+
+            makeStrBigger(item.getAttribute('name'), item.value);
         });
 
-        const testArray = roomsCount.split(',');
-        let test = testArray.reduce((testing, item) => {
-            return item == 'false' ? testing += 1 : testing;
-        }, 0);
-        if (test == 4) {
-            roomsCount = 'studio,1,2,3';
+        if (container.querySelector('form').dataset.object == 'filter-form') {
+            const testArray = roomsCount.split(',');
+            let test = testArray.reduce((testing, item) => {
+                return item == 'false' ? testing += 1 : testing;
+            }, 0);
+            if (test == 4 || roomsCount == '') {
+                roomsCount = 'studio,1,2,3';
+            }
+    
+            makeStrBigger('rooms_count', roomsCount);
+
+            if ( window.wp && window.wp.project_slug ) {
+                makeStrBigger('project-slug', window.wp.project_slug);
+            }
         }
 
-        makeStrBigger('rooms_count', roomsCount);
+        const moveSuccessMessage = () => { // на случай потери контекста в sendAjax, обределенной через function, блэт
+            return this._moveSuccessMessage();
+        }
         
-        let sendAjax = function (formData, callback) {
-            console.log(formData, callback);
+        let sendAjax = (formData, callback) => {
+
             fetch(
+                // 'http://jsonplaceholder.typicode.com/users', 
                 window.wp.ajax_url, // '/wp-admin/admin-ajax.php', // точка входа
                 {
+                    // method: 'GET',
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded', // отправляемые данные 
@@ -257,30 +290,33 @@ class DefaultForm {
             .then(
                 response => {
                     // console.log('Сообщение отправлено методом fetch')
-                    return response.json()
+
+                    return response.json();
                 }
             )
             .then(
                 response => {
                     // console.log(response)
-                    M.toast({html: 'Все отлично!'});
-                    movieSuccessMessage();
-                    const name = collectionOfInputs.find(item => {
-                        return item.setAttribute('name') == 'name';
-                    });
-                    name.value = '';
-                    const phone = collectionOfInputs.find(item => {
-                        return item.setAttribute('phone') == 'phone';
-                    });
-                    phone.value = '';
-                    return response;
+                    if ( this.hardMode == false ) {
+                        M.toast({html: 'Все отлично!'});
+                        this._moveSuccessMessage();
+    
+                        collectionOfInputs.forEach(item => {
+                            if ( item.getAttribute('name') == 'name' || item.getAttribute('name') == 'phone' ) {
+                                item.value = '';
+                            }
+                        });
+    
+                        return response;
+                    } else {
+                        if (callback) {
+                            console.log('#### hardMode ON!!!111');
+   
+                            callback(response);
+                        }
+                    }
                 }
             )
-            .then(response => {
-                if (callback) {
-                    callback(response);
-                }
-            })
             .catch(
                 error => {
                     console.error(error);
@@ -290,11 +326,11 @@ class DefaultForm {
         }
 
         // let formData = `action=${AJAX_REQUEST_SUBMIT_FORM}&name=${name ? name.value : ''}&phone=${phone ? phone.value : ''}&title=${title ? title.value : ''}`;
-        
+
         if (
             validate == true
         ) {
-            console.log(formData, callback);
+            // console.log(formData, callback);
             sendAjax(formData, callback);
         }
     }
@@ -345,91 +381,100 @@ class FilterForm extends DefaultForm {
 
         this.invateHtml = () => {
             return `
-                <div class="plans-block__wrap plans-block__sign-up">
-
-                    <a 
-                        href="#" 
-                        class="plans-block__link hovered"
-                        data-object="excursion"
-                        data-title="Запись на экскурсию на странице проекта ..."
-                    >
-                        <div class="plans-block__text">
-                        <h4 class="text-black uppercase default">
-                                Записаться
-                        </h4> 
+                <div class="col s12 m6 plans-block__item">
+                    <div class="plans-block__wrap plans-block__sign-up">
+                        <a 
+                            href="#" 
+                            class="plans-block__link hovered"
+                            data-object="excursion"
+                            data-title="Запись на экскурсию на странице проекта ..."
+                            id="link"
+                        >
+                            <div class="plans-block__text">
+                            <h4 class="text-black uppercase default">
+                                    Записаться
+                            </h4> 
+                            </div>
+                            <div class="plans-block__arrow">
+                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" class="svg-inline--fa fa-angle-right fa-w-8" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
+                                    <path fill="currentColor" d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z">
+                                    </path>
+                                </svg>                                        
+                            </div>
+                        </a>
+                        <h3 class="text-dark bold default">
+                            Приглашаем на экскурсию<br>
+                            Такси за наш счет!
+                        </h3>
+                        <div class="sign-up__image">
+                            <img src="/wp-content/themes/nova/assets/images/excurs.png" alt="" class="sign-up__img">
                         </div>
-                        <div class="plans-block__arrow">
-                            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" class="svg-inline--fa fa-angle-right fa-w-8" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
-                                <path fill="currentColor" d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z">
-                                </path>
-                            </svg>                                        
-                        </div>
-                    </a>
-
-                    <h3 class="text-dark bold default">
-                        Приглашаем на экскурсию<br>
-                        Такси за наш счет!
-                    </h3>
-
-                    <div class="sign-up__image">
-                        <img src="/assets/images/excurs.png" alt="" class="sign-up__img">
-                    </div>
-
-                </div>            
+                    </div> 
+                </div>           
             `;
         }
         this.planHtml = (obj) => {
             return `
-            <div class="plans-block__wrap">
-
-                <a href="${obj.link}" class="plans-block__link hovered">
-                    <div class="plans-block__text">
-                    <h4 class="text-black uppercase default">
-                        подробнее
-                    </h4> 
-                    </div>
-                    <div class="plans-block__arrow">
-                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" class="svg-inline--fa fa-angle-right fa-w-8" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
-                            <path fill="currentColor" d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z">
-                            </path>
-                        </svg>                                        
-                    </div>
-                </a>
-
-                <div class="plans-block__preview">
-                    <div 
-                        class="plans-block__image"
-                        style="background-image: url('${obj.planUrl}');"
-                    >
-                    </div>
-                </div>
-
-                <div class="plans-block__information row">
-                    <div class="col s6">
-                        <div class="plans-block__name typography-little-text text-light">
-                            Планировка
+                <div class="col s12 m6 plans-block__item">
+                    <div class="plans-block__wrap">
+                        <a href="${obj.link || '#'}" class="plans-block__link hovered">
+                            <div class="plans-block__text">
+                            <h4 class="text-black uppercase default">
+                                подробнее
+                            </h4> 
+                            </div>
+                            <div class="plans-block__arrow">
+                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" class="svg-inline--fa fa-angle-right fa-w-8" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
+                                    <path fill="currentColor" d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z">
+                                    </path>
+                                </svg>                                        
+                            </div>
+                        </a>
+                        <div class="plans-block__preview">
+                            <div 
+                                class="plans-block__image"
+                                style="background-image: url('${obj.planUrl || ''}');"
+                            >
+                            </div>
                         </div>
-                        <div class="plans-block__value">
-                            ${onj.planName}
+                        <div class="plans-block__information row">
+                            <div class="col s6">
+                                <div class="plans-block__name typography-little-text text-light">
+                                    Планировка
+                                </div>
+                                <div class="plans-block__value">
+                                    ${obj.planName || ''}
+                                </div>
+                            </div>
+                            <div class="col s6">
+                                <div class="plans-block__name typography-little-text text-light">
+                                    Общая площадь, м<sup>2</sup>
+                                </div>
+                                <div class="plans-block__value">
+                                    ${obj.planSquare || ''}
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col s6">
-                        <div class="plans-block__name typography-little-text text-light">
-                            Общая площадь, м<sup>2</sup>
-                        </div>
-                        <div class="plans-block__value">
-                            ${obj.planSquare}
-                        </div>
-                    </div>
-                </div>
-            </div>            
+                    </div> 
+                </div>           
             `;
         }
         this.localData = {}
     }
 
+    _link () {
+        const target = document.getElementById('link');
+        if (window.wp && window.wp.project_slug) {
+            target.setAttribute('id', `Запись на экскурсию на странице проекта ${window.wp.project_slug}`);
+        }
+    }
+
     _render (data) {
+        
+        // console.log(this);
+        // console.log(this.urlReWriteContainer)
         const container = document.querySelector(this.urlReWriteContainer);
+        console.log(data, container)
         container.innerHTML = '';
 
         this.localData = {};
@@ -438,21 +483,41 @@ class FilterForm extends DefaultForm {
 
         let allHtml = '';
 
-        for (let i = 0; i < this.localData.length; i++) {
-            if (i != 2) {
-                allHtml += this.invateHtml;
-            } else {
-                allHtml += this.planHtml(this.localData[i]);
+        if ( data.length > 0 ) {
+            for (let i = 0; i < data.length; i++) {
+                if (i == 2) {
+                    const htmlInv = this.invateHtml();
+                    allHtml += htmlInv;
+                    const htmlPl = this.planHtml(data[i]);
+                    allHtml += htmlPl;
+                } else {
+                    const htmlInv = this.planHtml(data[i]);
+                    allHtml += htmlInv;
+                }
+                // console.log(i, data[i], allHtml)
             }
+            // console.log('#### allHtml: ',allHtml);
+            container.insertAdjacentHTML('beforeend', allHtml);
+        } else {
+            allHtml = `
+                <div class="col s12 m6 plans-block__item">
+                    <div class="plans-block__wrap">
+                        <div class="plans-block__inner-wrap">
+                            <h5 class="text-dark default">Нет планировок</h5>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', allHtml);
         }
-
-        container.insertAdjacentHTML('beforeend', allHtml);
+        this._link();
     }
 
     _updateData (event) {
         event.preventDefault();
-        // console.log(this);
-        super._fetchForm(this._render);
+        console.log(this);
+
+        super._fetchForm(this._render.bind(this));
     }
 
     _clearFilter () {
@@ -472,11 +537,9 @@ class FilterForm extends DefaultForm {
     }
 
     initFilter () {
-        this._fetchForm(this._render);
-
         const container = document.querySelector(this.urlContainer);
-
-        container.querySelector('form').addEventListener('submit', this._updateData.bind(this));
+        const form = container.querySelector('form[data-object="filter-form"]');
+        form.addEventListener('submit', this._updateData.bind(this));
 
         // const updateDataBtn = container.querySelector('button[data-object="update-data"]');
         // updateDataBtn.addEventListener('click', this._updateData);
@@ -484,7 +547,9 @@ class FilterForm extends DefaultForm {
 
         const clearDataBtn = document.querySelector(this.urlContainer).querySelector('button[data-object="clear-filter"]');
         clearDataBtn.addEventListener('click', this._clearFilter.bind(this));
+
+        this._fetchForm(this._render.bind(this));
     }
 }
 
-export { DefaultForm, FilterForm }
+export { DefaultForm, FilterForm, AJAX_REQUEST_SUBMIT_FILTER }

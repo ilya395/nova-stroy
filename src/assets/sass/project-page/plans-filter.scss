@@ -243,12 +243,18 @@
             background-color: #ffffff;
             padding: 15px 20px 34px 20px;
 
+            & .plans-block__inner-wrap {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
             &.plans-block__sign-up  {
                 background-color: #ffede0;
                 padding-bottom: 0;
 
                 & .sign-up__image {
-                    margin-top: 25px;
+                    margin-top: 5px;
                     
                     & img {
                         width: 100%;

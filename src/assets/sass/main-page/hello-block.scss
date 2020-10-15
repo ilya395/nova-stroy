@@ -68,6 +68,10 @@
     @media screen and (min-width: 1140px + 20px + 20px) {
         width: auto;
         height: 100%; 
+    }
+    @media screen and (min-width: 1400px + 20px + 20px) {
+        width: 100%;
+        height: auto; 
     }   
 }
 .backgound-block__town {
