@@ -33,7 +33,7 @@
             }
             @media screen and (min-width: 728px + 20px*2) {
                 width: ( (728px + 20px*2)/2 );
-                padding-left: 20px;
+                padding-left: 10px;
                 padding-right: 20px;
                 padding-top: 90px;
                 padding-bottom: 90px;
@@ -87,6 +87,7 @@
         }
 
         & .tabs__tab-item .tab-item__wrap {
+            cursor: pointer;
  
             & .tab-item__title-block {
                 pointer-events: none;

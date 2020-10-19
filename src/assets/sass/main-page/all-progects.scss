@@ -130,17 +130,18 @@
 
     & .block-information__wrap {
         @media screen and (max-width: 727px + 20px*2) {
-            width: 100%
+            width: 100%;
+            min-height: 600px;
         }
         @media screen and (min-width: 728px + 20px*2) {
             width: ( (728px + 20px*2)/2 );
-            padding-left: 20px;
-            padding-right: 20px;
+            padding-left: 10px;
+            padding-right: 10px;
         }
         @media screen and (min-width: 1140px + 20px + 20px) {
             width: calc( (1140px + 20px + 20px)/2 );
             padding-left: 30px;
-            padding-right: 60px * 2;
+            padding-right: calc(60px * 2 - 20px);
         }  
         
         & .block-information__container-with-info {
@@ -154,15 +155,73 @@
             }
 
             &.move_default {
-                transform: translateY(60px);
-                opacity: 0;
-                transition: transform .4s linear, opacity .4s linear;                
+                // transform: translateY(60px);
+                // opacity: 0;
+                // transition: transform .6s linear, opacity .6s linear;  
+                
+                & h3.block-information__dig-title {
+                    transform: translateY(60px);
+                    opacity: 0;
+                    transition: transform .6s linear, opacity .6s linear; 
+                }
+                & h4 {
+                    transform: translateY(60px);
+                    opacity: 0;
+                    transition: transform .6s linear .2s, opacity .6s linear .2s; 
+                }
+                & h2 {
+                    transform: translateY(60px);
+                    opacity: 0;
+                    transition: transform .6s linear .4s, opacity .6s linear .4s; 
+                }
+                & .block-information__sub-title {
+                    transform: translateY(60px);
+                    opacity: 0;
+                    transition: transform .6s linear .6s, opacity .6s linear .6s; 
+                }
+                & .block-information__buttons {
+                    transform: translateY(60px);
+                    opacity: 0;
+                    transition: transform .6s linear .8s, opacity .6s linear .8s; 
+                }
             }
             &.move_interact {
-                transform: translateY(0px);
+                // transform: translateY(0px);
+
+                & h3.block-information__dig-title {
+                    transform: translateY(0px);
+                }
+                & h4 {
+                    transform: translateY(0px);
+                }
+                & h2 {
+                    transform: translateY(0px);
+                }
+                & .block-information__sub-title {
+                    transform: translateY(0px);
+                }
+                & .block-information__buttons {
+                    transform: translateY(0px);
+                }
             }
             &.visible {
-                opacity: 1;
+                // opacity: 1;
+
+                & h3.block-information__dig-title {
+                    opacity: 1;
+                }
+                & h4 {
+                    opacity: 1;
+                }
+                & h2 {
+                    opacity: 1;
+                }
+                & .block-information__sub-title {
+                    opacity: 1;
+                }
+                & .block-information__buttons {
+                    opacity: 1;
+                }
             }
             &.active {
                 display: block;
@@ -191,8 +250,10 @@
             height: auto;
         }
         @media screen and (min-width: 1140px + 20px + 20px) {
-            margin-bottom: 10px;
-            height: 220px;
+            margin-bottom: 30px;
+            max-height: 230px;
+            min-height: 200px;
+            overflow: hidden;
         }   
     }
     & .block-information__buttons {
@@ -268,13 +329,13 @@
         }
         @media screen and (min-width: 1140px + 20px + 20px) {
             display: none;
-            height: 391px;
+            height: 430px;
         }   
 
         &.move_default {
-            transform: scale(0.8, 0.8);
+            transform: scale(0.9, 0.9);
             opacity: 0;
-            transition: all .4s linear;
+            transition: all .6s linear;
         }
         &.move_interact {
             transform: scale(1, 1);
@@ -328,7 +389,7 @@
         @media screen and (max-width: 727px + 20px*2) {
             width: 100%;
             position: absolute;
-            bottom: -625px; //-315px; // -77vh;
+            bottom: calc(-625px - 35px); //-315px; // -77vh;
             left: 0;
             justify-content: flex-start;
             display: flex;

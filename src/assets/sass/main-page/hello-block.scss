@@ -55,6 +55,7 @@
     background-repeat: no-repeat;
     background-image: url('../images/BG_main_HDR_cloud.png');
     background-size: 100% 80%;
+    overflow: hidden;
 }
 .video {
     @media screen and (max-width: 727px + 20px*2) {
@@ -246,19 +247,46 @@
         &.active {
             display: block;
         }
+
         &.move_default {
+            & .slider-block__wrap_one {
+                & .slider-block__icon {
+                    transition: all .6s linear;
+                }
+                & .slider-block__description {
+                    transition: all .6s linear;
+                }
+            }
+            & .slider-block__wrap_two {
+                & .slider-block__icon {
+                    transition: all .6s linear .2s;
+                }
+                & .slider-block__description {
+                    transition: all .6s linear .2s;
+                }
+            }
+            & .slider-block__wrap_three {
+                & .slider-block__icon {
+                    transition: all .6s linear .4s;
+                }
+                & .slider-block__description {
+                    transition: all .6s linear .4s;
+                }
+            }
+
             & .slider-block__icon {
                 opacity: 0;
-                transition: all .4s linear;
+                transform: scale(.5, .5);
             }
             & .slider-block__description {
-                transform: translateX(30px);
+                transform: translateX(60px);
                 opacity: 0;
-                transition: all .4s linear;
             }
+
             &.move_opacity {
                 & .slider-block__icon {
                     opacity: 1;
+                    transform: scale(1, 1);
                 }
                 & .slider-block__description {
                     opacity: 1;

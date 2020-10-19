@@ -3,7 +3,7 @@ import { swips } from './swips';
 class AutoSlider {
     constructor (object) {
         this.urlItems = object.urlItems;
-        this.delay = object.delay || 5;
+        this.delay = object.delay || 6;
     }
 
     autoSlidingInit () {

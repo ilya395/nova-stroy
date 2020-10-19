@@ -9,14 +9,28 @@ class Preloader {
             document.querySelector('.work-area').classList.remove('hidden');
             container.classList.add('close');
             container.removeEventListener('transitionend', handler);
+            this._forScroll();
         }
         container.addEventListener('transitionend', handler);
         container.classList.add('stop');
     }
 
+    _forScroll () {
+        const hash = location.hash;
+        // hash = hash.replace('#', '');
+        if ( hash ) {
+            const target = document.querySelector(hash);
+            // console.log(hash);
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    }
+
     init () {
         
-        console.log(process.env.NODE_ENV)
+        // console.log(process.env.NODE_ENV)
         const animationPreload = bodymovin.loadAnimation({
             container: document.querySelector('.preloader__container'),
             renderer: 'svg',
@@ -29,6 +43,7 @@ class Preloader {
         });
         // let directionMenu = 1;
         // animationMenuBtn.setDirection(directionMenu);
+        animationPreload.setSpeed(2);
         animationPreload.play();
         const handler = () => {
             this._close ();

@@ -8,6 +8,11 @@
     @media screen and (min-width: 728px + 20px*2) {
         padding-top: 60px;
         padding-bottom: 60px;
+
+        & .row {
+            margin-left: -10px;
+            margin-right: -10px;
+        }
     }
     @media screen and (min-width: 1140px + 20px + 20px) {
         padding-top: 100px;
@@ -94,14 +99,14 @@
             margin-top: 30px;
         }
         @media screen and (min-width: 728px + 20px*2) {
-            align-items: center;
+            align-items: flex-end;// center;
         }
         @media screen and (min-width: 1140px + 20px + 20px) {
             align-items: flex-start;
         }
 
         & .instagram-card__link-to-soc {
-            display: inline-flex;
+            // display: none; // inline-flex;
             flex-wrap: nowrap;
             align-items: center;
             justify-content: space-between;
@@ -113,11 +118,11 @@
             }
             @media screen and (min-width: 728px + 20px*2) {
                 margin-top: 25px;
-                display: inline-flex;
+                display: none; // inline-flex;
             }
             @media screen and (min-width: 1140px + 20px + 20px) {
                 margin-top: 25px;
-                display: inline-flex;
+                display: none; // inline-flex;
             }  
 
             & .link-to-soc__icon {

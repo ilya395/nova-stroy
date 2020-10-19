@@ -79,7 +79,7 @@
             justify-content: center;
             align-items: center;
             width: 48px;
-            height: 48px;
+            height: 20px; // 48px;
             background-color: #f8f9fb;
             cursor: pointer;
     
@@ -113,7 +113,7 @@
         @media screen and (max-width: 727px + 20px*2) {
             width: 100%;
             position: absolute;
-            bottom: 0; // -315px;
+            bottom: -25px; // -315px;
             left: 0;
             display: flex;
             justify-content: center;

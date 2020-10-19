@@ -170,7 +170,7 @@
                     letter-spacing: normal;
                     color: #4d4d4d;
                     height: 21px;
-                    width: 35px;
+                    width: 40px;
                     border-bottom: 1px solid transparent;
                 }
             }
@@ -253,6 +253,10 @@
                 background-color: #ffede0;
                 padding-bottom: 0;
 
+                &.plans-block__sign-up_big {
+                    min-height: 525px;
+                }
+
                 & .sign-up__image {
                     margin-top: 5px;
                     
@@ -294,7 +298,6 @@
         }
         & .plans-block__preview {
             padding-bottom: 20px;
-            border-bottom: solid 1px #eaeaea;
 
             @media screen and (max-width: 728px + 20px*2) {
                 height: calc(202px + 20px);
@@ -314,8 +317,60 @@
                 background-repeat: no-repeat;
             }
         }
+        & .plans-block__fucking-floor {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: flex-start;
+            padding-bottom: 24px;
+
+            & .fucking-floor__title, & .fucking-floor__number {
+                font-family: Montserrat;
+                font-size: 22px;
+                font-weight: normal;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: 1.55;
+                letter-spacing: normal;
+                color: #006cff;
+            }
+            & .fucking-floor__title {
+                margin-right: 10px;
+            }
+
+            & .fucking-floor__item {
+                margin-left: 20px;
+                & .fucking-floor__wrap {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 54px;
+                    height: 54px;
+                    background-color: #ffffff;
+                    border: 1px solid #006cff;
+                    border-radius: 50%;
+                    color: #006cff;
+                    cursor: pointer;
+
+                    & .fucking-floor__number {
+                        pointer-events: none;
+                    }
+
+                    &.active {
+                        background-color: #006cff;
+                        color: #ffffff;
+
+                        & .fucking-floor__number {
+                            color: #ffffff;
+                        }
+                    }
+                }
+            }
+        }
         & .plans-block__information {
-            margin-top: 15px;
+            padding-top: 15px;
+            border-top: solid 1px #eaeaea;
 
             & .plans-block__value {
                 font-family: Montserrat;
@@ -328,5 +383,11 @@
                 color: #333333;
             }
         }
+    }
+
+    & .plans-filter__button-for-add {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }

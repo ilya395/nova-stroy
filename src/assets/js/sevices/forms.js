@@ -240,16 +240,6 @@ class DefaultForm {
                 return;
             }
 
-            // if ( item.dataset.object = 'project-slug' ) {
-            //     if ( window.wp && window.wp.project_slug ) {
-            //         item.value = window.wp.project_slug;
-            //     }
-            //     return;
-            // }
-
-            // let str = `&${item.getAttribute('name')}=${val || item.value}`;
-            // formData += str;
-
             makeStrBigger(item.getAttribute('name'), item.value);
         });
 
@@ -330,7 +320,7 @@ class DefaultForm {
         if (
             validate == true
         ) {
-            // console.log(formData, callback);
+            console.log(formData);
             sendAjax(formData, callback);
         }
     }
@@ -377,12 +367,16 @@ class FilterForm extends DefaultForm {
         this.ajaxToken = object.ajaxToken || AJAX_REQUEST_SUBMIT_FILTER;
 
         this.urlReWriteContainer = object.urlReWriteContainer;
-        this.urlAddButton = object.urlAddButton;
+        this.urlAddButton = object.urlAddButton || '[data-object="add-plans"]';
 
-        this.invateHtml = () => {
+        this.invateHtml = (param) => {
+            let mod = '';
+            if (param == 'big') {
+                mod = ' plans-block__sign-up_big';
+            }
             return `
                 <div class="col s12 m6 plans-block__item">
-                    <div class="plans-block__wrap plans-block__sign-up">
+                    <div class="plans-block__wrap plans-block__sign-up${mod}">
                         <a 
                             href="#" 
                             class="plans-block__link hovered"
@@ -415,7 +409,7 @@ class FilterForm extends DefaultForm {
         }
         this.planHtml = (obj) => {
             return `
-                <div class="col s12 m6 plans-block__item">
+                <div class="col s12 m6 plans-block__item" data-item="${obj.id || ''}">
                     <div class="plans-block__wrap">
                         <a href="${obj.link || '#'}" class="plans-block__link hovered">
                             <div class="plans-block__text">
@@ -459,13 +453,144 @@ class FilterForm extends DefaultForm {
                 </div>           
             `;
         }
-        this.localData = {}
+        this.bigPlanHtml = (obj) => {
+            return `
+                <div class="col s12 m6 plans-block__item" data-item="${obj.id || ''}">
+                    <div class="plans-block__wrap">
+                        <a href="${obj.link || '#'}" class="plans-block__link hovered">
+                            <div class="plans-block__text">
+                            <h4 class="text-black uppercase default">
+                                подробнее
+                            </h4> 
+                            </div>
+                            <div class="plans-block__arrow">
+                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" class="svg-inline--fa fa-angle-right fa-w-8" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
+                                    <path fill="currentColor" d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z">
+                                    </path>
+                                </svg>                                        
+                            </div>
+                        </a>
+                        <div class="plans-block__preview">
+                            <div 
+                                class="plans-block__image"
+                                style="background-image: url('${obj.planUrl || ''}');"
+                                data-object="flat-plan"
+                                data-index="${obj.id || ''}"
+                            >
+                            </div>
+                        </div>
+
+                        <div class="plans-block__fucking-floor">
+                            <div class="fucking-floor__title">
+                                Этаж
+                            </div>
+                            <div class="fucking-floor__item">
+                                <div 
+                                    class="fucking-floor__wrap active"
+                                    data-object="choose-floor"
+                                    data-floor="1"
+                                    data-url="${obj.planUrl || ''}"
+                                    data-index="${obj.id || ''}"
+                                >
+                                    <div class="fucking-floor__number">
+                                        1
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fucking-floor__item">
+                                <div 
+                                    class="fucking-floor__wrap"
+                                    data-object="choose-floor"
+                                    data-floor="2"
+                                    data-url="${obj.upPlanUrl || ''}"
+                                    data-index="${obj.id || ''}"
+                                >
+                                    <div class="fucking-floor__number">
+                                        2
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="plans-block__information">
+                            <div class="row">
+                                <div class="col s6">
+                                    <div class="plans-block__name typography-little-text text-light">
+                                        Планировка
+                                    </div>
+                                    <div class="plans-block__value">
+                                        ${obj.planName || ''}
+                                    </div>
+                                </div>
+                                <div class="col s6">
+                                    <div class="plans-block__name typography-little-text text-light">
+                                        Общая площадь, м<sup>2</sup>
+                                    </div>
+                                    <div class="plans-block__value">
+                                        ${obj.planSquare || ''}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>           
+            `;            
+        }
+        this.localData = null;
+        this.count = object.count || 6;
+        this.btnForAdd = object.btnForAdd;
     }
 
     _link () {
         const target = document.getElementById('link');
         if (window.wp && window.wp.project_slug) {
             target.setAttribute('id', `Запись на экскурсию на странице проекта ${window.wp.project_slug}`);
+        }
+    }
+
+    _addPlansHandler () {
+        this._addPlans();
+    }
+
+    _clickToAddPlans () {
+        const addBtn = document.querySelector(this.btnForAdd);
+        addBtn.classList.remove('none');
+        addBtn.addEventListener('click', this._addPlansHandler);
+    }
+
+    _addPlans (target) {
+        if ( this.localData != null ) {
+            const allChildren = target.children;
+            let arrayOfChildrenId = [];
+            for ( let i = 0; i < allChildren.length; i++ ) {
+                arrayOfChildrenId.push( +allChildren[i].dataset.item );
+            }
+
+            let count = 0;
+            let arrayOfNewObjects = [];
+            for (let j of this.localData) {
+                if ( !arrayOfChildrenId.includes(j.id) && count <= this.count ) {
+                    arrayOfNewObjects.push(j);
+                    count += 1;
+                }
+            }
+
+            const container = target || document.querySelector(this.urlReWriteContainer);
+            let allHtml = '';
+            for (let i = 0; i < arrayOfNewObjects.length; i++) {
+                const htmlInv = data[i].type == 'big' ? this.bigPlanHtml(arrayOfNewObjects[i]) : this.planHtml(arrayOfNewObjects[i]);
+                allHtml += htmlInv;
+            }
+            container.insertAdjacentHTML('beforeend', allHtml);
+
+            if (allChildren.length + arrayOfNewObjects.length == this.localData.length) {
+                const addBtn = document.querySelector(this.btnForAdd);
+                addBtn.removeEventListener('click', this._addPlansHandler);
+                addBtn.classList.add('none');
+            }
+            
+        } else {
+            console.log('локально данных нет или не сохранены');
         }
     }
 
@@ -477,27 +602,43 @@ class FilterForm extends DefaultForm {
         console.log(data, container)
         container.innerHTML = '';
 
-        this.localData = {};
+        this.localData = null;
 
         this.localData = data;
 
         let allHtml = '';
 
-        if ( data.length > 0 ) {
+        if ( data.length > 0 && data.length <= this.count ) {
             for (let i = 0; i < data.length; i++) {
-                if (i == 2) {
-                    const htmlInv = this.invateHtml();
+                if (i == 1 && i + 1 == data.length || i == 0 && i + 1 == data.length || i == 2) {
+                    const htmlInv = data[i].type == 'big' ? this.invateHtml('big') : this.invateHtml();
                     allHtml += htmlInv;
-                    const htmlPl = this.planHtml(data[i]);
+                    const htmlPl = data[i].type == 'big' ? this.bigPlanHtml(data[i]) : this.planHtml(data[i]);
                     allHtml += htmlPl;
                 } else {
-                    const htmlInv = this.planHtml(data[i]);
+                    const htmlInv = data[i].type == 'big' ? this.bigPlanHtml(data[i]) : this.planHtml(data[i]);
+                    allHtml += htmlInv;
+                }
+            }
+            container.insertAdjacentHTML('beforeend', allHtml);
+            this._link();
+        } if ( data.length > 0 && data.length > this.count ) {
+            for (let i = 0; i < this.count; i++) {
+                if (i == 1 && i + 1 == data.length || i == 0 && i + 1 == data.length || i == 2) {
+                    const htmlInv = data[i].type == 'big' ? this.invateHtml('big') : this.invateHtml();
+                    allHtml += htmlInv;
+                    const htmlPl = data[i].type == 'big' ? this.bigPlanHtml(data[i]) : this.planHtml(data[i]);
+                    allHtml += htmlPl;
+                } else {
+                    const htmlInv = data[i].type == 'big' ? this.bigPlanHtml(data[i]) : this.planHtml(data[i]);
                     allHtml += htmlInv;
                 }
                 // console.log(i, data[i], allHtml)
             }
             // console.log('#### allHtml: ',allHtml);
             container.insertAdjacentHTML('beforeend', allHtml);
+            this._link();   
+            this._clickToAddPlans();        
         } else {
             allHtml = `
                 <div class="col s12 m6 plans-block__item">
@@ -510,7 +651,6 @@ class FilterForm extends DefaultForm {
             `;
             container.insertAdjacentHTML('beforeend', allHtml);
         }
-        this._link();
     }
 
     _updateData (event) {

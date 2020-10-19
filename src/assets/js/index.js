@@ -316,7 +316,26 @@ window.addEventListener('load', () => {
                 subTitleForPopUp,
                 hiddenTitleForPopUp
             });             
-        }
+        } else if ( event.target.hasAttribute('href') ) {
+            const href = event.target.getAttribute('href');
+            if ( href.indexOf('#', 0) != -1 ) { // есть совпадение
+                
+                // const pathName = location.pathname;
+                const hash = href.slice( href.indexOf('#', 0) );
+
+                const target = document.querySelector(hash);
+
+                if ( target ) {
+                    event.preventDefault();
+                    
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+
+            }
+        } 
 
     }
     window.addEventListener('click', openPopUpHandler);
