@@ -367,7 +367,6 @@ class FilterForm extends DefaultForm {
         this.ajaxToken = object.ajaxToken || AJAX_REQUEST_SUBMIT_FILTER;
 
         this.urlReWriteContainer = object.urlReWriteContainer;
-        this.urlAddButton = object.urlAddButton || '[data-object="add-plans"]';
 
         this.invateHtml = (param) => {
             let mod = '';
@@ -538,7 +537,7 @@ class FilterForm extends DefaultForm {
         }
         this.localData = null;
         this.count = object.count || 6;
-        this.btnForAdd = object.btnForAdd;
+        this.btnForAdd = object.btnForAdd || '[data-object="add-plans"]';
     }
 
     _link () {
@@ -549,18 +548,22 @@ class FilterForm extends DefaultForm {
     }
 
     _addPlansHandler () {
+        console.log(this);
         this._addPlans();
     }
 
     _clickToAddPlans () {
         const addBtn = document.querySelector(this.btnForAdd);
+        console.log(addBtn);
         addBtn.classList.remove('none');
-        addBtn.addEventListener('click', this._addPlansHandler);
+        addBtn.addEventListener('click', this._addPlansHandler.bind(this));
     }
 
-    _addPlans (target) {
+    _addPlans () {
         if ( this.localData != null ) {
-            const allChildren = target.children;
+            const container = document.querySelector(this.urlReWriteContainer);
+
+            const allChildren = container.children;
             let arrayOfChildrenId = [];
             for ( let i = 0; i < allChildren.length; i++ ) {
                 arrayOfChildrenId.push( +allChildren[i].dataset.item );
@@ -575,18 +578,20 @@ class FilterForm extends DefaultForm {
                 }
             }
 
-            const container = target || document.querySelector(this.urlReWriteContainer);
             let allHtml = '';
             for (let i = 0; i < arrayOfNewObjects.length; i++) {
-                const htmlInv = data[i].type == 'big' ? this.bigPlanHtml(arrayOfNewObjects[i]) : this.planHtml(arrayOfNewObjects[i]);
+                const htmlInv = arrayOfNewObjects[i].type == 'big' ? this.bigPlanHtml(arrayOfNewObjects[i]) : this.planHtml(arrayOfNewObjects[i]);
                 allHtml += htmlInv;
             }
             container.insertAdjacentHTML('beforeend', allHtml);
 
-            if (allChildren.length + arrayOfNewObjects.length == this.localData.length) {
+            if (allChildren.length - 1 + arrayOfNewObjects.length == this.localData.length) {
+                console.log(`текущие: ${allChildren.length} + новые: ${arrayOfNewObjects.length} = все: ${this.localData.length}`);
                 const addBtn = document.querySelector(this.btnForAdd);
-                addBtn.removeEventListener('click', this._addPlansHandler);
+                addBtn.removeEventListener('click', this._addPlansHandler.bind(this));
                 addBtn.classList.add('none');
+            } else {
+                console.log(`текущие: ${allChildren.length} + новые: ${arrayOfNewObjects.length} = все: ${this.localData.length}`);
             }
             
         } else {
@@ -674,6 +679,10 @@ class FilterForm extends DefaultForm {
             }            
         });
         this._fetchForm(this._render);    
+        
+        //
+        const addBtn = document.querySelector(this.btnForAdd);
+        addBtn.removeEventListener('click', this._addPlansHandler.bind(this));
     }
 
     initFilter () {

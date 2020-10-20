@@ -306,6 +306,17 @@
 	    }
 	}
 }
+.documents-block__nash-dom {
+	margin-bottom: 90px;
+
+	& .nash-dom__wrap {
+		// box-shadow: 0 6px 10px 0 rgba(11,23,65,.12);
+		// background-color: #fff;
+		& a.btn {
+			margin-top: 20px;
+		}
+	}
+}
 .documents-block__documents-wrap {
     @media screen and (min-width: 728px + 20px*2) {
         display: flex;

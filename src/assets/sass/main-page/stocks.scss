@@ -33,7 +33,7 @@
     @media screen and (min-width: 1140px + 20px + 20px) {
         grid-template-areas: "title image""info image""info image";
         grid-template-columns: 45% 55%;
-        grid-template-rows: 30px calc((500px - 30px + 38px)/2) calc((500px - 30px + 38px)/2);
+        grid-template-rows: 30px calc((500px - 30px + 38px)/2) calc((500px - 30px)/2);
     } 
 }
 .stocks__block-title {
@@ -149,6 +149,7 @@
         @media screen and (min-width: 1140px + 20px + 20px) {
             width: calc( (1140px + 20px + 20px)/2 - (1140px + 20px + 20px)*0.06 );
             padding-right: 60px;
+            padding-left: 10px;
         }     
     }
     & .block-information__title {
@@ -178,7 +179,7 @@
             min-height: 56px + 40;
             max-height: 250px;
             overflow: hidden;
-            margin-bottom: 60px;
+            margin-bottom: 30px;
         }   
     }
 }

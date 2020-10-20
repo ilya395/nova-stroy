@@ -201,29 +201,99 @@
 
     & .complicated-content__plan-images {
         grid-area: plan-images;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
 
         @media screen and (min-width: 1140px + 20px + 20px) {
             padding-left: 34px;
         }
 
-        & .plan-images__preview-one {
+        & .plan-images__preview-one-wrap {
             border-radius: 5px;
             box-shadow: 0 6px 10px 0 rgba(11, 23, 65, 0.12);
             background-color: #ffffff;
             width: 100%;
-            background-size: contain;
-            background-position: center center;
-            background-repeat: no-repeat;
+            position: relative;
+            // box-sizing: content-box;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
 
-            @media screen and (max-width: 728px + 20px*2) {
-                min-height: 250px;
+
+            & .plan-images__preview-one {
+                display: block;
+                width: 100%;
+                height: 100%;
+                background-size: contain;
+                background-position: center center;
+                background-repeat: no-repeat;     
+                
+                @media screen and (max-width: 728px + 20px*2) {
+                    min-height: 250px;
+                }
+                @media screen and (min-width: 728px + 20px*2) {
+                    min-height: 647px;
+                }
+                @media screen and (min-width: 1140px + 20px + 20px) {
+                    min-height: 580px;
+                } 
             }
-            @media screen and (min-width: 728px + 20px*2) {
-                min-height: 647px;
+
+            & .plans-block__fucking-floor {
+                &.plans-block__fucking-floor_big {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: nowrap;
+                    align-items: center;
+                    justify-content: flex-start;
+                    padding-bottom: 40px;
+        
+                    & .fucking-floor__title, & .fucking-floor__number {
+                        font-family: Montserrat;
+                        font-size: 22px;
+                        font-weight: normal;
+                        font-stretch: normal;
+                        font-style: normal;
+                        line-height: 1.55;
+                        letter-spacing: normal;
+                        color: #006cff;
+                    }
+                    & .fucking-floor__title {
+                        margin-right: 10px;
+                        margin-left: 20px;
+                    }
+        
+                    & .fucking-floor__item {
+                        margin-left: 20px;
+                        & .fucking-floor__wrap {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            width: 54px;
+                            height: 54px;
+                            background-color: #ffffff;
+                            border: 1px solid #006cff;
+                            border-radius: 50%;
+                            color: #006cff;
+                            cursor: pointer;
+        
+                            & .fucking-floor__number {
+                                pointer-events: none;
+                            }
+        
+                            &.active {
+                                background-color: #006cff;
+                                color: #ffffff;
+        
+                                & .fucking-floor__number {
+                                    color: #ffffff;
+                                }
+                            }
+                        }
+                    }
+                }
             }
-            @media screen and (min-width: 1140px + 20px + 20px) {
-                min-height: 580px;
-            } 
         }
 
         & .plan-images__sub-title {

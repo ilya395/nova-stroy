@@ -335,7 +335,26 @@ window.addEventListener('load', () => {
                 }
 
             }
-        } 
+        } else if (event.target.dataset.object == 'choose-floor') {
+            if (!event.target.classList.contains('active')) {
+                const target = event.target;
+                const index = target.dataset.index;
+                const newUrl = target.dataset.url;
+                const newUrlFloor = target.dataset.urlFloor;
+    
+                // const parentContainer = document.querySelector(`[data-item="${index}"]`);
+                const preview = document.querySelector(`[data-object="flat-plan"][data-index="${index}"]`); 
+                preview.style.backgroundImage = `url(${newUrl})`;
+
+                const previewFloor = document.querySelector(`[data-object="floor-plan"][data-index="${index}"]`);
+                previewFloor.style.backgroundImage = `url(${newUrlFloor})`;
+
+                const allBtns = document.querySelectorAll(`[data-object="choose-floor"][data-index="${index}"]`);
+                allBtns.forEach(item => item.classList.remove('active'));
+                
+                target.classList.add('active');
+            } 
+        }
 
     }
     window.addEventListener('click', openPopUpHandler);
