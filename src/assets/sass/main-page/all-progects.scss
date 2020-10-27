@@ -162,27 +162,27 @@
                 & h3.block-information__dig-title {
                     transform: translateY(60px);
                     opacity: 0;
-                    transition: transform .6s linear, opacity .6s linear; 
+                    transition: transform .3s linear, opacity .3s linear; 
                 }
                 & h4 {
                     transform: translateY(60px);
                     opacity: 0;
-                    transition: transform .6s linear .2s, opacity .6s linear .2s; 
+                    transition: transform .3s linear .2s, opacity .3s linear .2s; 
                 }
                 & h2 {
                     transform: translateY(60px);
                     opacity: 0;
-                    transition: transform .6s linear .4s, opacity .6s linear .4s; 
+                    transition: transform .3s linear .4s, opacity .3s linear .4s; 
                 }
                 & .block-information__sub-title {
                     transform: translateY(60px);
                     opacity: 0;
-                    transition: transform .6s linear .6s, opacity .6s linear .6s; 
+                    transition: transform .3s linear .6s, opacity .3s linear .6s; 
                 }
                 & .block-information__buttons {
                     transform: translateY(60px);
                     opacity: 0;
-                    transition: transform .6s linear .8s, opacity .6s linear .8s; 
+                    transition: transform .3s linear .8s, opacity .3s linear .8s; 
                 }
             }
             &.move_interact {
@@ -335,7 +335,7 @@
         &.move_default {
             transform: scale(0.9, 0.9);
             opacity: 0;
-            transition: all .6s linear;
+            transition: all .4s linear;
         }
         &.move_interact {
             transform: scale(1, 1);

@@ -68,6 +68,7 @@
 }
 .opacity {
     opacity: 0;
+    pointer-events: none;
 }
 .none {
     display: none !important;
@@ -269,4 +270,27 @@
             transform: rotate(360deg);
         }
     }
+}
+/************************/
+.dom-rf {
+    width: 100%;
+    height: auto;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+.dom-rf img {
+    max-width: 100%;
+    display: block;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding-left: 15px;
+    padding-right: 15px;
 }

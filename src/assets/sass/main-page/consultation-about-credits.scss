@@ -56,7 +56,7 @@
                 width: 100%;
             }
             @media screen and (min-width: 728px + 20px*2) {
-                width: ( (728px + 20px*2)/2 - (728px + 20px*2)*0.05 );
+                width: 100%; // ( (728px + 20px*2)/2 - (728px + 20px*2)*0.05 );
                 padding-left: 20px;
             }
             @media screen and (min-width: 1140px + 20px + 20px) {

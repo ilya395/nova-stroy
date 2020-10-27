@@ -121,6 +121,8 @@
                 justify-content: flex-end;
             } 
             & .block-with-numbers__wrap {
+                overflow: hidden;
+                
                 @media screen and (max-width: 727px + 20px*2) {
                     width: 100%;
                     padding-top: 50px;

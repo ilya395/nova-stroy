@@ -55,7 +55,7 @@ window.addEventListener('load', () => {
         });
         stocksSlider.dotsJumpInit();
         stocksSlider.arrowsMoveInit();
-        if ( window.matchMedia('(max-width:728px)').matches ) {
+        if ( window.matchMedia('(max-width:1140px)').matches ) {
             stocksSlider.swipsInit();
         }
 
@@ -86,6 +86,7 @@ window.addEventListener('load', () => {
         sliderWithTabs.tabsClickInit();
         if ( window.matchMedia('(max-width:727px)').matches ) {
             sliderWithTabs.dotsJumpInit();
+            sliderWithTabs.swipsInit();
         }
 
         const rows = [
@@ -104,6 +105,9 @@ window.addEventListener('load', () => {
 
         });
         carousel.initArrows();
+        if ( window.matchMedia('(max-width:727px)').matches ) {
+            carousel.initDots();
+        }
 
         const map = new MapMover({
             urlContainer: '.map-with-projects',
@@ -147,6 +151,9 @@ window.addEventListener('load', () => {
         });
         stocksSliderInProjectPage.dotsJumpInit();
         stocksSliderInProjectPage.arrowsMoveInit();
+        if ( window.matchMedia('(max-width:1140px)').matches ) {
+            stocksSliderInProjectPage.swipsInit();
+        }
 
         const sliderInFirstSection = new BigSlider({
             urlContainer: '.project-hello-block__block-image',
@@ -157,6 +164,9 @@ window.addEventListener('load', () => {
         });
         sliderInFirstSection.dotsJumpInit();
         sliderInFirstSection.arrowsMoveInit();
+        if ( window.matchMedia('(max-width:1140px)').matches ) {
+            sliderInFirstSection.swipsInit();
+        }
 
         const removeLyer = () => {
             // console.log('#### removeLyer');
@@ -344,10 +354,19 @@ window.addEventListener('load', () => {
     
                 // const parentContainer = document.querySelector(`[data-item="${index}"]`);
                 const preview = document.querySelector(`[data-object="flat-plan"][data-index="${index}"]`); 
-                preview.style.backgroundImage = `url(${newUrl})`;
+                if (preview) {
+                    preview.style.backgroundImage = `url(${newUrl})`;
+                } else {
+                    console.log('нет планировки квартиры');
+                }
 
                 const previewFloor = document.querySelector(`[data-object="floor-plan"][data-index="${index}"]`);
-                previewFloor.style.backgroundImage = `url(${newUrlFloor})`;
+                if (previewFloor) {
+                    previewFloor.style.backgroundImage = `url(${newUrlFloor})`;
+                } else {
+                    console.log('нет планировки этажа');
+                }
+                
 
                 const allBtns = document.querySelectorAll(`[data-object="choose-floor"][data-index="${index}"]`);
                 allBtns.forEach(item => item.classList.remove('active'));

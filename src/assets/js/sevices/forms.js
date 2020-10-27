@@ -91,7 +91,7 @@ class DefaultForm {
                         <div class="main-form__agreement">
                             <input type="checkbox" name="agree" class="agreement__check-box" id="checkThis" checked="checked">
                             <label for="checkThis" class="agreement__check-box-text">
-                                Соласен на обработку <a href="#" class="agreement__warn">персональных данных</a>
+                                Соласен на обработку <a href="http://novastroyrt.ru/soglasie-na-obrabotku-personalnyh-dannyh/" class="agreement__warn">персональных данных</a>
                             </label>
                         </div>
                         <button type="submit" class="waves-effect waves-light btn custom-buttom hovered">
@@ -165,7 +165,7 @@ class DefaultForm {
         const container = this._containerElement() || document.querySelector(this.urlContainer);
         const collectionOfInputs = container.querySelectorAll('input');
 
-        let validate = false;
+        let validate = true;
 
         let formData = `action=${this.ajaxToken}`;
 
@@ -174,14 +174,14 @@ class DefaultForm {
         const makeStrBigger = (name, value) => {
             let str = `&${name}=${value}`;
             formData += str;
-            validate = true;
+            // validate = true;
         }
 
         collectionOfInputs.forEach(item => {
 
             if (item.getAttribute('name') == 'name') {
                 if (item.value != '' && item.value.length < 25) {
-                    validate = true;
+                    // validate = true;
                     // val = item.value;
                     makeStrBigger(item.getAttribute('name'), item.value);
                 } else {
@@ -192,7 +192,7 @@ class DefaultForm {
             }
             if (item.getAttribute('name') == 'phone') {
                 if (item.value != '' && imOkey( item.value ) == true) {
-                    validate = true;
+                    // validate = true;
                     // val = item.value;
                     makeStrBigger(item.getAttribute('name'), item.value);
                 } else {
@@ -203,7 +203,7 @@ class DefaultForm {
             }
             if (item.getAttribute('name') == 'agree') {
                 if (item.checked == true) {
-                    validate = true;
+                    // validate = true;
                     // val = item.checked;
                     makeStrBigger(item.getAttribute('name'), item.checked);
                 } else {
@@ -215,8 +215,8 @@ class DefaultForm {
 
             if (item.getAttribute('name') == 'title') {
                 console.log(item.getAttribute('name'), item.value, item.value.indexOf(' ', 0), item.value.length)
-                if (item.value.indexOf(' ', 0) != -1 && item.value.indexOf(' ', 0) != 0 && item.value.length < 50 ) {
-                    validate = true;
+                if (item.value.indexOf(' ', 0) != -1 && item.value.indexOf(' ', 0) != 0 && item.value.length < 100 ) {
+                    // validate = true;
                     // val = item.checked;
                     makeStrBigger(item.getAttribute('name'), item.value);
                 } else {
@@ -249,7 +249,12 @@ class DefaultForm {
                 return item == 'false' ? testing += 1 : testing;
             }, 0);
             if (test == 4 || roomsCount == '') {
-                roomsCount = 'studio,1,2,3';
+                const emptyInputs = container.querySelectorAll('[data-object="filter-field"][name="room-check"]');
+                let val = '';
+                emptyInputs.forEach((item, index) => {
+                    index == 0 ? val += `${item.value}` : val += `,${item.value}`;
+                });
+                roomsCount = val; // 'studio,1,2,3';
             }
     
             makeStrBigger('rooms_count', roomsCount);
@@ -322,6 +327,8 @@ class DefaultForm {
         ) {
             console.log(formData);
             sendAjax(formData, callback);
+        } else {
+            console.log('no validate', validate);
         }
     }
 
@@ -552,6 +559,12 @@ class FilterForm extends DefaultForm {
         this._addPlans();
     }
 
+    _removeClickedToAddPlans () {
+        const addBtn = document.querySelector(this.btnForAdd);
+        addBtn.removeEventListener('click', this._addPlansHandler.bind(this));
+        addBtn.classList.add('none');        
+    }
+
     _clickToAddPlans () {
         const addBtn = document.querySelector(this.btnForAdd);
         console.log(addBtn);
@@ -587,9 +600,7 @@ class FilterForm extends DefaultForm {
 
             if (allChildren.length - 1 + arrayOfNewObjects.length == this.localData.length) {
                 console.log(`текущие: ${allChildren.length} + новые: ${arrayOfNewObjects.length} = все: ${this.localData.length}`);
-                const addBtn = document.querySelector(this.btnForAdd);
-                addBtn.removeEventListener('click', this._addPlansHandler.bind(this));
-                addBtn.classList.add('none');
+                this._removeClickedToAddPlans();
             } else {
                 console.log(`текущие: ${allChildren.length} + новые: ${arrayOfNewObjects.length} = все: ${this.localData.length}`);
             }
@@ -627,6 +638,7 @@ class FilterForm extends DefaultForm {
             }
             container.insertAdjacentHTML('beforeend', allHtml);
             this._link();
+            this._removeClickedToAddPlans();
         } if ( data.length > 0 && data.length > this.count ) {
             for (let i = 0; i < this.count; i++) {
                 if (i == 1 && i + 1 == data.length || i == 0 && i + 1 == data.length || i == 2) {

@@ -251,26 +251,26 @@
         &.move_default {
             & .slider-block__wrap_one {
                 & .slider-block__icon {
-                    transition: all .6s linear;
+                    transition: all .3s linear;
                 }
                 & .slider-block__description {
-                    transition: all .6s linear;
+                    transition: all .3s linear;
                 }
             }
             & .slider-block__wrap_two {
                 & .slider-block__icon {
-                    transition: all .6s linear .2s;
+                    transition: all .3s linear .2s;
                 }
                 & .slider-block__description {
-                    transition: all .6s linear .2s;
+                    transition: all .3s linear .2s;
                 }
             }
             & .slider-block__wrap_three {
                 & .slider-block__icon {
-                    transition: all .6s linear .4s;
+                    transition: all .3s linear .4s;
                 }
                 & .slider-block__description {
-                    transition: all .6s linear .4s;
+                    transition: all .3s linear .4s;
                 }
             }
 

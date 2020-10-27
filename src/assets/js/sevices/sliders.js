@@ -426,7 +426,7 @@ class DefCarousel {
         container[0].addEventListener('click', handler);
     }
     initDots () {
-        const container = document.querySelectorAll(urlContainer);
+        const container = document.querySelectorAll(this.urlContainer);
         const handler = (event) => {
             if (event.target.dataset.object == 'slider-dots') {
                 this._jump( +event.target.dataset.index );

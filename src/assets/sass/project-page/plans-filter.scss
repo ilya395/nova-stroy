@@ -252,9 +252,19 @@
             &.plans-block__sign-up  {
                 background-color: #ffede0;
                 padding-bottom: 0;
+                min-height: 447px;
 
                 &.plans-block__sign-up_big {
-                    min-height: 525px;
+                    min-height: 515px; // 525px;
+                    position: relative;
+
+                    & .sign-up__image {
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        top: auto
+                    }
                 }
 
                 & .sign-up__image {
@@ -284,6 +294,10 @@
                 }
             }
 
+            & .plans-block__text, & h4, & .plans-block__arrow, & svg, & path {
+                pointer-events: none;
+            }
+
             &.hovered:hover {
                 & .plans-block__text h4 {
                     color: #ff7f50;
@@ -309,7 +323,7 @@
                 height: calc(270px + 20px);
             } 
             & .plans-block__image {
-                border: solid 1px #ff7f50;
+                border: solid 1px transparent;
                 width: 100%;;
                 height: 100%;
                 background-size: contain;
