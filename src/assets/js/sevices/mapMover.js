@@ -64,7 +64,7 @@ class MapMover {
                         centerCoordinates = projects[i]['coordinates'];
                     }
                 }
-                console.log(centerCoordinates)
+                // console.log(centerCoordinates)
                 map = DG.map(mapContainer, {
                     center: centerCoordinates,
                     zoom: zoom

@@ -290,7 +290,10 @@
         height: 100%;
         position: relative; 
 
-        // overflow: hidden; 
+        // overflow: hidden;
+        @media screen and (min-width: 1440px) {
+            width: calc( (1140px + 20px + 20px)/2 - 20px);
+        } 
   
     }
     & .block-image__container-with-imgs {
@@ -299,7 +302,7 @@
         display: flex;
         flex-wrap: nowrap;
         // overflow: hidden;
-        @media screen and (max-width: 727px + 20px*2) {            margin-left: 10px;
+        @media screen and (max-width: 727px + 20px*2) {            //margin-left: 10px;
             margin-left: 0px; // -10px;
             margin-right: 0px; // -10px;
         } 

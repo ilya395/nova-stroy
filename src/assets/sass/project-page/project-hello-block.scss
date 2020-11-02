@@ -68,6 +68,12 @@
                 padding-bottom: 104px;
                 padding-left: 30px;
             }
+            @media screen and (min-width: 1600px) {
+                padding-left: 45px;
+            }
+            @media screen and (min-width: 1800px) {
+                padding-left: 50px;
+            }
 
             & .project-information__logo {
                 flex-grow: 0;
@@ -160,6 +166,15 @@
             width: 100%;
             height: 100%;
             position: relative; 
+            @media screen and (min-width: 1440px) {
+                width: calc( (1140px + 20px + 20px)*0.55 - 10px);
+            }
+            @media screen and (min-width: 1600px) {
+                width: calc( (1140px + 20px + 20px)*0.55 + 0px);
+            }
+            @media screen and (min-width: 1800px) {
+                width: calc( (1140px + 20px + 20px)*0.55 + 10px);
+            }
         }
         & .block-image__container-with-imgs {
             width: 100%;
@@ -288,6 +303,9 @@
                 width: calc( (1140px + 20px + 20px)/2 );
                 margin-left: (1140px + 20px + 20px)*0.05;
                 justify-content: center;
+            } 
+            @media screen and (min-width: 1440px) {
+                margin-left: 0px;
             }           
     
             & ul {
