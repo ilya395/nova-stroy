@@ -325,7 +325,7 @@ class DefaultForm {
         if (
             validate == true
         ) {
-            console.log(formData);
+            // console.log(formData);
             sendAjax(formData, callback);
         } else {
             console.log('no validate', validate);

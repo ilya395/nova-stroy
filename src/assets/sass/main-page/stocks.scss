@@ -62,9 +62,9 @@
         @media screen and (min-width: 1140px + 20px + 20px) {
             width: calc( (1140px + 20px + 20px)/2 - (1140px + 20px + 20px)*0.06 );
         }   
-        @media screen and (min-width: 1440px) {
-            padding-left: 20px;
-        }
+        // @media screen and (min-width: 1440px) {
+        //     padding-left: 20px;
+        // }
         @media screen and (min-width: 1600px) {
             padding-left: 35px;
         }
@@ -216,9 +216,9 @@
 
         // overflow: hidden; 
 
-        @media screen and (min-width: 1440px) {
-            width: calc( (1140px + 20px + 20px)/2 + (1140px + 20px + 20px)*0.045);
-        }
+        // @media screen and (min-width: 1440px) {
+        //     width: calc( (1140px + 20px + 20px)/2 + (1140px + 20px + 20px)*0.045);
+        // }
         @media screen and (min-width: 1600px) {
             width: calc( (1140px + 20px + 20px)/2 + (1140px + 20px + 20px)*0.05);
         }
@@ -338,7 +338,7 @@
             margin-left: (1140px + 20px + 20px)*0.05;
             justify-content: center;
         } 
-        @media screen and (min-width: 1440px) {
+        @media screen and (min-width: 1600px) {
             margin-left: 0px;
         }          
 

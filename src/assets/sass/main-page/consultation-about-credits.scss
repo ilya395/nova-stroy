@@ -144,9 +144,9 @@
             position: relative; 
     
             // overflow: hidden; 
-            @media screen and (min-width: 1440px) {
-                width: calc( (1140px + 20px + 20px)/2 + (1140px + 20px + 20px)*0.045 );
-            }  
+            // @media screen and (min-width: 1440px) {
+            //     width: calc( (1140px + 20px + 20px)/2 + (1140px + 20px + 20px)*0.045 );
+            // }  
             @media screen and (min-width: 1600px) {
                 width: calc( (1140px + 20px + 20px)/2 + (1140px + 20px + 20px)*0.05 );
             }  
