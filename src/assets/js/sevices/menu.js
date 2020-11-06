@@ -12,6 +12,63 @@ class MobileMenu {
     constructor (object) {
         this.urlOpenBtn = object.urlOpenBtn;
         this.urlContainer = object.urlContainer;
+        this.state = 'close';
+        this.activatingButton = () => {
+            return document.querySelector(this.urlOpenBtn);
+        }
+        this.container = () => {
+            return document.querySelector(this.urlContainer);
+        }
+        this.animationMenuBtn = bodymovin.loadAnimation({
+            container: this.activatingButton(),
+            renderer: 'svg',
+            loop: false,
+            autoplay: false,
+            path: process.env.NODE_ENV == 'development' ? '/assets/js/utils/menu-V2.json' : 'https://novastroyrt.ru/wp-content/themes/nova/assets/js/utils/menu-V2.json', // "https://raw.githubusercontent.com/thesvbd/Lottie-examples/master/assets/animations/menu.json",
+            rendererSettings: {
+                className: 'header-menu__icon-image'
+            }
+        });
+        this.directionMenu = 1;
+    }
+
+    getState () {
+        return this.state;
+    } 
+
+    open () {
+        if (window.matchMedia('(max-width:1140px)').matches) {
+            this.container().classList.add('open-mob-menu');
+            document.querySelector('.work-area').classList.add('hidden');
+            //
+            this.animationMenuBtn.setDirection(this.directionMenu);
+            this.animationMenuBtn.play();
+            this.directionMenu = -this.directionMenu;
+            //
+            this.state = 'open';
+        }
+    }
+
+    close () {
+        if (window.matchMedia('(max-width:1140px)').matches) {
+            this.container().classList.remove('open-mob-menu');
+            document.querySelector('.work-area').classList.remove('hidden');
+            //
+            this.animationMenuBtn.setDirection(this.directionMenu);
+            this.animationMenuBtn.play();
+            this.directionMenu = -this.directionMenu;
+            //
+            this.state = 'close';
+        }        
+    }
+
+    init () {
+        // this.animationMenuBtn();
+        window.addEventListener('click', (event) => {
+            if ( event.target === this.activatingButton() || this.activatingButton().contains(event.target) ) {
+                this.state == 'close' ? this.open() : this.close();
+            }
+        });
     }
 
     openingListenerInit () {

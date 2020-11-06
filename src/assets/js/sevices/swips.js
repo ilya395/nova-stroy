@@ -84,7 +84,8 @@ const swips = (object) => {
     }
 
     const _touchMoveHandler = (e) => {
-        e.preventDefault() // отключаем стандартную реакцию скроллинга
+        // console.log('тут должен быть скролл');
+        // e.preventDefault() // отключаем стандартную реакцию скроллинга
     }
 
     const _touchEndHandler = (e) => {
@@ -101,6 +102,7 @@ const swips = (object) => {
             elapsedTime <= minTimeMovie
             && Math.abs(distanceY) <= 100
             && Math.abs(distanceX) >= minInterval
+            && e.cancelable
         ) {
             console.log('#### success swipe');
             _showMustGoOn(distanceX, distanceY);

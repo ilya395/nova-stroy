@@ -34,7 +34,8 @@ window.addEventListener('load', () => {
         urlOpenBtn: '[data-object="mob-menu"]', // '.burger-button__wrap',
         urlContainer: '.navigation__menu'
     });
-    mobMenu.openingListenerInit();
+    // mobMenu.openingListenerInit();
+    mobMenu.init();
 
     if ( document.querySelector('.main-page') ) {
 
@@ -332,11 +333,19 @@ window.addEventListener('load', () => {
                 
                 // const pathName = location.pathname;
                 const hash = href.slice( href.indexOf('#', 0) );
+                console.log(hash)
 
                 const target = document.querySelector(hash);
 
                 if ( target ) {
                     event.preventDefault();
+                    
+                    if ( window.matchMedia('(max-width:1140px)').matches ) {
+
+                        if (mobMenu.getState() == 'open') {
+                            mobMenu.close();
+                        }
+                    }
                     
                     target.scrollIntoView({
                         behavior: 'smooth',
@@ -380,6 +389,6 @@ window.addEventListener('load', () => {
 
 });
 
-window.addEventListener('click', (event) => {
-    console.log(event.target);
-});
+// window.addEventListener('click', (event) => {
+//     console.log(event.target);
+// });

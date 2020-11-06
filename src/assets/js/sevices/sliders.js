@@ -317,6 +317,27 @@ class DefCarousel {
         }
     }
 
+    _changeDotInDirection (direction) {
+        const allDots = document.querySelector(this.urlContainer).querySelectorAll('[data-object="slider-dots"]');
+        let activeDot = 0;
+        allDots.forEach((item, index) => {
+            if (item.classList.contains('active')) {
+                activeDot = index;
+                item.classList.remove('active');
+            }
+            
+        });
+        let nextDot = 0;
+        direction == 'right' ? nextDot = activeDot + 1 : nextDot = activeDot - 1;
+        if (nextDot > allDots.length) {
+            nextDot = allDots.length - 1;
+        }
+        if (nextDot < 0) {
+            nextDot = 0;
+        }
+        allDots[nextDot].classList.add('active');        
+    }
+
     _go (direction) {
         const containerForItems = document.querySelector(this.containerForItems);
         const items = containerForItems.querySelectorAll(this.urlItems);
@@ -329,38 +350,99 @@ class DefCarousel {
             this.sdvig += activeItemWidth;
             containerForItems.style.transform = `translateX(${this.sdvig}px)`;
             // console.log(`-${activeItemWidth}`);
+            this._changeDotInDirection('left');
         } else if (direction == 'right') {
             this.sdvig -= activeItemWidth;
             containerForItems.style.transform = `translateX(${this.sdvig}px)`;
             // console.log(`+${activeItemWidth}`);
+            this._changeDotInDirection('right');
         } else {
             console.log('Барин, да не могу я!!!')
         }
     }
 
     _jump (number) {
+        if ( window.matchMedia('(max-width:768px)').matches ) {
+            const containerForItems = document.querySelector(this.containerForItems);
+            const items = containerForItems.querySelectorAll(this.urlItems);
+    
+            const activeItemWidth = items[0].offsetWidth;
 
+            const visibleItemsCount = Math.round( containerForItems.offsetWidth/items[0].offsetWidth ); // от 1 до 3
+    
+            let localSdvig = -activeItemWidth*(number);
+            containerForItems.style.transform = `translateX(${localSdvig}px)`;
+            this.sdvig = localSdvig;
+
+            // if (this.sdvig == 0) {
+            //     this._permissionGoToLeft('no');
+            //     this._permissionGoToRight('yes');
+            // }
+            // if (this.sdvig == +activeItemWidth * +items.length) {
+            //     this._permissionGoToLeft('yes');
+            //     this._permissionGoToRight('no');
+            // }
+
+            const allDots = document.querySelector(this.urlContainer).querySelectorAll('[data-object="slider-dots"]');
+            allDots.forEach(item => item.classList.remove('active'));
+            allDots[number].classList.add('active');
+            if (number == 0) {
+                this._permissionGoToLeft('no');
+                this._permissionGoToRight('yes');
+                this.notVisibleElements.right = items.length - Math.round(containerForItems.offsetWidth/items[0].offsetWidth);
+                this.notVisibleElements.left = 0;
+            } else if (number == allDots.length - 1) {
+                this._permissionGoToLeft('yes');
+                this._permissionGoToRight('no');
+                this.notVisibleElements.right = 0;
+                this.notVisibleElements.left = items.length - Math.round(containerForItems.offsetWidth/items[0].offsetWidth);
+            } else {
+                this._permissionGoToLeft('yes');
+                this._permissionGoToRight('yes');  
+                this.notVisibleElements.right = items.length - number;
+                this.notVisibleElements.left = number;              
+            }
+            console.log(this.notVisibleElements.left, this.notVisibleElements.right);
+        }
     }
 
     _permissionGoToLeft (what) {
+        const containerForItems = document.querySelector(this.containerForItems);
+        
+        const items = containerForItems.querySelectorAll(this.urlItems);
+
+        const visibleItemsCount = Math.round( containerForItems.offsetWidth/items[0].offsetWidth ); // от 1 до 3
+
         const leftArrow = document.querySelector(this.urlContainer).querySelector('[data-direction="left"]')
-        if ( what == 'no' ) {
+        if ( what == 'no') {
             leftArrow.classList.add('stop');
+            this.notVisibleElements.left = 0;
+            this.notVisibleElements.right = items.length - visibleItemsCount;
         } else {
             if ( leftArrow.classList.contains('stop') ) {
                 leftArrow.classList.remove('stop');
             }
         }
+        console.log(this.notVisibleElements.left, this.notVisibleElements.right);
     }
     _permissionGoToRight (what) {
+        const containerForItems = document.querySelector(this.containerForItems);
+        
+        const items = containerForItems.querySelectorAll(this.urlItems);
+
+        const visibleItemsCount = Math.round( containerForItems.offsetWidth/items[0].offsetWidth ); // от 1 до 3
+
         const rightArrow = document.querySelector(this.urlContainer).querySelector('[data-direction="right"]')
         if ( what == 'no' ) {
             rightArrow.classList.add('stop');
+            this.notVisibleElements.right = 0;
+            this.notVisibleElements.left = items.length - visibleItemsCount; 
         } else {
             if ( rightArrow.classList.contains('stop') ) {
                 rightArrow.classList.remove('stop');
             }
         }
+        console.log(this.notVisibleElements.left, this.notVisibleElements.right);
     }
 
     // init () {
@@ -392,20 +474,22 @@ class DefCarousel {
         const handler = (event) => {
             if (event.target.dataset.object == 'slider-arrow') { // клик по стрелкам
                 if ( event.target.dataset.direction == 'right' ) {
+                    console.log(this.notVisibleElements.left, this.notVisibleElements.right);
                     this.notVisibleElements.left++;
                     this.notVisibleElements.right--;
                     if ( this.notVisibleElements.left <= ( items.length - visibleItemsCount ) && this.notVisibleElements.right >= 0 ) {
                         this._permissionGoToRight('yes');
                         this._permissionGoToLeft('yes');
-                        this._go('right');
+                        this._go('right');                       
                     } else {
                         this._permissionGoToRight('no');
-                        this.notVisibleElements.right = 0;
+                        // this.notVisibleElements.right = 0;
                         this._permissionGoToLeft('yes');
-                        this.notVisibleElements.left = items.length - visibleItemsCount;
+                        // this.notVisibleElements.left = items.length - visibleItemsCount;
                     }
                 }
                 if ( event.target.dataset.direction == 'left' ) {
+                    console.log(this.notVisibleElements.left, this.notVisibleElements.right);
                     this.notVisibleElements.left--;
                     this.notVisibleElements.right++;
                     if ( this.notVisibleElements.left >= 0 && this.notVisibleElements.right <= ( items.length - visibleItemsCount ) ) {
@@ -414,9 +498,9 @@ class DefCarousel {
                         this._go('left');
                     } else {
                         this._permissionGoToLeft('no');
-                        this.notVisibleElements.left = 0;
+                        // this.notVisibleElements.left = 0;
                         this._permissionGoToRight('yes');
-                        this.notVisibleElements.right = items.length - visibleItemsCount;
+                        // this.notVisibleElements.right = items.length - visibleItemsCount;
                     }
                     
                 }

@@ -37,7 +37,7 @@ class MapMover {
                         projects[name]['default'] = false;
                     }                    
                 }
-                console.log(projects);
+                // console.log(projects);
             }
             if (window.matchMedia('(min-width:768px)').matches) {
                 tabItems.forEach(item => {

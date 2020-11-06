@@ -397,8 +397,17 @@
             justify-content: flex-start;
             display: flex;
         }
-        @media screen and (max-width: 280px + 20px*2) {
-            bottom: -650px;
+        @media screen and (max-width: 340px) {
+            bottom: calc(-695px);
+        }
+        @media screen and (max-width: 310px) {
+            bottom: calc(-710px);
+        }
+        @media screen and (max-width: 305px) {
+            bottom: calc(-750px);
+        }
+        @media screen and (max-width: 280px) {
+            bottom: calc(-780px);
         }
         @media screen and (min-width: 728px + 20px*2) {
             width: ( (728px + 20px*2)/2 );

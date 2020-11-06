@@ -25,6 +25,9 @@
         padding-left: 20px !important; 
         padding-right: 20px !important;
     }
+    @media screen and (max-width: 280 + 20px*2) {
+        grid-template-rows: 30px 254px 380px;
+    }
     @media screen and (min-width: 728px + 20px*2) {
         grid-template-areas: "title image""info image""info image";
         grid-template-columns: 50% 50%;
@@ -327,6 +330,15 @@
             bottom: calc(-320px - 25px);
             left: 0;
             justify-content: flex-start;
+        }
+        @media screen and (max-width: 360px) {
+            bottom: calc(-170%); // calc(-320px - 25px);
+        }
+        @media screen and (max-width: 340px) {
+            bottom: calc(-170%); // calc(-320px - 25px);
+        }
+        @media screen and (max-width: 310px) {
+            bottom: calc(-195%); 
         }
         @media screen and (min-width: 728px + 20px*2) {
             width: ( (728px + 20px*2)/2 );
