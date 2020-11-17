@@ -301,6 +301,10 @@ class DefaultForm {
                                 item.value = '';
                             }
                         });
+
+                        /////////////// свое событие успешной отправки ///////////////
+                        const customSuccessSubmit = new CustomEvent('custom-success-submit', { "bubbles": true }); // Event
+                        container.dispatchEvent(customSuccessSubmit);
     
                         return response;
                     } else {
