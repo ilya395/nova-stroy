@@ -60,10 +60,10 @@
         display: grid;
         grid-template-areas: "link""foto""floor""footer";
         grid-template-columns: 1fr;
-        grid-template-rows: 30px auto 80px 70px;
+        grid-template-rows: 30px auto 0px 70px;
 
         &.plans-block__wrap_big {
-            grid-template-rows: 30px auto 0px 70px;
+            grid-template-rows: 30px auto 80px 70px;
         }
 
         & .plans-block__inner-wrap {
