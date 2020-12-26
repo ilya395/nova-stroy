@@ -159,7 +159,7 @@ class DefaultForm {
 
     _fetchForm (callback) {
         console.log('yep, we go fetch!'); 
-        M.toast({html: 'Go Request!'});
+        // M.toast({html: 'Go Request!'});
 
         // console.log(this);
         const container = this._containerElement() || document.querySelector(this.urlContainer);

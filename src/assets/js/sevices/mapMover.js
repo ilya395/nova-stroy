@@ -4,7 +4,7 @@ class MapMover {
         this.urlSelect = object.urlSelect;
         this.urlTabItems = object.urlTabItems;
         this.urlMapContainer = object.urlMapContainer;
-        this.zoomValue = object.zoomValue || 13;
+        this.zoomValue = object.zoomValue || 7;
     }
 
     async init () {
@@ -103,6 +103,7 @@ class MapMover {
                     }
                     container.addEventListener('click', handler);                
                 }
+
                 if (window.matchMedia('(max-width:768px)').matches) {
                     const handler = () => {
                         const index = select.selectedIndex; // индекс выбранного options
@@ -116,9 +117,10 @@ class MapMover {
     
             });
         }
-        await asyncFunc();
-        await move();
 
+        await asyncFunc();
+
+        await move();
     }
 }
 
