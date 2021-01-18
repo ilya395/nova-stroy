@@ -66,6 +66,9 @@ h2 {
         text-decoration: none;
         color: #ff7f50;
     }
+    &.bold {
+        font-weight: bold;
+    }
 
     &.big-title {
         font-family: Montserrat;
@@ -125,6 +128,9 @@ h3 {
     }
     &.bold {
         font-weight: bold;
+    }
+    &.text-orange {
+        color: #ff7f50;
     }
 
     &.tab-element {

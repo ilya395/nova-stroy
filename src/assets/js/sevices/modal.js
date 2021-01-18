@@ -94,7 +94,6 @@ class PopUp {
     }
 
     makeContent () {
-        
         const {data, object} = this.content;
 
         const {

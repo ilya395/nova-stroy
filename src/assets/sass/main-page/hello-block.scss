@@ -206,6 +206,7 @@
     height: auto;
     z-index: 20;
     bottom: 0;
+    overflow: hidden;
 
     @media screen and (max-width: 727px + 20px*2) {
         display: none;

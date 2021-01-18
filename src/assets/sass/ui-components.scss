@@ -32,6 +32,28 @@
             color: #ff5c34;            
         }
     }
+
+    &.custom-buttom_blue {
+        background-color: #001835;
+
+        @media screen and (min-width: 1180px) {
+            min-width: 220px;
+        }
+
+        &.hovered:hover {
+            background-color: #001938;
+        }
+        &.custom-buttom_rectangle {
+            border: solid 1px #001835;
+            background-color: transparent;
+            color: #001835;
+            &.hovered:hover {
+                border: solid 1px #001938;
+                background-color: transparent;
+                color: #001938;            
+            }
+        }
+    }
 }
 
 .tabs__tab-item {
