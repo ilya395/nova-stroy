@@ -1,0 +1,17 @@
+.map-with-projects.map-with-projects-new-view {
+    & .map-with-projects__block-map {
+        @media screen and (max-width: 768px) {
+            height: 600px;
+        }
+        @media screen and (min-width: 768px) {
+            height: 400px;
+        }
+        @media screen and (min-width: 1180px) {
+            height: 600px;
+        }
+    }
+
+    .map-with-projects__block-information {
+        justify-content: flex-start;
+    }
+}

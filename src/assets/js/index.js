@@ -15,7 +15,7 @@ import { MovingHeader, MovingRows } from './sevices/headers';
 import { PopUp } from './sevices/modal';
 import { DefaultForm, FilterForm, AJAX_REQUEST_SUBMIT_FILTER } from './sevices/forms';
 import { swips } from './sevices/swips';
-import { MapMover } from './sevices/mapMover';
+import { MapMover, SimpleMap } from './sevices/mapMover';
 
 
 // work area
@@ -110,13 +110,27 @@ window.addEventListener('load', () => {
             carousel.initDots();
         }
 
-        const map = new MapMover({
-            urlContainer: '.map-with-projects',
-            urlSelect: '.map-with-projects__mob-tabs .select-element',
-            urlTabItems: '.map-with-projects__tabs .tab-item__wrap',
-            urlMapContainer: '#map'
-        });
-        map.init();
+        if (document.getElementById('map')) {
+            const map = new MapMover({
+                urlContainer: '.map-with-projects',
+                urlSelect: '.map-with-projects__mob-tabs .select-element',
+                urlTabItems: '.map-with-projects__tabs .tab-item__wrap',
+                urlMapContainer: '#map'
+            });
+            map.init();
+        }
+        if (document.getElementById('new-map')) {
+            const map = new SimpleMap({
+                containerDOMUrl: '#new-map',
+                data: {
+                    'ЖК «ТураНова»': "55.866766,48.833455", 
+                    'ЖК "Белая Аллея"': "55.899638,49.325719", 
+                    'Таун-парк "Sokurov"': "55.622241,49.386853", 
+                    'ЖК "Янтарный берег"': "55.621257,49.142505"
+                }
+            });
+            map.init();
+        }
     }
 
     if ( document.querySelector('.about-page') ) {

@@ -107,6 +107,7 @@
 @import 'main-page/all-progects.scss';
 @import 'main-page/all-progects-new-view';
 @import 'main-page/map-with-projects.scss';
+@import 'main-page/map-with-projects-new-view';
 @import 'main-page/advantages.scss';
 @import 'main-page/consultation-about-credits.scss';
 @import 'main-page/question-panel.scss';
@@ -297,3 +298,56 @@
     padding-left: 15px;
     padding-right: 15px;
 }
+
+.map-with-projects.map-with-projects-new-view .leaflet-marker-icon.leaflet-div-icon {
+    background: transparent !important;
+    border: none !important;
+}
+
+.pin-on-map {
+    background-color: #ff7f50;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    @media screen and (max-width: 727px + 20px*2) {
+        width: 131px;
+        height: 45px;
+        border-radius: 27px;
+    }
+    @media screen and (min-width: 728px + 20px*2) {
+        width: 230px;
+        height: 45px;
+        border-radius: 27px;
+    }
+    @media screen and (min-width: 1140px + 20px + 20px) {
+        width: 230px;
+        height: 45px;
+        border-radius: 27px;
+    }     
+    
+    & .pin-on-map__icon {
+        width: 26px;
+        height: 21px;
+
+        & img {
+            width: auto;
+            height: 100%;
+        }
+    }
+
+    & .pin-on-map__name {
+        font-family: Montserrat;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.75;
+        letter-spacing: normal;
+        color: #ffffff;
+        height: 100%;
+        text-align: right;
+    }
+}
+
