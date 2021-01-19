@@ -16,7 +16,7 @@ import { PopUp } from './sevices/modal';
 import { DefaultForm, FilterForm, AJAX_REQUEST_SUBMIT_FILTER } from './sevices/forms';
 import { swips } from './sevices/swips';
 import { MapMover, SimpleMap } from './sevices/mapMover';
-
+import { MoreObjects } from './sevices/moreObjects';
 
 // work area
 const preLoader = new Preloader({
@@ -173,6 +173,21 @@ window.addEventListener('load', () => {
 			//     numVisible: 1,
 			//     dist: -20
 			// });
+        }
+
+        let number = 6;
+
+        if ( window.matchMedia('(min-width:1180px)').matches ) {
+            number = 8;
+        }
+
+        if ( window.matchMedia('(min-width:728px)').matches ) {
+            const moreObj = new MoreObjects({
+                containerDOMUrl: '.dream-team',
+                visibleItems: number,
+                slug: 'persons'
+            });
+            moreObj.init();
         }
     }
 
