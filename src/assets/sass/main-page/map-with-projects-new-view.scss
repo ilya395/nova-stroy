@@ -11,7 +11,24 @@
         }
     }
 
-    .map-with-projects__block-information {
+    & .map-with-projects__block-information {
         justify-content: flex-start;
+        @media screen and (max-width: 768px) {
+            padding-left: 0;
+            padding-right: 0;            
+        }
+        @media screen and (min-width: 1180px) {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    & .map-with-projects__block-information {
+        & .block-information__title {
+            @media screen and (max-width: 767px) {
+                margin-top: 0;
+                margin-bottom: 48px;
+            }
+        }
     }
 }

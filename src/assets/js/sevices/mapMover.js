@@ -165,75 +165,52 @@ class SimpleMap {
                 // iconUrl: process.env.NODE_ENV == 'development' ? 'assets/images/logos/pin.svg' : 'https://novastroyrt.ru/wp-content/themes/nova/assets/images/logos/pin.svg',
                 iconSize: [48, 48],
                 html: '<b style="color:blue;">HTML-код</b>'
-                // html: `
-                //     <div 
-                //         class="pin-on-map" 
-                //         style="width: 217px;
-                //         height: 45px;
-                //         border-radius: 27px;
-                //         background-color: #ff7f50;
-                //         color: #fff;
-                //         border: #ff7f50;"
-                //     >
-                //         <div class="pin-on-map__icon">
-                //             <svg width="55px" height="68px" viewBox="0 0 55 68" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                //                 <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
-                //                 <title>pin</title>
-                //                 <desc>Created with Sketch.</desc>
-                //                 <g id="Main" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                //                     <g id="desktop-/-main" transform="translate(-1014.000000, -3169.000000)" fill="#0A2896">
-                //                         <g id="006_maps_cmplx" transform="translate(0.000000, 2798.000000)">
-                //                             <g id="Group" transform="translate(637.000000, 0.000000)">
-                //                                 <path d="M382.038118,414.080636 C382.802461,415.153408 383.642704,416.168814 384.551107,417.119441 L401.4662,437.574694 C403.037157,439.474386 405.963864,439.475167 407.536039,437.576645 L424.654357,416.902077 C425.408643,416.095449 426.114214,415.243553 426.767143,414.350682 L427.117964,413.92649 L427.070821,413.92649 C430.177929,409.501823 432,404.120714 432,398.316858 C432,383.230186 419.687857,371 404.5,371 C389.312182,371 377,383.230186 377,398.316858 C377,404.120714 378.82213,409.501823 381.929139,413.92649 L381.910714,413.92649 L382.038118,414.080636 Z M416.285714,398.316858 C416.285714,404.782563 411.009054,410.024082 404.5,410.024082 C397.990946,410.024082 392.714286,404.782563 392.714286,398.316858 C392.714286,391.851152 397.990946,386.609633 404.5,386.609633 C411.009054,386.609633 416.285714,391.851152 416.285714,398.316858 Z" id="pin"></path>
-                //                             </g>
-                //                         </g>
-                //                     </g>
-                //                 </g>
-                //             </svg>
-                //         </div>
-                //         <div class="pin-on-map__name">
-                //             11${param}
-                //         </div>
-                //     </div>
-                // `
-
-
-            //     <svg width="55px" height="68px" viewBox="0 0 55 68" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            //     <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
-            //     <title>pin</title>
-            //     <desc>Created with Sketch.</desc>
-            //     <g id="Main" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            //         <g id="desktop-/-main" transform="translate(-1014.000000, -3169.000000)" fill="#0A2896">
-            //             <g id="006_maps_cmplx" transform="translate(0.000000, 2798.000000)">
-            //                 <g id="Group" transform="translate(637.000000, 0.000000)">
-            //                     <path d="M382.038118,414.080636 C382.802461,415.153408 383.642704,416.168814 384.551107,417.119441 L401.4662,437.574694 C403.037157,439.474386 405.963864,439.475167 407.536039,437.576645 L424.654357,416.902077 C425.408643,416.095449 426.114214,415.243553 426.767143,414.350682 L427.117964,413.92649 L427.070821,413.92649 C430.177929,409.501823 432,404.120714 432,398.316858 C432,383.230186 419.687857,371 404.5,371 C389.312182,371 377,383.230186 377,398.316858 C377,404.120714 378.82213,409.501823 381.929139,413.92649 L381.910714,413.92649 L382.038118,414.080636 Z M416.285714,398.316858 C416.285714,404.782563 411.009054,410.024082 404.5,410.024082 C397.990946,410.024082 392.714286,404.782563 392.714286,398.316858 C392.714286,391.851152 397.990946,386.609633 404.5,386.609633 C411.009054,386.609633 416.285714,391.851152 416.285714,398.316858 Z" id="pin"></path>
-            //                 </g>
-            //             </g>
-            //         </g>
-            //     </g>
-            // </svg>
             });
 
             for (let i in data) {
-                // DG.marker(getCoordinates(data[i]),{
-                //     icon: pin(i)
-                // })
-                //     .addTo(map)
-                    // .bindPopup(projects[i]['name']); // ба 
 
                 const value = (i) => {
                     return `
-                    <div 
-                        class="pin-on-map" 
-                    >
-                        <div class="pin-on-map__icon">
-                            <img src="${ process.env.NODE_ENV == 'development' ? 'assets/images/logos/pin-white.svg' : 'https://novastroyrt.ru/wp-content/themes/nova/assets/images/logos/pin-white.svg' }">
+                        <div 
+                            clas="pin-on-map"
+                            style="width: 250px;
+                            height: 40px;
+                            pointer-events: none;
+                            transform: translateY(-10px)"
+                        >
+                            <div 
+                                class="pin-on-map__wrap"
+                                style="background-color: #ff7f50;
+                                color: #fff;
+                                display: inline-flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                padding: 5px 10px;
+                                border-radius: 27px;"
+                            >
+                                <div 
+                                    class="pin-on-map__icon"
+                                    style="width: 26px;height: 21px;"
+                                >
+                                    <img style="width: auto;height: 100%;" src="${ process.env.NODE_ENV == 'development' ? 'assets/images/logos/pin-white.svg' : 'https://novastroyrt.ru/wp-content/themes/nova/assets/images/logos/pin-white.svg' }">
+                                </div>
+                                <div 
+                                    class="pin-on-map__name"
+                                    style="        font-family: Montserrat;
+                                    font-size: 16px;
+                                    font-weight: bold;
+                                    font-stretch: normal;
+                                    font-style: normal;
+                                    line-height: 1.75;
+                                    letter-spacing: normal;
+                                    color: #ffffff;
+                                    height: 100%;"
+                                >
+                                    ${i}
+                                </div>
+                            </div>
                         </div>
-                        <div class="pin-on-map__name">
-                            ${i}
-                        </div>
-                    </div>
-                `;
+                    `
                 }
                     
                 const myDivIcon = DG.divIcon({
@@ -242,7 +219,15 @@ class SimpleMap {
                 });
                 DG.marker(getCoordinates(data[i]), {
                     icon: myDivIcon
-                }).addTo(map);
+                })
+                    .addTo(map)
+                    .bindPopup(i);
+
+                const defaultActiveZones = document.querySelectorAll('.leaflet-marker-icon.leaflet-div-icon');
+                defaultActiveZones.forEach(item => {
+                    item.style.width = '190px';
+                    item.style.height = '40px';
+                });
             }
             
         });
