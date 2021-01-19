@@ -77,7 +77,7 @@ class BigSlider {
                     thisIndex = index;
                 }
             }); 
-        } else if (textItems.length > 0) {
+        } else if (textItems && textItems.length > 0) {
             textItems.forEach((item, index) => {
                 if ( item.classList.contains('active') ) {
                     thisIndex = index;
@@ -228,11 +228,11 @@ class BigSlider {
 
         const goNext = () => {
             console.log()
-            this._openNewSlide( giveMePlzSliderIndex('right') );
+            this._openNewSlide( giveMePlzSliderIndex('left') );
         }
 
         const goPrev = () => {
-            this._openNewSlide( giveMePlzSliderIndex('left') );
+            this._openNewSlide( giveMePlzSliderIndex('right') );
         }
 
         const swipeListener = swips({
@@ -467,7 +467,6 @@ class DefCarousel {
         this.notVisibleElements.left = 0;
 
         this.notVisibleElements.right = items.length - visibleItemsCount;
-
 
         const container = document.querySelectorAll(this.urlContainer);
 

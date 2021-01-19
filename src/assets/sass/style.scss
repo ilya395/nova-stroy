@@ -102,6 +102,12 @@
     }
 }
 
+.disable {
+    opacity: .8;
+    pointer-events: none;
+    cursor: no-drop;
+}
+
 @import 'services/preloader.scss';
 // main-page
 @import 'ui-components.scss';

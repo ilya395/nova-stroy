@@ -260,6 +260,9 @@ h4 {
         margin-top: 0px;
         margin-bottom: 0px;
     }
+    &.text-light-blue {
+        color: #006cff;
+    }
 
     &.typography-simple-text__l-h {
         @media screen and (max-width: 727px + 20px*2) {

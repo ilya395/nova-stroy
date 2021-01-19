@@ -163,7 +163,10 @@ class DefaultForm {
 
         // console.log(this);
         const container = this._containerElement() || document.querySelector(this.urlContainer);
+
         const collectionOfInputs = container.querySelectorAll('input');
+
+        const btn = container.querySelector('button[type="submit"]');
 
         let validate = true;
 
@@ -270,6 +273,8 @@ class DefaultForm {
         
         let sendAjax = (formData, callback) => {
 
+            btn.classList.add('disable');
+
             fetch(
                 // 'http://jsonplaceholder.typicode.com/users', 
                 window.wp.ajax_url, // '/wp-admin/admin-ajax.php', // точка входа
@@ -314,6 +319,8 @@ class DefaultForm {
                             callback(response);
                         }
                     }
+
+                    btn.classList.remove('disable');
                 }
             )
             .catch(

@@ -76,18 +76,20 @@ window.addEventListener('load', () => {
             new MovingHeader({urlHeaders: item}).init();
         });
 
-        const sliderWithTabs = new BigSliderWithTabs({
-            urlContainer: '.all-progects',
-            urlImagesItems: '.all-progects [data-object="slider-image"]',
-            urlTextsItems: '.all-progects [data-object="slider-text"]',
-            urlArrowsItems: null, // '.block-image__slider-navigation [data-object="slider-arrow"]',
-            urlDotsItems: '.all-progects [data-object="slider-dots"]',
-            urlTabsItems: '.all-progects [data-object="tab"]'         
-        });
-        sliderWithTabs.tabsClickInit();
-        if ( window.matchMedia('(max-width:727px)').matches ) {
-            sliderWithTabs.dotsJumpInit();
-            sliderWithTabs.swipsInit();
+        if (document.querySelector('.all-progects')) {
+            const sliderWithTabs = new BigSliderWithTabs({
+                urlContainer: '.all-progects',
+                urlImagesItems: '.all-progects [data-object="slider-image"]',
+                urlTextsItems: '.all-progects [data-object="slider-text"]',
+                urlArrowsItems: null, // '.block-image__slider-navigation [data-object="slider-arrow"]',
+                urlDotsItems: '.all-progects [data-object="slider-dots"]',
+                urlTabsItems: '.all-progects [data-object="tab"]'         
+            });
+            sliderWithTabs.tabsClickInit();
+            if ( window.matchMedia('(max-width:727px)').matches ) {
+                sliderWithTabs.dotsJumpInit();
+                sliderWithTabs.swipsInit();
+            }
         }
 
         const rows = [
@@ -110,7 +112,7 @@ window.addEventListener('load', () => {
             carousel.initDots();
         }
 
-        if (document.getElementById('map')) {
+        if (document.getElementById('map') != null) {
             const map = new MapMover({
                 urlContainer: '.map-with-projects',
                 urlSelect: '.map-with-projects__mob-tabs .select-element',
@@ -119,15 +121,17 @@ window.addEventListener('load', () => {
             });
             map.init();
         }
-        if (document.getElementById('new-map')) {
+        if (document.getElementById('new-map') != null) {
+            const data = process.env.NODE_ENV == 'development' ? {
+                'ЖК «ТураНова»': "55.866766,48.833455", 
+                'ЖК "Белая Аллея"': "55.899638,49.325719", 
+                'Таун-парк "Sokurov"': "55.622241,49.386853", 
+                'ЖК "Янтарный берег"': "55.621257,49.142505"
+            } : window.wp.coordinates;
+
             const map = new SimpleMap({
                 containerDOMUrl: '#new-map',
-                data: {
-                    'ЖК «ТураНова»': "55.866766,48.833455", 
-                    'ЖК "Белая Аллея"': "55.899638,49.325719", 
-                    'Таун-парк "Sokurov"': "55.622241,49.386853", 
-                    'ЖК "Янтарный берег"': "55.621257,49.142505"
-                }
+                data
             });
             map.init();
         }
@@ -153,6 +157,23 @@ window.addEventListener('load', () => {
             urlMapContainer: '#map'
         });
         map.init();
+
+        if (document.querySelector('.dream-team') && window.matchMedia('(max-width:768px)').matches) {
+            const teamSlider = new BigSlider({
+                urlContainer: '.dream-team',
+                urlImagesItems: '.dream-team .tiles__content  .tiles__tile-element',
+                urlTextsItems: null, // '.dream-team .block-information__wrap [data-object="slider-text"]',
+                urlDotsItems: '.dream-team .block-image__slider-dots [data-object="slider-dots"]'
+            });
+            teamSlider.dotsJumpInit();
+            teamSlider.swipsInit();
+            // const teamElems = document.querySelectorAll('.tiles__content.carousel');
+		    // const teamSliderInstances = M.Carousel.init(teamElems, {
+			//     indicators: true,
+			//     numVisible: 1,
+			//     dist: -20
+			// });
+        }
     }
 
     if ( document.querySelector('.project-page') ) {
