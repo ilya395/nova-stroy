@@ -142,6 +142,9 @@
         @media screen and (min-width: 768px) {
             margin-left: -10px;
             margin-right: -10px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
         }
         @media screen and (min-width: 1180px) {
             margin-left: -20px;

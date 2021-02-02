@@ -37,13 +37,17 @@ class MoreObjects {
 
         const items = container.querySelectorAll(`[data-object="${this.slug}"]`);
 
-        items.forEach((item, index) => {
-            if (index + 1 > this.items) {
-                item.classList.add('none');
-            }
-        });
-
         const btn = container.querySelector(`[data-object="more-${this.slug}"]`);
+
+        if (items.length > this.items) {
+            items.forEach((item, index) => {
+                if (index + 1 > this.items) {
+                    item.classList.add('none');
+                }
+            });
+        } else {
+            btn.classList.add('none');
+        }
 
         btn.addEventListener('click', this._giveMoreBlock.bind(this));
 

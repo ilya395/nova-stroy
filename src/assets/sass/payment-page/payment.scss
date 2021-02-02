@@ -188,7 +188,7 @@
 	    }
 	}
 }
-.payment-tabs__tab-content#ipoteka {
+.payment-tabs__tab-content#ipoteka, .payment-tabs__tab-content#trade-in {
 	& .tab-content__info {
 
 		@media screen and (max-width: 727px + 20px*2) {
