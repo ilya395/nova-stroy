@@ -181,14 +181,14 @@ window.addEventListener('load', () => {
             number = 8;
         }
 
-        if ( window.matchMedia('(min-width:728px)').matches ) {
-            const moreObj = new MoreObjects({
-                containerDOMUrl: '.dream-team',
-                visibleItems: number,
-                slug: 'persons'
-            });
-            moreObj.init();
-        }
+        // if ( window.matchMedia('(min-width:728px)').matches ) {
+        //     const moreObj = new MoreObjects({
+        //         containerDOMUrl: '.dream-team',
+        //         visibleItems: number,
+        //         slug: 'persons'
+        //     });
+        //     moreObj.init();
+        // }
     }
 
     if ( document.querySelector('.project-page') ) {
