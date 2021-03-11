@@ -217,7 +217,7 @@ class DefaultForm {
             }
 
             if (item.getAttribute('name') == 'title') {
-                console.log(item.getAttribute('name'), item.value, item.value.indexOf(' ', 0), item.value.length)
+                // console.log(item.getAttribute('name'), item.value, item.value.indexOf(' ', 0), item.value.length)
                 if (item.value.indexOf(' ', 0) != -1 && item.value.indexOf(' ', 0) != 0 && item.value.length < 100 ) {
                     // validate = true;
                     // val = item.checked;
@@ -300,12 +300,19 @@ class DefaultForm {
                     if ( this.hardMode == false ) {
                         M.toast({html: 'Все отлично!'});
                         this._moveSuccessMessage();
+
+                        const dataForMango = {};
     
                         collectionOfInputs.forEach(item => {
                             if ( item.getAttribute('name') == 'name' || item.getAttribute('name') == 'phone' ) {
                                 item.value = '';
                             }
+                            dataForMango[`${ item.getAttribute('name') == 'phone' ? 'number' : item.getAttribute('name') }`] = item.value;
                         });
+
+                        if ( mgo ) {
+                            mgo.postForm(dataForMango);
+                        }
 
                         /////////////// свое событие успешной отправки ///////////////
                         const customSuccessSubmit = new CustomEvent('custom-success-submit', { "bubbles": true }); // Event
