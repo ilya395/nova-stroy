@@ -277,7 +277,7 @@ class DefaultForm {
 
             fetch(
                 // 'http://jsonplaceholder.typicode.com/users', 
-                'https://novastroyrt.ru/admin-ajax.php' || window.wp.ajax_url, // '/wp-admin/admin-ajax.php', // точка входа
+                window.wp.ajax_url, // '/wp-admin/admin-ajax.php', // точка входа
                 {
                     // method: 'GET',
                     method: 'POST',

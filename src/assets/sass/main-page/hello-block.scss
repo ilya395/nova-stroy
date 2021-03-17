@@ -95,6 +95,9 @@
         background-image: url('../images/001_render.png');
         background-size: auto calc(100% - 120px - 70px);
     }
+    @media screen and (min-width: 1000px) {
+        background-size: auto calc(100%);
+    }
     @media screen and (min-width: 1140px + 20px + 20px) {
         background-image: url('../images/001_render.png');
         background-size: cover;
