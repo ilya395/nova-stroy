@@ -301,18 +301,30 @@ class DefaultForm {
                         M.toast({html: 'Все отлично!'});
                         this._moveSuccessMessage();
 
-                        const dataForMango = {};
-    
                         collectionOfInputs.forEach(item => {
                             if ( item.getAttribute('name') == 'name' || item.getAttribute('name') == 'phone' ) {
                                 item.value = '';
                             }
-                            dataForMango[`${ item.getAttribute('name') == 'phone' ? 'number' : item.getAttribute('name') }`] = item.value;
                         });
 
-                        if ( mgo ) {
-                            mgo.postForm(dataForMango);
-                        }
+                        const promiseForMango = new Promise(function (resolve, reject) {
+                            const dataForMango = {};
+                            collectionOfInputs.forEach(item => {
+                                if ( item.getAttribute('name') == 'name' || item.getAttribute('name') == 'phone' || item.getAttribute('name') == 'email' ) {
+                                    dataForMango[`${ item.getAttribute('name') == 'phone' ? 'number' : item.getAttribute('name') }`] = item.value;
+                                }
+                            }); 
+                            resolve(dataForMango);                           
+                        });
+
+                        promiseForMango
+                            .then(res => {
+                                if ( mgo ) {
+                                    mgo.postForm(dataForMango);
+                                }
+                                return res;
+                            })
+                            .catch(err => console.log(err));
 
                         /////////////// свое событие успешной отправки ///////////////
                         const customSuccessSubmit = new CustomEvent('custom-success-submit', { "bubbles": true }); // Event
