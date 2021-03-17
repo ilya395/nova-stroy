@@ -320,7 +320,10 @@ class DefaultForm {
                         promiseForMango
                             .then(res => {
                                 if ( mgo ) {
+                                    console.log('postForm');
                                     mgo.postForm(dataForMango);
+                                } else {
+                                    console.log('can`t postForm');
                                 }
                                 return res;
                             })
