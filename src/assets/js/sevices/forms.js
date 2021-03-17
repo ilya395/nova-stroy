@@ -277,7 +277,7 @@ class DefaultForm {
 
             fetch(
                 // 'http://jsonplaceholder.typicode.com/users', 
-                window.wp.ajax_url, // '/wp-admin/admin-ajax.php', // точка входа
+                'https://novastroyrt.ru/admin-ajax.php' || window.wp.ajax_url, // '/wp-admin/admin-ajax.php', // точка входа
                 {
                     // method: 'GET',
                     method: 'POST',
@@ -301,12 +301,6 @@ class DefaultForm {
                         M.toast({html: 'Все отлично!'});
                         this._moveSuccessMessage();
 
-                        collectionOfInputs.forEach(item => {
-                            if ( item.getAttribute('name') == 'name' || item.getAttribute('name') == 'phone' ) {
-                                item.value = '';
-                            }
-                        });
-
                         const promiseForMango = new Promise(function (resolve, reject) {
                             const dataForMango = {};
                             collectionOfInputs.forEach(item => {
@@ -319,12 +313,21 @@ class DefaultForm {
 
                         promiseForMango
                             .then(res => {
+                                console.log(res);
                                 if ( mgo ) {
                                     console.log('postForm');
-                                    mgo.postForm(dataForMango);
+                                    mgo.postForm(res);
                                 } else {
                                     console.log('can`t postForm');
                                 }
+                                return res;
+                            })
+                            .then(res => {
+                                collectionOfInputs.forEach(item => {
+                                    if ( item.getAttribute('name') == 'name' || item.getAttribute('name') == 'phone' ) {
+                                        item.value = '';
+                                    }
+                                });
                                 return res;
                             })
                             .catch(err => console.log(err));
