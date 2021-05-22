@@ -292,7 +292,7 @@
 
         // overflow: hidden;
         @media screen and (min-width: 1600px) {
-            width: calc( (1140px + 20px + 20px)/2 - 20px);
+            width: 100%; // calc( (1140px + 20px + 20px)/2 - 20px);
         } 
   
     }

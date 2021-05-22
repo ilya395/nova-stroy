@@ -172,15 +172,15 @@ const plugins = () => {
         new CopyWebpackPlugin({
             patterns: [
                 {
-                    from: path.resolve(__dirname, './src/assets/js/utils/*'),
+                    from: path.resolve(__dirname, './src/assets/js/utils/*').replace(/\\/g, "/"), // в win пути с другими слэшами,
                     to: path.resolve(__dirname, './dist/')
                 },
                 {
-                    from: path.resolve(__dirname, './src/assets/images/**/*'),
+                    from: path.resolve(__dirname, './src/assets/images/**/*').replace(/\\/g, "/"), // в win пути с другими слэшами
                     to: path.resolve(__dirname, './dist/'),
                 },
                 {
-                    from: path.resolve(__dirname, './src/assets/video/**/*'),
+                    from: path.resolve(__dirname, './src/assets/video/**/*').replace(/\\/g, "/"), // в win пути с другими слэшами
                     to: path.resolve(__dirname, './dist/'),
                 },
             ]

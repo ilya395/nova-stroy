@@ -319,34 +319,26 @@ window.addEventListener('load', () => {
     const openPopUpHandler = (event) => {
 
         let titleForPopUp = 'Форма обратной связи';
-        let subTitleForPopUp = 'Отправьте ваш номер и мы перезвоним в ближайшее время';
+        let subTitleForPopUp = 'Просто отправьте Ваш номер и мы перезвоним вам в рабочее время: пн-пт 9:00-18:00';
         let hiddenTitleForPopUp = 'Вызов формы обратной связи по умолчанию';
 
         if ( event.target.dataset.object == 'ipoteka' ) {
             event.preventDefault();
             const target = event.target;
 
-            titleForPopUp = 'Бесплатная консультация по ипотеке';
-            subTitleForPopUp = 'Отправьте ваш номер и мы перезвоним в ближайшее время';
-            hiddenTitleForPopUp = ( window.wp && window.wp.project_slug ) ? `${target.dataset.title} ${window.wp.project_slug}` : target.dataset.title;
-
             callPopUp({
-                titleForPopUp,
+                titleForPopUp: 'Бесплатная консультация по ипотеке',
                 subTitleForPopUp,
-                hiddenTitleForPopUp
+                hiddenTitleForPopUp: ( window.wp && window.wp.project_slug ) ? `${target.dataset.title} ${window.wp.project_slug}` : target.dataset.title,
             });
         } else if ( event.target.dataset.object == 'stock' ) {
             event.preventDefault();
             const target = event.target;
 
-            titleForPopUp = 'Наши специалисты расскажут вам об условиях акции подробнее ';
-            subTitleForPopUp = 'Просто отправьте ваш номер и мы перезвоним в ближайшее время';
-            hiddenTitleForPopUp = ( window.wp && window.wp.project_slug ) ? `${target.dataset.title} ${window.wp.project_slug}` : target.dataset.title;
-
             callPopUp({
-                titleForPopUp,
+                titleForPopUp: 'Наши специалисты расскажут вам об условиях акции подробнее ',
                 subTitleForPopUp,
-                hiddenTitleForPopUp
+                hiddenTitleForPopUp: ( window.wp && window.wp.project_slug ) ? `${target.dataset.title} ${window.wp.project_slug}` : target.dataset.title
             });
         } else if ( event.target.dataset.object == 'toggle-filter' ) {
             event.preventDefault();
@@ -355,27 +347,19 @@ window.addEventListener('load', () => {
             event.preventDefault();
             const target = event.target;
 
-            titleForPopUp = 'Бесплатная консультация по телефону';
-            subTitleForPopUp = 'Отправьте ваш номер и мы перезвоним в ближайшее время';
-            hiddenTitleForPopUp = ( window.wp && window.wp.project_slug ) ? `${target.dataset.title} ${window.wp.project_slug}` : target.dataset.title;
-
             callPopUp({
-                titleForPopUp,
+                titleForPopUp: 'Бесплатная консультация по телефону',
                 subTitleForPopUp,
-                hiddenTitleForPopUp
+                hiddenTitleForPopUp: ( window.wp && window.wp.project_slug ) ? `${target.dataset.title} ${window.wp.project_slug}` : target.dataset.title
             });           
         } else if ( event.target.dataset.object == 'excursion' ) {
             event.preventDefault();
             const target = event.target;
 
-            titleForPopUp = 'Запишитесь на экскурсию!';
-            subTitleForPopUp = 'Оставьте номер телефона и мы перезвоним в ближайшее время';
-            hiddenTitleForPopUp = ( window.wp && window.wp.project_slug ) ? `${target.dataset.title} ${window.wp.project_slug}` : target.dataset.title;
-
             callPopUp({
-                titleForPopUp,
+                titleForPopUp: 'Запишитесь на экскурсию!',
                 subTitleForPopUp,
-                hiddenTitleForPopUp
+                hiddenTitleForPopUp: ( window.wp && window.wp.project_slug ) ? `${target.dataset.title} ${window.wp.project_slug}` : target.dataset.title
             });             
         } else if ( event.target.hasAttribute('href') ) {
             const href = event.target.getAttribute('href');
